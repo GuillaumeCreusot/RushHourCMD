@@ -10,6 +10,8 @@ namespace RushHour
     {
         static void Main(string[] args)
         {
+            VMain v = new VMain();
+            v.ShowGameScreen();
         }
     }
 }
