@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RushHour
 {
-    class VMain : IView
+    class VMain 
     {
         public void ShowEscMenu()
         {
@@ -15,7 +15,9 @@ namespace RushHour
 
         public void ShowGameScreen()
         {
+            Widget widget1 = new Widget();
 
+            Console.WriteLine(widget1.Content);
         }
 
         public void ShowLoadMenu()
