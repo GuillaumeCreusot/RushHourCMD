@@ -6,12 +6,7 @@ using System.Threading.Tasks;
 
 namespace RushHour
 {
-    class Program
+    class CMain
     {
-        static void Main(string[] args)
-        {
-            VMain v = new VMain();
-            v.ShowGameScreen();
-        }
     }
 }
