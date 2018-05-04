@@ -45,9 +45,10 @@ namespace RushHour
             }
         }
 
-        public Widget()
+        public Widget(string name)
         {
             span = new int[2];
+            Name = name;
         }
     }
 }
