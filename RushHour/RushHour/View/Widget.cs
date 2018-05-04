@@ -11,6 +11,7 @@ namespace RushHour
         private Widget master;
         private string name;
         private int[] span;
+        private string content = "Content";
 
         public Widget Master { get; private set; }
         public string Name { get; private set; }
@@ -41,7 +42,20 @@ namespace RushHour
         {
             get
             {
-                return "Content";
+                return content;
+            }
+            protected set
+            {
+                content = value;
+
+                //span
+                int nbCol = 0;
+                while (nbCol < value.Length && value[nbCol] != '\n')
+                {
+                    nbCol++;
+                }
+                ColumnSpan = nbCol;
+                RowSpan = value.Length / (ColumnSpan + 1);
             }
         }
 
