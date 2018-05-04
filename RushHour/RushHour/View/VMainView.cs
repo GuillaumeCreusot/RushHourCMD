@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace RushHour
 {
-    class VMainView : IView
+    class VMainView
     {
         public void ShowGameScreen()
         {
-
+            Widget grille = new Widget();
         }
         
     }

@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RushHour.View
+namespace RushHour
 {
     class Widget
     {
         private Widget master;
         private string name;
 
-        public Widget Master { get => master; private set => master = value; }
-        public string Name { get => name; private set => name = value; }
+        public Widget Master { get; private set; }
+        public string Name { get; private set; }
 
         public string Content
         {
