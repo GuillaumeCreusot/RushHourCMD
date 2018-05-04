@@ -12,7 +12,15 @@ namespace RushHour
         private string content = "";
         private int[] position;
 
+        /// <summary>
+        /// Nom du widget
+        /// </summary>
         public string Name { get; private set; }
+
+        /// <summary>
+        /// WidgetManager dans lequel ce widget est inclus
+        /// </summary>
+        public WidgetsManager Master { get; protected set; }
 
         /// <summary>
         /// Nombre de colonne occuppé par ce widget
@@ -46,7 +54,6 @@ namespace RushHour
 
         /// <summary>
         /// Contenue du widget 
-        /// !!! Attention tous les lignes doivent être de même longueur !!!
         /// </summary>
         public string Content
         {
@@ -56,6 +63,8 @@ namespace RushHour
             }
             protected set
             {
+                content = "";
+
                 //span
                 string[] cols = value.Split('\n');
                 int nbColMax = 0;
@@ -95,6 +104,20 @@ namespace RushHour
             }
         }
 
+        public string DeletePattern
+        {
+            get
+            {
+                string result = "";
+                for (int i = 0; i < RowSpan; i++)
+                {
+                    result += new string(' ', ColumnSpan) + "\n";
+                }
+
+                return result  + new string(' ', ColumnSpan);
+            }
+        }
+
         /// <summary>
         /// Constructeur
         /// </summary>
@@ -104,6 +127,11 @@ namespace RushHour
             span = new int[2];
             position = new int[2];
             Name = name;
+        }
+
+        public void DeleteContent()
+        {
+            Content = DeletePattern;
         }
     }
 }

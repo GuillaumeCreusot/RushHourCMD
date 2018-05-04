@@ -11,6 +11,9 @@ namespace RushHour
         private List<Widget> widgets;
         private string[,] grid;
 
+        /// <summary>
+        /// Les noms des widgets contenue dans le widgetManager
+        /// </summary>
         public string[] WidgetNames
         {
             get
@@ -26,6 +29,12 @@ namespace RushHour
             }
         }
 
+        /// <summary>
+        /// Constructeur
+        /// </summary>
+        /// <param name="name">Nom du Widget</param>
+        /// <param name="nbCol">nombre de colonne</param>
+        /// <param name="nbRow">nombre de rang</param>
         public WidgetsManager(string name, int nbCol, int nbRow) : base(name)
         {
             widgets = new List<Widget>();
@@ -35,6 +44,13 @@ namespace RushHour
             Console.WindowHeight = nbRow; 
         }
 
+        /// <summary>
+        /// Ajouter du widget <paramref name="widget"/> au widget manager 
+        /// au rang <paramref name="row"/> et la colonne <paramref name="col"/>
+        /// </summary>
+        /// <param name="widget">widget à ajouter</param>
+        /// <param name="row">rang ou mettre le widget</param>
+        /// <param name="col">colonne ou mettre le widget</param>
         public void AddWidget(Widget widget, int row, int col)
         {
             //vérification erreur
@@ -71,11 +87,18 @@ namespace RushHour
             widgets.Add(widget);
         }
 
+        /// <summary>
+        /// Rafraichi tous les widgets
+        /// </summary>
         public void RefreshContent()
         {
             RefreshContent(this.WidgetNames);
         }
 
+        /// <summary>
+        /// Rafraichit les widgets dont le nom est compris dans <paramref name="contentNames"/>
+        /// </summary>
+        /// <param name="contentNames">noms des widgets à rafraichir</param>
         public void RefreshContent(string[] contentNames)
         {
             Widget currentW;
@@ -102,6 +125,16 @@ namespace RushHour
             }
         }
 
+        public void RefreshContent(string name)
+        {
+            RefreshContent(new string[] { name });
+        }
+
+        /// <summary>
+        /// Trouver un widget à l'aide de son nom <paramref name="name"/>
+        /// </summary>
+        /// <param name="name">nom du widget cherché</param>
+        /// <returns>widget cherché ou null si le widget n'existe pas</returns>
         public Widget FindWidgetWithName(string name)
         {
             int c = 0;
@@ -117,6 +150,20 @@ namespace RushHour
             else
             {
                 return null;
+            }
+        }
+
+        public void DeleteWidgetOnScreen(string name)
+        {
+            Widget w = FindWidgetWithName(name);
+            if(w != null)
+            {
+                w.DeleteContent();
+                RefreshContent(name);
+            }
+            else
+            {
+                throw new Exception($"Le widget avec le nom {name} n'existe pas");
             }
         }
     }

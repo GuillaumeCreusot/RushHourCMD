@@ -8,9 +8,24 @@ namespace RushHour
 {
     class Label : Widget
     {
-        public Label(string name, string text) : base(name)
+        public string Text
+        {
+            set
+            {
+                Master.DeleteWidgetOnScreen(Name);
+                Content = value;
+                Master.RefreshContent(new string[] { Name });
+            }
+            get
+            {
+                return Content;
+            }
+        }
+
+        public Label(string name, string text, WidgetsManager master) : base(name)
         {
             Content = text;
+            Master = master;
         }
     }
 }
