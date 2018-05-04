@@ -9,78 +9,114 @@ namespace RushHour
     class WidgetsManager : Widget
     {
         private List<Widget> widgets;
-        private List<List<string>> grid;
+        private string[,] grid;
 
-        public WidgetsManager(string name) : base(name)
+        public string[] WidgetNames
+        {
+            get
+            {
+                string[] result = new string[widgets.Count];
+
+                for(int i = 0; i < widgets.Count; i++)
+                {
+                    result[i] = widgets[i].Name;
+                }
+
+                return result;
+            }
+        }
+
+        public WidgetsManager(string name, int nbCol, int nbRow) : base(name)
         {
             widgets = new List<Widget>();
-            grid = new List<List<string>>();
+            grid = new string[nbRow, nbCol];
+
+            Console.WindowWidth = nbCol;
+            Console.WindowHeight = nbRow; 
         }
 
         public void AddWidget(Widget widget, int row, int col)
         {
+            //vérification erreur
+            if (row + widget.RowSpan >= grid.GetLength(0))
+            {
+                throw new Exception("Le Widget sort de la console (rang)");
+            }
+            if(col + widget.ColumnSpan >= grid.GetLength(1))
+            {
+                throw new Exception("Le Widget sort de la console (col)");
+            }
 
             //position
-            int i, j;
-            for (i = 0; i <= row; i++)
+            if (grid[row, col] == null)
             {
-                if (i >= grid.Count)
-                {
-                    grid.Add(new List<string>());
-                }
-            }
-
-            for(j = 0; j <= col; j++)
-            {
-                if(j >= grid[i].Count)
-                {
-                    grid[i].Add("");
-                }    
-            }
-
-            if(i < grid.Count && j < grid[i].Count && grid[i][j] != "")
-            {
-                throw new Exception("Widget superposé");
+                grid[row, col] = widget.Name;
+                widget.Position = new int[]{ row, col};
             }
             else
             {
-                grid[i].Add(widget.Name);
+                throw new Exception("le Widget est superposé à un autre");
             }
-            
 
             //span
-            for(int r = 0; r < widget.RowSpan; r++)
+            for(int i = 0; i <= widget.RowSpan; i++)
             {
-                if(i + r >= grid.Count)
+                for(int j = 0; j <= widget.ColumnSpan; j++)
                 {
-                    grid.Add(new List<string>());
-                }
-
-                for(int c = 0; c < widget.ColumnSpan; c++)
-                {
-                    if(j + c >= grid[i + r].Count)
-                    {
-                        grid[i + r].Add(widget.Name + "-ext");
-                    }
-                    else
-                    {
-                        grid[i + r][j + c] = widget.Name + "-ext";
-                    }
+                    grid[row + i, col + j] = widget.Name;
                 }
             }
 
-            
+            //ajout de l'objet widget à widgets
+            widgets.Add(widget);
         }
 
-        public void Test()
+        public void RefreshContent()
         {
-            foreach(List<string> row in grid)
+            RefreshContent(this.WidgetNames);
+        }
+
+        public void RefreshContent(string[] contentNames)
+        {
+            Widget currentW;
+
+            foreach(string name in contentNames)
             {
-                foreach(string val in row)
+                currentW = FindWidgetWithName(name);
+                if(currentW == null)
                 {
-                    Console.Write(val);
+                    throw new Exception($"le Widget {name} n'existe pas");
                 }
-                Console.WriteLine();
+                else
+                {
+                    for(int i = 0 ; i <= currentW.RowSpan; i++)
+                    {
+                        for(int j = 0; j < currentW.ColumnSpan; j++)
+                        {
+                             Console.CursorLeft = currentW.Position[1] + j;
+                             Console.CursorTop = currentW.Position[0] + i;
+                             Console.Write(currentW.Content[j + i * (currentW.ColumnSpan + 1)]);
+                        }
+                    }
+                }
+            }
+        }
+
+        public Widget FindWidgetWithName(string name)
+        {
+            int c = 0;
+            while((c < widgets.Count && widgets[c].Name != name) || c == widgets.Count)
+            {
+                c++;
+            }
+
+            if(c < widgets.Count)
+            {
+                return widgets[c];
+            }
+            else
+            {
+                return null;
             }
         }
     }

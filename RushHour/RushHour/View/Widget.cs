@@ -79,7 +79,7 @@ namespace RushHour
             Name = name;
 
             //Debug
-            Content = "Content";
+            Content = "Content\ntest   \ntest321";
         }
     }
 }
