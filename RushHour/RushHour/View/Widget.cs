@@ -11,7 +11,8 @@ namespace RushHour
         private Widget master;
         private string name;
         private int[] span;
-        private string content = "Content";
+        private string content = "";
+        private int[] position;
 
         public Widget Master { get; private set; }
         public string Name { get; private set; }
@@ -59,10 +60,26 @@ namespace RushHour
             }
         }
 
+        public int[] Position
+        {
+            get
+            {
+                return position;
+            }
+            set
+            {
+                position = value;
+            }
+        }
+
         public Widget(string name)
         {
             span = new int[2];
+            position = new int[2];
             Name = name;
+
+            //Debug
+            Content = "Content";
         }
     }
 }
