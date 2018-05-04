@@ -8,14 +8,15 @@ namespace RushHour
 {
     class Widget
     {
-        private Widget master;
-        private string name;
         private int[] span;
         private string content = "";
         private int[] position;
 
-        public Widget Master { get; private set; }
         public string Name { get; private set; }
+
+        /// <summary>
+        /// Nombre de colonne occuppé par ce widget
+        /// </summary>
         public int ColumnSpan
         {
             set
@@ -27,6 +28,10 @@ namespace RushHour
                 return span[1];
             }
         }
+
+        /// <summary>
+        /// nombre de rang occupé par ce widget
+        /// </summary>
         public int RowSpan
         {
             set
@@ -39,6 +44,10 @@ namespace RushHour
             }
         }
 
+        /// <summary>
+        /// Contenue du widget 
+        /// !!! Attention tous les lignes doivent être de même longueur !!!
+        /// </summary>
         public string Content
         {
             get
@@ -47,19 +56,33 @@ namespace RushHour
             }
             protected set
             {
-                content = value;
-
                 //span
-                int nbCol = 0;
-                while (nbCol < value.Length && value[nbCol] != '\n')
+                string[] cols = value.Split('\n');
+                int nbColMax = 0;
+                foreach(string col in cols)
                 {
-                    nbCol++;
+                    if(col.Length > nbColMax)
+                    {
+                        nbColMax = col.Length;
+                    }
                 }
-                ColumnSpan = nbCol;
+                ColumnSpan = nbColMax;
                 RowSpan = value.Length / (ColumnSpan + 1);
+
+                //ligne meme nombre d element
+                for(int i = 0; i < cols.Length; i++)
+                {
+                    cols[i] += new string(' ', nbColMax - cols[i].Length);
+                    content += cols[i] + "\n";
+                }
+
+                
             }
         }
 
+        /// <summary>
+        /// Position du widget dans le widget manager
+        /// </summary>
         public int[] Position
         {
             get
@@ -72,14 +95,15 @@ namespace RushHour
             }
         }
 
+        /// <summary>
+        /// Constructeur
+        /// </summary>
+        /// <param name="name">nom du widget</param>
         public Widget(string name)
         {
             span = new int[2];
             position = new int[2];
             Name = name;
-
-            //Debug
-            Content = "Content\ntest   \ntest321";
         }
     }
 }
