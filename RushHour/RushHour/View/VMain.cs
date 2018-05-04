@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RushHour.View
+namespace RushHour
 {
-    class VMain : IView;
+    class VMain : IView
     {
         public void ShowGameScreen()
         {

@@ -10,9 +10,32 @@ namespace RushHour
     {
         private Widget master;
         private string name;
+        private int[] span;
 
         public Widget Master { get; private set; }
         public string Name { get; private set; }
+        public int ColumnSpan
+        {
+            set
+            {
+                span[1] = value;
+            }
+            get
+            {
+                return span[1];
+            }
+        }
+        public int RowSpan
+        {
+            set
+            {
+                span[0] = value;
+            }
+            get
+            {
+                return span[0];
+            }
+        }
 
         public string Content
         {
@@ -20,6 +43,11 @@ namespace RushHour
             {
                 return "Content";
             }
+        }
+
+        public Widget()
+        {
+            span = new int[2];
         }
     }
 }
