@@ -10,6 +10,14 @@ namespace RushHour
     {
         static void Main(string[] args)
         {
+            WidgetsManager wm = new WidgetsManager("test");
+            Widget w = new Widget("test");
+
+            wm.AddWidget(w, 1, 1);
+
+            wm.Test();
+
+            Console.ReadLine();
         }
     }
 }

@@ -8,5 +8,6 @@ namespace RushHour
 {
     class CMain
     {
+
     }
 }
