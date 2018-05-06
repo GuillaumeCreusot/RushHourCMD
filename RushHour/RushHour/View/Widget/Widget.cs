@@ -9,8 +9,11 @@ namespace RushHour
     class Widget
     {
         private int[] span;
+        private int[] spanMax;
         private string content = "";
         private int[] position;
+
+        private bool change;
 
         /// <summary>
         /// Nom du widget
@@ -20,7 +23,7 @@ namespace RushHour
         /// <summary>
         /// WidgetManager dans lequel ce widget est inclus
         /// </summary>
-        public WidgetsManager Master { get; protected set; }
+        public WidgetsManager Master { get; set; }
 
         /// <summary>
         /// Nombre de colonne occuppé par ce widget
@@ -53,6 +56,28 @@ namespace RushHour
         }
 
         /// <summary>
+        /// Nombre de colonne occuppé par ce widget
+        /// </summary>
+        public int ColumnSpanMax
+        {
+            get
+            {
+                return spanMax[1];
+            }
+        }
+
+        /// <summary>
+        /// nombre de rang occupé par ce widget
+        /// </summary>
+        public int RowSpanMax
+        {
+            get
+            {
+                return spanMax[0];
+            }
+        }
+
+        /// <summary>
         /// Contenue du widget 
         /// </summary>
         public string Content
@@ -63,29 +88,26 @@ namespace RushHour
             }
             protected set
             {
-                content = "";
-
                 //span
-                string[] cols = value.Split('\n');
-                int nbColMax = 0;
-                foreach(string col in cols)
-                {
-                    if(col.Length > nbColMax)
-                    {
-                        nbColMax = col.Length;
-                    }
-                }
-                ColumnSpan = nbColMax;
-                RowSpan = value.Length / (ColumnSpan + 1);
+                int[] dim = WidgetUtility.DimContent(value);
 
-                //ligne meme nombre d element
-                for(int i = 0; i < cols.Length; i++)
+                if(dim[0] > RowSpanMax)
                 {
-                    cols[i] += new string(' ', nbColMax - cols[i].Length);
-                    content += cols[i] + "\n";
+                    throw new Exception($"Le contenue du widget {Name} depasse en hauteur");
+                }
+                if (dim[1] > ColumnSpanMax)
+                {
+                    throw new Exception($"Le contenue du widget {Name} depasse en largeur");
                 }
 
-                
+                Change = true;
+
+                ColumnSpan = dim[1];
+                RowSpan = dim[0];
+
+                // uniformisation de la taille des rangs
+                content = WidgetUtility.Resize(value, dim[1]);
+
             }
         }
 
@@ -109,7 +131,7 @@ namespace RushHour
             get
             {
                 string result = "";
-                for (int i = 0; i < RowSpan; i++)
+                for (int i = 0; i < RowSpan-1; i++)
                 {
                     result += new string(' ', ColumnSpan) + "\n";
                 }
@@ -118,13 +140,28 @@ namespace RushHour
             }
         }
 
+
+        public bool Change
+        {
+            protected set
+            {
+                change = value;
+            }
+
+            get
+            {
+                return change;
+            }
+        }
+
         /// <summary>
         /// Constructeur
         /// </summary>
         /// <param name="name">nom du widget</param>
-        public Widget(string name)
+        public Widget(string name, int rowSpanMax, int columnSpanMax)
         {
             span = new int[2];
+            spanMax = new int[] { rowSpanMax, columnSpanMax };
             position = new int[2];
             Name = name;
         }

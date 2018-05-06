@@ -35,7 +35,7 @@ namespace RushHour
         /// <param name="name">Nom du Widget</param>
         /// <param name="nbCol">nombre de colonne</param>
         /// <param name="nbRow">nombre de rang</param>
-        public WidgetsManager(string name, int nbCol, int nbRow) : base(name)
+        public WidgetsManager(string name, int nbCol, int nbRow) : base(name, nbCol, nbRow)
         {
             widgets = new List<Widget>();
             grid = new string[nbRow, nbCol];
@@ -54,11 +54,11 @@ namespace RushHour
         public void AddWidget(Widget widget, int row, int col)
         {
             //vérification erreur
-            if (row + widget.RowSpan >= grid.GetLength(0))
+            if (row + widget.RowSpanMax >= grid.GetLength(0))
             {
                 throw new Exception("Le Widget sort de la console (rang)");
             }
-            if(col + widget.ColumnSpan >= grid.GetLength(1))
+            if(col + widget.ColumnSpanMax >= grid.GetLength(1))
             {
                 throw new Exception("Le Widget sort de la console (col)");
             }
@@ -75,9 +75,9 @@ namespace RushHour
             }
 
             //span
-            for(int i = 0; i <= widget.RowSpan; i++)
+            for(int i = 0; i < widget.RowSpanMax; i++)
             {
-                for(int j = 0; j <= widget.ColumnSpan; j++)
+                for(int j = 0; j < widget.ColumnSpanMax; j++)
                 {
                     grid[row + i, col + j] = widget.Name;
                 }
@@ -85,21 +85,22 @@ namespace RushHour
 
             //ajout de l'objet widget à widgets
             widgets.Add(widget);
+            widget.Master = this;
         }
 
         /// <summary>
         /// Rafraichi tous les widgets
         /// </summary>
-        public void RefreshContent()
+        public void RefreshContentOnScreen()
         {
-            RefreshContent(this.WidgetNames);
+            RefreshContentOnScreen(this.WidgetNames);
         }
 
         /// <summary>
         /// Rafraichit les widgets dont le nom est compris dans <paramref name="contentNames"/>
         /// </summary>
         /// <param name="contentNames">noms des widgets à rafraichir</param>
-        public void RefreshContent(string[] contentNames)
+        public void RefreshContentOnScreen(string[] contentNames)
         {
             Widget currentW;
 
@@ -112,22 +113,22 @@ namespace RushHour
                 }
                 else
                 {
-                    for(int i = 0 ; i <= currentW.RowSpan; i++)
+                    for(int i = 0 ; i < currentW.RowSpan; i++)
                     {
                         for(int j = 0; j < currentW.ColumnSpan; j++)
                         {
                              Console.CursorLeft = currentW.Position[1] + j;
                              Console.CursorTop = currentW.Position[0] + i;
-                             Console.Write(currentW.Content[j + i * (currentW.ColumnSpan + 1)]);
+                             Console.Write(currentW.Content[j + i * (currentW.ColumnSpan)]);
                         }
                     }
                 }
             }
         }
 
-        public void RefreshContent(string name)
+        public void RefreshContentOnScreen(string name)
         {
-            RefreshContent(new string[] { name });
+            RefreshContentOnScreen(new string[] { name });
         }
 
         /// <summary>
@@ -159,7 +160,7 @@ namespace RushHour
             if(w != null)
             {
                 w.DeleteContent();
-                RefreshContent(name);
+                RefreshContentOnScreen(name);
             }
             else
             {

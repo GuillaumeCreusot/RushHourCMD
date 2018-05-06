@@ -14,7 +14,7 @@ namespace RushHour
             {
                 Master.DeleteWidgetOnScreen(Name);
                 Content = value;
-                Master.RefreshContent(new string[] { Name });
+                Master.RefreshContentOnScreen(new string[] { Name });
             }
             get
             {
@@ -22,10 +22,9 @@ namespace RushHour
             }
         }
 
-        public Label(string name, string text, WidgetsManager master) : base(name)
+        public Label(string name, string text, int rowSpanMax, int columnSpanMax) : base(name, rowSpanMax, columnSpanMax)
         {
             Content = text;
-            Master = master;
         }
     }
 }
