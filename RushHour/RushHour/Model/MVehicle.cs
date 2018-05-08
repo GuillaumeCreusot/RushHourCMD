@@ -12,14 +12,14 @@ namespace RushHour.Model
         private String name;
         private int length;
         private int[] pos; //X and Y position on the grid
-        private MDirection direction; //N, S, E, W
+        private MMain.Direction vehicleDirection;
         private bool isPlayer;
-        private MGrid grid;
+        private MGrid assignedGrid;
 
         //Constructor
-        public MVehicle(MGrid grid, int id, int length, MDirection direction, int[] pos, bool isPlayer)
+        public MVehicle(MGrid grid, int id, int length, MMain.Direction direction, int[] pos, bool isPlayer)
         {
-            this.Grid = grid;
+            this.assignedGrid = grid;
             this.idVehicle = id;
             if (length == 2 || length == 3)
             {
@@ -30,7 +30,7 @@ namespace RushHour.Model
                 this.Length = 3;
                 Console.WriteLine("Invalid length: vehicle length initialised to 3.");
             }
-            this.Direction = direction;
+            this.VehicleDirection = direction;
             this.pos = pos;
             this.isPlayer = isPlayer;
             if (this.Length == 2)
@@ -109,53 +109,42 @@ namespace RushHour.Model
             }
         }
 
-        public MDirection Direction
+        public MGrid AssignedGrid
         {
             get
             {
-                return direction;
+                return assignedGrid;
             }
 
             set
             {
-                direction = value;
+                assignedGrid = value;
             }
         }
 
-        public MGrid Grid
-        {
-            get
-            {
-                return grid;
-            }
-
-            set
-            {
-                grid = value;
-            }
-        }
+        internal MMain.Direction VehicleDirection { get => vehicleDirection; set => vehicleDirection = value; }
 
         //Methods
-        public void Move(MDirection direction)
+        public void Move(MMain.Direction direction)
         {
 
             //fonction ValidDirection
-            if (grid.ValidDirection(this, direction))
+            if (assignedGrid.ValidDirection(this, direction))
             {
                 //stay in range
-                if (direction == North)
+                if (direction == MMain.Direction.North)
                 {
                     pos[1] += 1;
                 }
-                else if (direction == South)
+                else if (direction == MMain.Direction.South)
                 {
                     pos[1] -= 1;
                 }
-                else if (direction == West)
+                else if (direction == MMain.Direction.West)
                 {
                     pos[0] -= 1;
                 }
-                else if (direction == East)
+                else if (direction == MMain.Direction.East)
                 {
                     pos[1] += 1;
                 }               

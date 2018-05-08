@@ -8,5 +8,12 @@ namespace RushHour
 {
     class MMain
     {
+        public enum Direction
+        {
+            North, //0
+            West, //0++
+            East, //etc
+            South
+        }
     }
 }
