@@ -15,7 +15,7 @@ namespace RushHour
 
         public void ShowGameScreen()
         {
-            Widget widget1 = new Widget();
+            Widget widget1 = new Widget("",10,10);
 
             Console.WriteLine(widget1.Content);
         }
@@ -27,7 +27,7 @@ namespace RushHour
 
         public void ShowMainMenu()
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException();          
         }
 
         public void ShowMoveVehicle()

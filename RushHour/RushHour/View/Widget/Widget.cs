@@ -78,7 +78,7 @@ namespace RushHour
         }
 
         /// <summary>
-        /// Contenue du widget 
+        /// Contenu du widget 
         /// </summary>
         public string Content
         {
@@ -93,11 +93,11 @@ namespace RushHour
 
                 if(dim[0] > RowSpanMax)
                 {
-                    throw new Exception($"Le contenue du widget {Name} depasse en hauteur");
+                    throw new Exception($"Le contenu du widget {Name} depasse en hauteur");
                 }
                 if (dim[1] > ColumnSpanMax)
                 {
-                    throw new Exception($"Le contenue du widget {Name} depasse en largeur");
+                    throw new Exception($"Le contenu du widget {Name} depasse en largeur");
                 }
 
                 Change = true;
@@ -169,6 +169,57 @@ namespace RushHour
         public void DeleteContent()
         {
             Content = DeletePattern;
+        }
+
+        /// <summary>
+        /// Diplays the options of a menu in which the user can naviguate, as well as the text that stands above it
+        /// </summary>
+        public void DisplayOptions(string[] menuItems, string permanentText)
+        {
+            int selectedItem = 0;
+            while (true)
+            {
+                Console.WriteLine(permanentText);
+                for (int i = 0; i < menuItems.Length; i++)
+                {
+                    if (selectedItem == i)
+                    {
+                        Console.WriteLine("                    > " + menuItems[i]);
+                    }
+                    else
+                    {
+                        //normal display
+                        Console.WriteLine("                     " + menuItems[i]);
+                    }
+                }
+                ConsoleKeyInfo pressedKey = Console.ReadKey();
+
+                switch (pressedKey.Key)
+                {
+                    case ConsoleKey.UpArrow:
+                        if (selectedItem == 0) //if at the top of the list, go to bottom
+                        {
+                            selectedItem = menuItems.Length - 1;
+                        }
+                        else
+                        {
+                            selectedItem--;
+                        }
+                        break;
+
+                    case ConsoleKey.DownArrow:
+                        if (selectedItem == menuItems.Length - 1) //if at the bottom of the list, go back to top
+                        {
+                            selectedItem = 0;
+                        }
+                        else
+                        {
+                            selectedItem++;
+                        }
+                        break;
+                }
+                Console.Clear();
+            }
         }
     }
 }

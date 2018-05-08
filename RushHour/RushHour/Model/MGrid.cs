@@ -15,6 +15,11 @@ namespace RushHour.Model
 
         public List<MVehicle> Vehicles;
 
+        public bool ValidDirection(MVehicle vehicle, MMain.Direction direction)
+        {
+            return true;
+        }
+
 
 
 

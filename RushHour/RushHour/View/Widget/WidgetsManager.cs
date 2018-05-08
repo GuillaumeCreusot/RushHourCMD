@@ -12,7 +12,7 @@ namespace RushHour
         private string[,] grid;
 
         /// <summary>
-        /// Les noms des widgets contenue dans le widgetManager
+        /// Les noms des widgets contenus dans le widgetManager
         /// </summary>
         public string[] WidgetNames
         {
