@@ -19,10 +19,15 @@ namespace RushHour
             wm.Test();
             */
 
-            /* TESTS MAIN MENU */
+            /* TESTS MAIN MENU 
             VMainMenu menuTest = new VMainMenu();
             menuTest.Display();
-            Console.ReadLine();
+            Console.ReadLine();*/
+
+            /*TESTS GRILLE*/
+            MGrid grid = new MGrid(6, 6);
+            VGrid vgrid = new VGrid(6, 3, grid);
+            Console.WriteLine(vgrid.Contenu);
         }
     }
 }
