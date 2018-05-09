@@ -57,6 +57,7 @@
     <Compile Include="View\VMain.cs" />
     <Compile Include="View\Widget\Label.cs" />
     <Compile Include="View\Widget\VGrid.cs" />
+    <Compile Include="View\Widget\Menu.cs" />
     <Compile Include="View\Widget\VMainMenu.cs" />
     <Compile Include="View\Widget\Widget.cs" />
     <Compile Include="View\Widget\WidgetsManager.cs" />

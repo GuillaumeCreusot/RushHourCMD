@@ -119,7 +119,7 @@ namespace RushHour
                         {
                              Console.CursorLeft = currentW.Position[1] + j;
                              Console.CursorTop = currentW.Position[0] + i;
-                             Console.Write(currentW.Content[j + i * (currentW.ColumnSpan)]);
+                             Console.Write(currentW.Content[j + i * (currentW.ColumnSpan + 1)]);
                         }
                     }
                 }

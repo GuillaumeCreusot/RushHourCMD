@@ -45,7 +45,7 @@ namespace RushHour
                 result += cols[i] + "\n";
             }
 
-            return result;
+            return result.Substring(0, result.Length-1);
         }
     }
 }

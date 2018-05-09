@@ -18,16 +18,29 @@ namespace RushHour
 
             wm.Test();
             */
-
+            
             /* TESTS MAIN MENU 
             VMainMenu menuTest = new VMainMenu();
             menuTest.Display();
             Console.ReadLine();*/
 
-            /*TESTS GRILLE*/
+            /*TESTS GRILLE
             MGrid grid = new MGrid(6, 6);
             VGrid vgrid = new VGrid(6, 3, grid);
-            Console.WriteLine(vgrid.Contenu);
+            Console.WriteLine(vgrid.Contenu);*/
+            ///* TESTS MAIN MENU */
+            //VMainMenu menuTest = new VMainMenu();
+            //menuTest.Display();
+            //Console.ReadLine();
+
+            //test menu
+            WidgetsManager wm = new WidgetsManager("wm", Console.LargestWindowWidth, Console.LargestWindowHeight);
+            VMainMenu m = new VMainMenu();
+            wm.AddWidget(m, 0, 0);
+            wm.RefreshContentOnScreen();
+            m.SelectedItem = 1;
+
+            Console.ReadLine();
         }
     }
 }
