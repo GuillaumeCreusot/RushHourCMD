@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace RushHour
 {
-    class VMainMenu : Widget
+    class VMainMenu : Menu
     {
-        public VMainMenu() : base("Main Menu", Console.LargestWindowHeight, Console.LargestWindowWidth)
-        {
-            this.Content = @"
+        public static string text = @"
    ▄████████ ███    █▄     ▄████████    ▄█    █▄            ▄█    █▄     ▄██████▄  ███    █▄     ▄████████ 
   ███    ███ ███    ███   ███    ███   ███    ███          ███    ███   ███    ███ ███    ███   ███    ███ 
   ███    ███ ███    ███   ███    █▀    ███    ███          ███    ███   ███    ███ ███    ███   ███    ███ 
@@ -39,20 +37,12 @@ namespace RushHour
                                                                                                        
                                     
             ";
-        }
+        public static int[] dimText = WidgetUtility.DimContent(text);
+        public static string[] itemName = { "Nouvelle Partie", "Continuer", "Quitter" };
 
-        public void Display()
+        public VMainMenu():base("Main Menu", text, dimText[0] + 1 + itemName.Length, dimText[1] + 10, itemName)
         {
-            string[] menuItems = { "Nouvelle partie", "Charger une partie", "Régler la difficulté" };
-            string selected = DisplayOptions(menuItems, this.Content);
-            foreach (string item in menuItems)
-            {
-                if (item == selected)
-                {
-                    //launch the according script, then
-                    break;
-                }
-            }
+            
         }
     }
 }
