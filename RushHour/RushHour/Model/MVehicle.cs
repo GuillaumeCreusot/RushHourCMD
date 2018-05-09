@@ -15,9 +15,10 @@ namespace RushHour
         private MMain.Direction vehicleDirection;
         private bool isPlayer;
         private MGrid assignedGrid;
+        public bool IsSelected { get; set; }
 
         //Constructor
-        public MVehicle(MGrid grid, int id, int length, MMain.Direction direction, int[] pos, bool isPlayer)
+        public MVehicle(MGrid grid, int id, int length, MMain.Direction direction, int x, int y, bool isPlayer)
         {
             this.assignedGrid = grid;
             this.idVehicle = id;
@@ -31,7 +32,11 @@ namespace RushHour
                 Console.WriteLine("Invalid length: vehicle length initialised to 3.");
             }
             this.VehicleDirection = direction;
-            this.pos = pos;
+
+            this.pos = new int[2];
+            this.pos[0] = x;
+            this.pos[1] = y;
+
             this.isPlayer = isPlayer;
             if (this.Length == 2)
             {
