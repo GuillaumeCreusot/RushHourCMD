@@ -44,7 +44,15 @@ namespace RushHour
         public void Display()
         {
             string[] menuItems = { "Nouvelle partie", "Charger une partie", "Régler la difficulté" };
-            DisplayOptions(menuItems, this.Content);
+            string selected = DisplayOptions(menuItems, this.Content);
+            foreach (string item in menuItems)
+            {
+                if (item == selected)
+                {
+                    //launch the according script, then
+                    break;
+                }
+            }
         }
     }
 }

@@ -173,8 +173,9 @@ namespace RushHour
 
         /// <summary>
         /// Diplays the options of a menu in which the user can naviguate, as well as the text that stands above it
+        /// Returns the selected option, void string if none
         /// </summary>
-        public void DisplayOptions(string[] menuItems, string permanentText)
+        public string DisplayOptions(string[] menuItems, string permanentText)
         {
             int selectedItem = 0;
             while (true)
@@ -217,8 +218,12 @@ namespace RushHour
                             selectedItem++;
                         }
                         break;
+
+                    case ConsoleKey.Enter:
+                        return menuItems[selectedItem];
                 }
                 Console.Clear();
+                return "";
             }
         }
     }
