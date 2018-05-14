@@ -127,7 +127,17 @@ namespace RushHour
             }
         }
 
-        internal MMain.Direction VehicleDirection { get => vehicleDirection; set => vehicleDirection = value; }
+        public MMain.Direction VehicleDirection
+        {
+            get
+            {
+                return vehicleDirection;
+            }
+            set
+            {
+                vehicleDirection = value;
+            }
+        }
 
         //Methods
         public void Move(MMain.Direction direction)

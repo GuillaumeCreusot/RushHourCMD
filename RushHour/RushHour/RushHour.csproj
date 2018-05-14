@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\CMain.cs" />
+    <Compile Include="Controller\CMainMenu.cs" />
     <Compile Include="Model\MGrid.cs" />
     <Compile Include="Model\MMain.cs" />
     <Compile Include="Model\MVehicle.cs" />
