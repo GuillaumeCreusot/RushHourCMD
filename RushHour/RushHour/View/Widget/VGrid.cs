@@ -9,6 +9,7 @@ namespace RushHour
     class VGrid : Widget
     {
         public int length, height, blength, bheight;
+        public MGrid mGrid;
 
         public VGrid(int BLength, int BHeight, MGrid Grid) : base("Grid", 6 * (BHeight + 1) + 2, 6 * (BLength + 1) + 2)
         {
@@ -17,8 +18,16 @@ namespace RushHour
             height = 6 * (BHeight + 1) + 1;
             blength = BLength;
             bheight = BHeight;
-            Content = GridContent(Grid);
+            mGrid = Grid;
 
+
+            Content = GridContent(mGrid);
+
+        }
+
+        public void Update()
+        {
+            Content = GridContent(mGrid);
         }
 
         public string GridContent(MGrid Grid)

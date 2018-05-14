@@ -52,9 +52,27 @@ namespace RushHour
             */
 
             //Test escape menu
-            CEscapeMenu wesh = new CEscapeMenu();
+            /*CEscapeMenu wesh = new CEscapeMenu();
             wesh.Control();
-            Console.ReadLine();
+            Console.ReadLine();*/
+
+            //Test vehicle selection
+            MGrid grid = new MGrid(6, 6);
+
+            
+
+            MVehicle v1 = new MVehicle(grid, 0, 2, MMain.Direction.East, 0, 0, false);
+            grid.Vehicles.Add(v1);
+
+            MVehicle v2 = new MVehicle(grid, 0, 3, MMain.Direction.North, 3, 3, false);
+            v2.IsSelected = true;
+            grid.Vehicles.Add(v2);
+
+            MVehicle v3 = new MVehicle(grid, 0, 3, MMain.Direction.West, 5, 5, false);
+            grid.Vehicles.Add(v3);
+
+            CGridControl yolo = new CGridControl(grid);
+            yolo.Control();
         }
     }
 }

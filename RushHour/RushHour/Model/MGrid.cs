@@ -11,6 +11,21 @@ namespace RushHour
         public int XLength {get; private set; }
         public int YLength { get; private set; }
 
+        private int selectedItem;
+        public int SelectedItem
+        {
+            get
+            {
+                return selectedItem;
+            }
+            set
+            {
+                Vehicles[selectedItem].IsSelected = false;
+                Vehicles[value].IsSelected = true;
+                selectedItem = value;
+            }
+        }
+
         public bool[,] gridCollision;
 
         public List<MVehicle> Vehicles;
