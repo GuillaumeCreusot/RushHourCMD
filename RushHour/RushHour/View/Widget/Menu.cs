@@ -49,7 +49,7 @@ namespace RushHour
                 
                 for(int i = 0; i < NbItem; i++)
                 {
-                    Content += $"\n  {items[i]}";
+                    Content += $"\n{WidgetUtility.Repeat(' ', MargeLeft)}  {items[i]}";
                     positionSelecter[i, 0] = dim[0];
                     positionSelecter[i, 1] = MargeLeft;   
                     dim[0] += 1;

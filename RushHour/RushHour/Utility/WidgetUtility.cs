@@ -47,5 +47,11 @@ namespace RushHour
 
             return result.Substring(0, result.Length-1);
         }
+
+        public static string Repeat(char car, int nb)
+        {
+
+            return new string(car, nb);
+        } 
     }
 }
