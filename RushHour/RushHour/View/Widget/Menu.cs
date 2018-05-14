@@ -12,6 +12,7 @@ namespace RushHour
         private int selectedItem;
         private string[] items;
         private int[,] positionSelecter;
+        private int margeLeft;
 
         public int SelectedItem
         {
@@ -48,9 +49,9 @@ namespace RushHour
                 
                 for(int i = 0; i < NbItem; i++)
                 {
-                    Content += $"\n {items[i]}";
+                    Content += $"\n  {items[i]}";
                     positionSelecter[i, 0] = dim[0];
-                    positionSelecter[i, 1] = 0;
+                    positionSelecter[i, 1] = MargeLeft;   
                     dim[0] += 1;
                 }
 
@@ -60,11 +61,25 @@ namespace RushHour
             }
         }
 
-        public Menu(string name, string permanentText, int rowSpanMax, int columnSpanMax, string[] items, int selectedItem = 0) : base(name, rowSpanMax, columnSpanMax)
+        public int MargeLeft
+        {
+            get
+            {
+                return margeLeft;
+            }
+
+            protected set
+            {
+                margeLeft = value;
+            }
+        }
+
+        public Menu(string name, string permanentText, int rowSpanMax, int columnSpanMax, string[] items, int selectedItem = 0, int margeLeft = 0) : base(name, rowSpanMax, columnSpanMax)
         {
             this.items = items;
             positionSelecter = new int[NbItem, 2];
 
+            MargeLeft = margeLeft;
             PermanentText = permanentText;
             this.selectedItem = selectedItem;
         }
@@ -75,13 +90,13 @@ namespace RushHour
             {
                 if(selectedItem == i)
                 {
-                    Content = Content.Remove(positionSelecter[i, 1] + positionSelecter[i, 0] * (ColumnSpan + 1), 1);
-                    Content = Content.Insert(positionSelecter[i, 1] + positionSelecter[i, 0] * (ColumnSpan + 1), ">");
+                    string transition = Content.Remove(positionSelecter[i, 1] + positionSelecter[i, 0] * (ColumnSpan + 1), 1);
+                    Content = transition.Insert(positionSelecter[i, 1] + positionSelecter[i, 0] * (ColumnSpan + 1), ">");
                 }
                 else
                 {
-                    Content = Content.Remove(positionSelecter[i, 1] + positionSelecter[i, 0] * (ColumnSpan + 1), 1);
-                    Content = Content.Insert(positionSelecter[i, 1] + positionSelecter[i, 0] * (ColumnSpan + 1), " ");
+                    string transition = Content.Remove(positionSelecter[i, 1] + positionSelecter[i, 0] * (ColumnSpan + 1), 1);
+                    Content = transition.Insert(positionSelecter[i, 1] + positionSelecter[i, 0] * (ColumnSpan + 1), " ");
                 }
             }
         }
