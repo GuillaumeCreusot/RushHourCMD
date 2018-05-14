@@ -15,5 +15,12 @@ namespace RushHour
             East, //etc
             South
         }
+
+        public enum Difficulty
+        {
+            Easy,
+            Medium, 
+            Hard
+        }
     }
 }

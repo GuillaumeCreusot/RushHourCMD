@@ -54,6 +54,11 @@ namespace RushHour
             /*//Test escape menu
             CEscapeMenu wesh = new CEscapeMenu();
             wesh.Control();*/
+
+            //TEST GAME
+            MGame game = new MGame();
+            game.Launch();
+            Console.ReadKey();
         }
     }
 }

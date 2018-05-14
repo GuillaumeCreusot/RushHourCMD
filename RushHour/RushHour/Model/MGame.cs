@@ -8,8 +8,11 @@ namespace RushHour
 {
     class MGame
     {
-        bool gameEnded;
-
+        private bool gameEnded;
+        private MGrid grid;
+        private MScore playerScore;
+        private MMain.Difficulty difficulty;
+        
         public MGame()
         {
             GameEnded = false;
@@ -28,30 +31,53 @@ namespace RushHour
             }
         }
 
+        internal MGrid Grid
+        {
+            get
+            {
+                return grid;
+            }
+
+            set
+            {
+                grid = value;
+            }
+        }
+
         public void Launch()
         {            
             CMainMenu mainMenu = new CMainMenu();
             int action = mainMenu.Control();
-            if (action == 0) //new game
-            {
-                MGrid newGrid = new MGrid(6,6);
-                MScore score = new MScore();
-                Run(newGrid, score);
-            }
-
-            else if (action == 1) //load game
-            {
-                //TODO : DEMANDER A l'USER QUEL JEU IL VEUT CHARGER, RECUPERER LA GRILLE ET LE SCORE ET RUN AVEC CES PARAMETRES
-                MGrid oldGrid; //TODO récuperer dans le fichier
-                MScore oldScore;//TODO récuperer dans le fichier
-                //Run(oldGrid, oldScore);
-            }
-
-            else if (action == 2) //quit game
+            if (action == 2) //quit game
             {
                 gameEnded = true;
-                Console.Clear();
-            }        
+                Console.Clear(); //TODO better: display ASCII game over
+            }
+            else //launch game
+            {
+                if (action == 0) //new game
+                {
+                    Grid = new MGrid(6, 6);
+                    playerScore = new MScore();
+                    //choose difficulty
+                    CDifficultyMenu difficultyMenu = new CDifficultyMenu();
+                    difficulty = difficultyMenu.Control();
+                }
+
+                else if (action == 1) //load game
+                {
+                    //TODO : DEMANDER A l'USER QUEL JEU IL VEUT CHARGER, RECUPERER LA GRILLE ET LE SCORE ET RUN AVEC CES PARAMETRES
+                    MGrid oldGrid = null; //TODO récuperer dans le fichier
+                    MScore oldScore = null;//TODO récuperer dans le fichier
+                    MMain.Difficulty oldDiff= MMain.Difficulty.Easy;
+
+                    grid = oldGrid;
+                    playerScore = oldScore;
+                    difficulty = oldDiff;
+                }
+                Run(grid, playerScore);
+            }
+  
         }
 
         public void Run(MGrid grid, MScore score)
