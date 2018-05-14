@@ -20,7 +20,7 @@ namespace RushHour
             manager.AddWidget(mainMenu, VMainMenu.dimText[0] + 2, 0);
         }
 
-        public void Control()
+        public int Control()
         {
             manager.RefreshContentOnScreen();
             while(true)
@@ -50,13 +50,13 @@ namespace RushHour
                         }
                         break;
 
-                    case ConsoleKey.Enter:
-                        //launch according processus --> return a certain value ??
-                        break;
+                    case ConsoleKey.Enter:                        
+                        return mainMenu.SelectedItem;
 
                 }
                 
             }
+            
         }
     }
 }

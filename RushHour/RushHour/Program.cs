@@ -51,10 +51,9 @@ namespace RushHour
             Console.ReadLine();
             */
 
-            //Test escape menu
+            /*//Test escape menu
             CEscapeMenu wesh = new CEscapeMenu();
-            wesh.Control();
-            Console.ReadLine();
+            wesh.Control();*/
         }
     }
 }
