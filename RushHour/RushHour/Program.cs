@@ -54,7 +54,7 @@ namespace RushHour
 
 
             //Test vehicle selection
-            MGrid grid = new MGrid(6, 6);
+            /*MGrid grid = new MGrid(6, 6);
 
             
 
@@ -69,15 +69,15 @@ namespace RushHour
             grid.Vehicles.Add(v3);
 
             CGridControl yolo = new CGridControl(grid);
-            yolo.Control();
+            yolo.Control();*/
             /*//Test escape menu
             CEscapeMenu wesh = new CEscapeMenu();
             wesh.Control();*/
 
             //TEST GAME
-            /*MGame game = new MGame();
+            MGame game = new MGame();
             game.Launch();
-            Console.ReadKey();*/
+            Console.ReadKey();
         }
     }
 }
