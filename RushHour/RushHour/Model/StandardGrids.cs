@@ -17,6 +17,5 @@ namespace RushHour
         public static int[,] hardGrid = { { 2, 5, 0, (int)MMain.Direction.North }, { 2, 3, 0, (int)MMain.Direction.East }, { 2, 3, 3, (int)MMain.Direction.West }, { 2, 1, 2, (int)MMain.Direction.East }, { 3, 0, 5, (int)MMain.Direction.West }, { 2, 1, 5, (int)MMain.Direction.West }, { 2, 5, 3, (int)MMain.Direction.North }, { 2, 5, 5, (int)MMain.Direction.West }, { 3, 4, 4, (int)MMain.Direction.North }, { 3, 2, 5, (int)MMain.Direction.South } };
 
 
-
     }
 }

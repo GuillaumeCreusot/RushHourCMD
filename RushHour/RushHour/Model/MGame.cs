@@ -8,8 +8,8 @@ namespace RushHour
 {
     class MGame
     {
-        private bool gameEnded;
-        private MGrid grid;
+        public bool GameEnded { get; set; }
+        public MGrid Grid { get; set; }
         private MScore playerScore;
         private MMain.Difficulty difficulty;
         
@@ -18,31 +18,6 @@ namespace RushHour
             GameEnded = false;
         }
 
-        public bool GameEnded
-        {
-            get
-            {
-                return gameEnded;
-            }
-
-            set
-            {
-                gameEnded = value;
-            }
-        }
-
-        internal MGrid Grid
-        {
-            get
-            {
-                return grid;
-            }
-
-            set
-            {
-                grid = value;
-            }
-        }
 
         public void Launch()
         {            
@@ -50,7 +25,7 @@ namespace RushHour
             int action = mainMenu.Control();
             if (action == 2) //quit game
             {
-                gameEnded = true;
+                GameEnded = true;
                 Console.Clear(); //TODO better: display ASCII game over
             }
             else //launch game
@@ -71,21 +46,21 @@ namespace RushHour
                     MScore oldScore = null;//TODO récuperer dans le fichier
                     MMain.Difficulty oldDiff= MMain.Difficulty.Easy;
 
-                    grid = oldGrid;
+                    Grid = oldGrid;
                     playerScore = oldScore;
                     difficulty = oldDiff;
                 }
-                Run(grid, playerScore);
+                Run(Grid, playerScore);
             }
   
         }
 
         public void Run(MGrid grid, MScore score)
         {
-            NotImplementedException excp = new NotImplementedException();
-            throw excp;
+            throw new NotImplementedException();
             ConsoleKeyInfo cki = Console.ReadKey();
-            while (!gameEnded)
+
+            while (!GameEnded)
             {
                 do
                 {

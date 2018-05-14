@@ -33,7 +33,6 @@ namespace RushHour
                 vGrid.Update();
                 manager.RefreshContentOnScreen();
                 ConsoleKeyInfo k = Console.ReadKey();
-                Console.WriteLine(mGrid.Vehicles[0].IsSelected);
                 switch (k.Key)
                 {
                     case ConsoleKey.LeftArrow:
