@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\CEscapeMenu.cs" />
     <Compile Include="Controller\CMain.cs" />
     <Compile Include="Controller\CMainMenu.cs" />
     <Compile Include="Model\MGrid.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="View\IView.cs" />
     <Compile Include="View\VMain.cs" />
     <Compile Include="View\Widget\Label.cs" />
+    <Compile Include="View\Widget\VEscapeMenu.cs" />
     <Compile Include="View\Widget\VGrid.cs" />
     <Compile Include="View\Widget\Menu.cs" />
     <Compile Include="View\Widget\VMainMenu.cs" />
