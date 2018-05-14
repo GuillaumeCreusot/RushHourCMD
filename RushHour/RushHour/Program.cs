@@ -51,10 +51,7 @@ namespace RushHour
             Console.ReadLine();
             */
 
-            //Test escape menu
-            /*CEscapeMenu wesh = new CEscapeMenu();
-            wesh.Control();
-            Console.ReadLine();*/
+
 
             //Test vehicle selection
             MGrid grid = new MGrid(6, 6);
@@ -73,6 +70,14 @@ namespace RushHour
 
             CGridControl yolo = new CGridControl(grid);
             yolo.Control();
+            /*//Test escape menu
+            CEscapeMenu wesh = new CEscapeMenu();
+            wesh.Control();*/
+
+            //TEST GAME
+            /*MGame game = new MGame();
+            game.Launch();
+            Console.ReadKey();*/
         }
     }
 }
