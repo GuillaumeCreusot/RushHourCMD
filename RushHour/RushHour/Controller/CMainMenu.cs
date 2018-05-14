@@ -14,8 +14,10 @@ namespace RushHour
         public CMainMenu()
         {            
             mainMenu = new VMainMenu();
+            Label permanentText = new Label("permanent text", VMainMenu.text, VMainMenu.dimText[0] + 1, VMainMenu.dimText[1]);
             manager = new WidgetsManager("Main Menu", Console.LargestWindowWidth, Console.LargestWindowHeight);
-            manager.AddWidget(mainMenu, 0, 0);
+            manager.AddWidget(permanentText, 0, 0);
+            manager.AddWidget(mainMenu, VMainMenu.dimText[0] + 2, 0);
         }
 
         public void Control()
