@@ -27,11 +27,11 @@ namespace RushHour
             {
                 if (action == 0) //new game
                 {
-                    
-                    game.playerScore = new MScore();
+                    game.grid = new MGrid(6, 6);
+                    game.PlayerScore = 0;
                     //choose difficulty
                     CDifficultyMenu difficultyMenu = new CDifficultyMenu();
-                    game.difficulty = difficultyMenu.Control();
+                    game.Difficulty = difficultyMenu.Control();
 
                     if (game.difficulty == 0)
                         game.grid = new MGrid(StandardGrids.easyGrid2, 6, 6);
@@ -41,26 +41,25 @@ namespace RushHour
                         game.grid = new MGrid(StandardGrids.hardGrid, 6, 6);
                     else
                         game.grid = new MGrid(StandardGrids.easyGrid, 6, 6);
-
                 }
 
                 else if (action == 1) //load game
                 {
                     //TODO : DEMANDER A l'USER QUEL JEU IL VEUT CHARGER, RECUPERER LA GRILLE ET LE SCORE ET RUN AVEC CES PARAMETRES
                     MGrid oldGrid = null; //TODO récuperer dans le fichier
-                    MScore oldScore = null;//TODO récuperer dans le fichier
+                    int oldScore = 0;//TODO récuperer dans le fichier
                     MMain.Difficulty oldDiff = MMain.Difficulty.Easy;
 
                     game.grid = oldGrid;
-                    game.playerScore = oldScore;
-                    game.difficulty = oldDiff;
+                    game.PlayerScore = oldScore;
+                    game.Difficulty = oldDiff;
                 }
-                Run(game.grid, game.playerScore);
+                Run(game.grid, game.PlayerScore);
             }
 
         }
 
-        public void Run(MGrid grid, MScore score)
+        public void Run(MGrid grid, int score)
         {
             ConsoleKeyInfo cki = Console.ReadKey();
             CGridControl gridGontrol = new CGridControl(game.grid);
@@ -80,7 +79,7 @@ namespace RushHour
                     int escapeAction = escapeMenu.Control();
                     if (escapeAction == 0) //go back to game
                     {                        
-                        Run(game.grid, game.playerScore);
+                        Run(game.grid, game.PlayerScore);
                     }
                     else if (escapeAction == 1) //new game
                     {                        

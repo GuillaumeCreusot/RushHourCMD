@@ -202,5 +202,23 @@ namespace RushHour
 
         }
 
+        /// <summary>
+        /// returns relevent info of vehicle : length, Xpos, Ypos, direction. Works only if width or heigth of grid doesn't exceed 2 digits. TODO: eventually fix ?
+        /// </summary>
+        public override string ToString()
+        {
+            int dir = (int)vehicleDirection;
+            string dir2 = dir.ToString();
+            return this.Length + "," + this.Pos[0] + "," + this.Pos[1] + ","+ dir2 + "," + this.isPlayer;
+        }
+
+        /// <summary>
+        /// takes the string from save file and turns it into a vehicle: ex: this.length = input[0].
+        /// </summary>
+        public void BackwardsString(string input)
+        {
+
+        }
+
     }
 }
