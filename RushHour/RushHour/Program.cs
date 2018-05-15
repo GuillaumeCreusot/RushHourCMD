@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace RushHour
 {
@@ -10,24 +10,34 @@ namespace RushHour
     {
         static void Main(string[] args)
         {
-            /* TESTS WM + Grid + Vehicles
-            WidgetsManager wm = new WidgetsManager("wm", Console.LargestWindowWidth, Console.LargestWindowHeight);
-            
+            /* TESTS WM + Grid + Vehicles*/
+            //WidgetsManager wm = new WidgetsManager("wm", Console.LargestWindowWidth, Console.LargestWindowHeight);
+
             MGrid grid = new MGrid(6, 6);
 
-            MVehicle v1 = new MVehicle(grid, 0, 3, MMain.Direction.North, 3, 3, false);
-            grid.Vehicles.Add(v1);
-            
-            MVehicle v2 = new MVehicle(grid, 0, 2, MMain.Direction.East, 0, 0, false);
-            grid.Vehicles.Add(v2);
-            MVehicle v3 = new MVehicle(grid, 0, 3, MMain.Direction.West, 5, 5, false);
-            grid.Vehicles.Add(v3);
+            //Console.WriteLine(grid.IsValidPosition(0, 4, MMain.Direction.North, 3));
 
-            VGrid vgrid = new VGrid(12, 6, grid);
-            
-            wm.AddWidget(vgrid, Console.LargestWindowHeight/2 - vgrid.height/2, (Console.LargestWindowWidth / 2) - (vgrid.length / 2));
-            wm.RefreshContentOnScreen();
-            */
+            MVehicle v1 = new MVehicle(grid, 0, 3, MMain.Direction.West, false);
+            grid.Vehicles.Add(v1);
+            v1.Pos = new int[2] { 2, 0 };
+
+            v1.Move(MMain.Direction.East);
+            v1.Move(MMain.Direction.West);
+
+
+
+            //VGrid vgrid = new VGrid(12, 6, grid);
+
+            //wm.AddWidget(vgrid, Console.LargestWindowHeight/2 - vgrid.height/2, (Console.LargestWindowWidth / 2) - (vgrid.length / 2));
+            //wm.RefreshContentOnScreen();
+
+            //Thread.Sleep(1000);
+
+
+            //wm.RefreshContentOnScreen();
+
+
+
 
             /* TESTS MAIN MENU 
             VMainMenu menuTest = new VMainMenu();
@@ -71,12 +81,17 @@ namespace RushHour
 
             //MGrid grid = new MGrid(StandardGrids.mediumGrid, 6, 6);
 
-            /*CGridControl yolo = new CGridControl(grid);
-            yolo.Control();
+            //CGridControl yolo = new CGridControl(grid);
+            //yolo.Control();
 
-           /Test escape menu
-            CEscapeMenu wesh = new CEscapeMenu();
-            wesh.Control();*/
+            /*Test escape menu
+             CEscapeMenu wesh = new CEscapeMenu();
+             wesh.Control();*/
+
+
+           //Test escape menu
+           // CEscapeMenu wesh = new CEscapeMenu();
+           // wesh.Control();
 
             //TEST GAME
             //CGame game = new CGame();
@@ -88,10 +103,17 @@ namespace RushHour
             game.game.PlayerScore = 0;
             game.game.Grid = new MGrid(6, 6);
             List<MVehicle> vehicles = new List<MVehicle>();
-            MVehicle truck = new MVehicle(game.game.grid, 0, 2, MMain.Direction.South, 4, 4, false);
+            MVehicle truck = new MVehicle(game.game.grid, 0, 2, MMain.Direction.South, false);
+            truck.Pos[0] = 4;
+            truck.Pos[1] = 4;
             vehicles.Add(truck);
             game.game.grid.Vehicles = vehicles;
             game.game.Save();
+            //TEST GAME
+            /*MGame game = new MGame();*/
+            //CGame game = new CGame();
+            //game.Launch();
+            Console.ReadKey();
         }
     }
 }

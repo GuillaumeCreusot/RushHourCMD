@@ -14,8 +14,8 @@ namespace RushHour
         
         public static int[,] easyGrid2 = { { 3, 5, 2, (int)MMain.Direction.North }, { 3, 5, 5, (int)MMain.Direction.East }, { 2, 3, 4 , (int)MMain.Direction.South } }; 
 
-        public static int[,] mediumGrid = { { 3, 1, 0, (int)MMain.Direction.South }, { 3, 5, 0, (int)MMain.Direction.West }, { 2, 1, 2, (int)MMain.Direction.South }, { 2, 0, 3, (int)MMain.Direction.West }, { 2, 1, 4, (int)MMain.Direction.East }, { 3, 4, 3, (int)MMain.Direction.North }, { 3, 2, 5, (int)MMain.Direction.South } };
-        public static int[,] hardGrid = { { 2, 5, 0, (int)MMain.Direction.North }, { 2, 3, 0, (int)MMain.Direction.West }, { 2, 3, 3, (int)MMain.Direction.East }, { 2, 1, 2, (int)MMain.Direction.West }, { 3, 0, 5, (int)MMain.Direction.East }, { 2, 1, 5, (int)MMain.Direction.East }, { 2, 5, 3, (int)MMain.Direction.North }, { 2, 5, 5, (int)MMain.Direction.East }, { 3, 4, 4, (int)MMain.Direction.North }, { 3, 2, 5, (int)MMain.Direction.South } };
+        public static int[,] mediumGrid = { { 3, 1, 0, (int)MMain.Direction.South }, { 3, 5, 0, (int)MMain.Direction.East }, { 2, 1, 2, (int)MMain.Direction.South }, { 2, 0, 3, (int)MMain.Direction.West }, { 2, 1, 4, (int)MMain.Direction.East }, { 3, 4, 3, (int)MMain.Direction.North }, { 3, 2, 5, (int)MMain.Direction.South } };
+        public static int[,] hardGrid = { { 2, 5, 0, (int)MMain.Direction.North }, { 2, 3, 0, (int)MMain.Direction.East }, { 2, 3, 3, (int)MMain.Direction.West }, { 2, 1, 2, (int)MMain.Direction.East }, { 3, 0, 5, (int)MMain.Direction.West }, { 2, 1, 5, (int)MMain.Direction.West }, { 2, 5, 3, (int)MMain.Direction.North }, { 2, 5, 5, (int)MMain.Direction.West }, { 3, 4, 4, (int)MMain.Direction.North }, { 3, 2, 5, (int)MMain.Direction.South } };
 
         public static MMain.Direction Direction(int dir)
         {
@@ -23,7 +23,7 @@ namespace RushHour
                 return MMain.Direction.North;
             if (dir == 1)
                 return MMain.Direction.West;
-            if (dir == 1)
+            if (dir == 2)
                 return MMain.Direction.East;
 
             return MMain.Direction.South;

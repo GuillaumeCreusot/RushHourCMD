@@ -12,7 +12,7 @@ namespace RushHour
         internal bool gameEnded;
         internal MGrid grid;
         private int playerScore;
-        private MMain.Difficulty difficulty;
+        internal MMain.Difficulty difficulty;
         public MGame()
         {
             GameEnded = false;

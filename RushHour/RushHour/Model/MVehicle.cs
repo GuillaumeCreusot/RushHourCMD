@@ -18,7 +18,7 @@ namespace RushHour
         public bool IsSelected { get; set; }
 
         //Constructor
-        public MVehicle(MGrid grid, int id, int length, MMain.Direction direction, int x, int y, bool isPlayer)
+        public MVehicle(MGrid grid, int id, int length, MMain.Direction direction, bool isPlayer)
         {
             this.assignedGrid = grid;
             this.idVehicle = id;
@@ -31,11 +31,10 @@ namespace RushHour
                 this.Length = 3;
                 Console.WriteLine("Invalid length: vehicle length initialised to 3.");
             }
-            this.VehicleDirection = direction;
+
+            this.vehicleDirection = direction;
 
             this.pos = new int[2];
-            this.pos[0] = x;
-            this.pos[1] = y;
 
             this.isPlayer = isPlayer;
             if (this.Length == 2)
@@ -97,7 +96,20 @@ namespace RushHour
 
             set
             {
-                pos = value;
+                if (assignedGrid.gridCollision[pos[0], pos[1]])
+                {
+                    assignedGrid.ModifyVehicleInCollisionGrid(idVehicle, false);
+                }
+
+                if (assignedGrid.IsValidPosition(value[0], value[1], VehicleDirection, Length))
+                {
+                    pos = value;
+                    assignedGrid.ModifyVehicleInCollisionGrid(idVehicle, true);
+                }
+                else
+                {
+                    throw new Exception("Position out of range");
+                }
             }
         }
 
@@ -135,7 +147,14 @@ namespace RushHour
             }
             set
             {
-                vehicleDirection = value;
+                if (assignedGrid.IsValidPosition(Pos[0], Pos[1], value, Length))
+                {
+                    vehicleDirection = value;
+                }
+                else
+                {
+                    throw new Exception("Direction invalide");
+                }
             }
         }
 
@@ -143,29 +162,40 @@ namespace RushHour
         public void Move(MMain.Direction direction)
         {
 
-            //fonction ValidDirection
-            if (assignedGrid.ValidDirection(this, direction))
+            //stay in range
+            if(VehicleDirection == MMain.Direction.North || VehicleDirection == MMain.Direction.South)
             {
-                //stay in range
-                if (direction == MMain.Direction.North)
-                {
-                    pos[1] += 1;
-                }
-                else if (direction == MMain.Direction.South)
-                {
-                    pos[1] -= 1;
-                }
-                else if (direction == MMain.Direction.West)
-                {
-                    pos[0] -= 1;
-                }
-                else if (direction == MMain.Direction.East)
-                {
-                    pos[1] += 1;
-                }               
+                //the furthest vehicle's case to the north
+                int vNorth = VehicleDirection == MMain.Direction.North ? Pos[1] - (Length - 1) : Pos[1];
+                //the furthest vehicle's case to the south
+                int vSouth = VehicleDirection == MMain.Direction.South ? Pos[1] + (Length - 1) : Pos[1];
 
+                if (direction == MMain.Direction.North && vNorth - 1 >= 0 && !assignedGrid.gridCollision[Pos[0], vNorth - 1] )
+                {
+                    Pos = new int[] {Pos[0], Pos[1] - 1 };
+                }
+                else if (direction == MMain.Direction.South && vSouth + 1 < assignedGrid.gridCollision.GetLength(1) && !assignedGrid.gridCollision[Pos[0], vSouth + 1])
+                {
+                    Pos = new int[] { Pos[0], Pos[1] + 1 };
+                }
             }
-           
+            else
+            {
+                //the furthest vehicle's case to the west
+                int vWest = VehicleDirection == MMain.Direction.West ? Pos[0] - (Length - 1) : Pos[0];
+                //the furthest vehicle's case to the east
+                int vEast = VehicleDirection == MMain.Direction.East ? Pos[0] + (Length - 1) : Pos[0];
+
+                if (direction == MMain.Direction.West && vWest - 1 >= 0 && !assignedGrid.gridCollision[vWest - 1, Pos[0]])
+                {
+                    Pos = new int[] { Pos[0] -1, Pos[1]};
+                }
+                else if (direction == MMain.Direction.East && vEast + 1 < assignedGrid.gridCollision.GetLength(0) && !assignedGrid.gridCollision[vEast + 1, Pos[1]])
+                {
+                    Pos = new int[] { Pos[0] + 1, Pos[1]};
+                }
+            }
+
         }
 
         /// <summary>
