@@ -56,7 +56,7 @@ namespace RushHour
             wesh.Control();*/
 
             //TEST GAME
-            MGame game = new MGame();
+            CGame game = new CGame();
             game.Launch();
             Console.ReadKey();
         }

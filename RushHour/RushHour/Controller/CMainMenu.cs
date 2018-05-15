@@ -50,7 +50,8 @@ namespace RushHour
                         }
                         break;
 
-                    case ConsoleKey.Enter:                        
+                    case ConsoleKey.Enter:
+                        Console.Clear();                    
                         return mainMenu.SelectedItem;
 
                 }
