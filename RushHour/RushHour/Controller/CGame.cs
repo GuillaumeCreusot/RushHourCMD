@@ -27,7 +27,7 @@ namespace RushHour
             {
                 if (action == 0) //new game
                 {
-                    game.Grid = new MGrid(6, 6);
+                    game.grid = new MGrid(6, 6);
                     game.playerScore = new MScore();
                     //choose difficulty
                     CDifficultyMenu difficultyMenu = new CDifficultyMenu();
@@ -52,22 +52,33 @@ namespace RushHour
 
         public void Run(MGrid grid, MScore score)
         {
-            NotImplementedException excp = new NotImplementedException();
-            throw excp;
             ConsoleKeyInfo cki = Console.ReadKey();
             while (!game.gameEnded)
             {
-                do
+                do //execute the game
                 {
                     cki = Console.ReadKey();
-                    //execute the game
+                    
                 }
                 while (cki.Key != ConsoleKey.Escape);
 
                 if (cki.Key == ConsoleKey.Escape)
                 {
                     CEscapeMenu escapeMenu = new CEscapeMenu();
-                    escapeMenu.Control();
+                    int escapeAction = escapeMenu.Control();
+                    if (escapeAction == 0) //go back to game
+                    {                        
+                        Run(game.grid, game.playerScore);
+                    }
+                    else if (escapeAction == 1) //new game
+                    {                        
+                        Launch();
+                    }
+                    else //game over
+                    {
+                        game.gameEnded = true;
+                        //TO DO : launch game over screen
+                    }
                 }
             }
         }

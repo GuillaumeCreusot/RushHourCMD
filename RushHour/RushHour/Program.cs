@@ -69,20 +69,19 @@ namespace RushHour
 
             grid.SelectedItem = 1;*/
 
-            MGrid grid = new MGrid(StandardGrids.mediumGrid, 6, 6);
+            //MGrid grid = new MGrid(StandardGrids.mediumGrid, 6, 6);
 
-            CGridControl yolo = new CGridControl(grid);
+            /*CGridControl yolo = new CGridControl(grid);
             yolo.Control();
 
-            /*//Test escape menu
+           /Test escape menu
             CEscapeMenu wesh = new CEscapeMenu();
             wesh.Control();*/
-
+               
             //TEST GAME
             CGame game = new CGame();
-            /*MGame game = new MGame();
             game.Launch();
-            Console.ReadKey();*/
+            Console.ReadKey();
         }
     }
 }
