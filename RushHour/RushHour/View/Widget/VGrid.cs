@@ -72,6 +72,7 @@ namespace RushHour
             int y = vehicle.Pos[1];
             char chara = (vehicle.IsSelected) ? '\u2592' : '\u2588';
             int i = 0;
+            Console.ForegroundColor = ConsoleColor.Red;
             while (i < vehicle.Length)
             {
 
@@ -91,6 +92,7 @@ namespace RushHour
                 if (vehicle.VehicleDirection == MMain.Direction.West)
                     x--;
             }
+            Console.ForegroundColor = ConsoleColor.Gray;
         }
 
         static string ReplaceAtIndex(int i, char value, string word)

@@ -16,6 +16,7 @@ namespace RushHour
         private bool isPlayer;
         private MGrid assignedGrid;
         public bool IsSelected { get; set; }
+        public ConsoleColor Color { get; set; }
 
         //Constructor
         public MVehicle(MGrid grid, int id, int length, MMain.Direction direction, int x, int y, bool isPlayer)
@@ -46,6 +47,9 @@ namespace RushHour
             {
                 this.name = "Camion";
             }
+
+
+            RandomizeColor();
         }
 
         // Properties
@@ -166,6 +170,25 @@ namespace RushHour
 
             }
            
+        }
+
+        public void RandomizeColor()
+        {
+            Random r = new Random();
+            int color = r.Next(5);
+
+            if (color == 0)
+                Color = ConsoleColor.Cyan;
+            else if (color == 1)
+                Color = ConsoleColor.Red;
+            else if (color == 2)
+                Color = ConsoleColor.Green;
+            else if (color == 3)
+                Color = ConsoleColor.Magenta;
+            else if (color == 4)
+                Color = ConsoleColor.DarkYellow;
+            else
+                Color = ConsoleColor.Gray;
         }
 
     }
