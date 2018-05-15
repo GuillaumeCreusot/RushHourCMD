@@ -8,24 +8,5 @@ namespace RushHour
 {
     class MScore
     {
-        private int playerScore;
-
-        public MScore()
-        {
-            PlayerScore = 0;
-        }
-
-        public int PlayerScore
-        {
-            get
-            {
-                return playerScore;
-            }
-
-            set
-            {
-                playerScore = value;
-            }
-        }
     }
 }

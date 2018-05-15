@@ -77,11 +77,21 @@ namespace RushHour
            /Test escape menu
             CEscapeMenu wesh = new CEscapeMenu();
             wesh.Control();*/
-               
+
             //TEST GAME
+            //CGame game = new CGame();
+            //game.Launch();
+            //Console.ReadKey();
+
+            //TEST SAVE
             CGame game = new CGame();
-            game.Launch();
-            Console.ReadKey();
+            game.game.PlayerScore = 0;
+            game.game.Grid = new MGrid(6, 6);
+            List<MVehicle> vehicles = new List<MVehicle>();
+            MVehicle truck = new MVehicle(game.game.grid, 0, 2, MMain.Direction.South, 4, 4, false);
+            vehicles.Add(truck);
+            game.game.grid.Vehicles = vehicles;
+            game.game.Save();
         }
     }
 }

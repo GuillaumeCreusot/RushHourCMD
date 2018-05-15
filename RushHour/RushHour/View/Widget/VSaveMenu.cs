@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace RushHour
 {
-    class VDifficultyMenu : Menu
+    class VSaveMenu : Menu
     {
-
         public static string text = @"
    ▄████████ ███    █▄     ▄████████    ▄█    █▄            ▄█    █▄     ▄██████▄  ███    █▄     ▄████████ 
   ███    ███ ███    ███   ███    ███   ███    ███          ███    ███   ███    ███ ███    ███   ███    ███ 
@@ -22,22 +21,22 @@ namespace RushHour
 
 
 
-            ██████╗ ██╗███████╗███████╗██╗ ██████╗██╗   ██╗██╗  ████████╗███████╗
-            ██╔══██╗██║██╔════╝██╔════╝██║██╔════╝██║   ██║██║  ╚══██╔══╝██╔════╝
-            ██║  ██║██║█████╗  █████╗  ██║██║     ██║   ██║██║     ██║   █████╗  
-            ██║  ██║██║██╔══╝  ██╔══╝  ██║██║     ██║   ██║██║     ██║   ██╔══╝  
-            ██████╔╝██║██║     ██║     ██║╚██████╗╚██████╔╝███████╗██║   ███████╗
-            ╚═════╝ ╚═╝╚═╝     ╚═╝     ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝   ╚══════╝
-                                                                     
+        ███████╗ █████╗ ██╗   ██╗██╗   ██╗███████╗ ██████╗  █████╗ ██████╗ ██████╗ ███████╗
+        ██╔════╝██╔══██╗██║   ██║██║   ██║██╔════╝██╔════╝ ██╔══██╗██╔══██╗██╔══██╗██╔════╝
+        ███████╗███████║██║   ██║██║   ██║█████╗  ██║  ███╗███████║██████╔╝██║  ██║█████╗  
+        ╚════██║██╔══██║██║   ██║╚██╗ ██╔╝██╔══╝  ██║   ██║██╔══██║██╔══██╗██║  ██║██╔══╝  
+        ███████║██║  ██║╚██████╔╝ ╚████╔╝ ███████╗╚██████╔╝██║  ██║██║  ██║██████╔╝███████╗
+        ╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═══╝  ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚══════╝
+                                                
 
-
-                               Choisissez la difficulté :        
+                                   
+         Entrez le nom de votre sauvegarde (chiffres et lettres uniquement) :                                                                                               
                                     
             ";
         public static int[] dimText = WidgetUtility.DimContent(text);
-        public static string[] itemName = { "Facile", "Moyenne", "Difficile" };
+        public static string[] itemName = { "" };
 
-        public VDifficultyMenu(): base("Difficulty Menu", "", itemName.Length + 1, 30, itemName, margeLeft : 10)
+        public VSaveMenu(): base("Save Menu", "", itemName.Length + 1, 30, itemName, margeLeft : 10)
         {
 
         }
