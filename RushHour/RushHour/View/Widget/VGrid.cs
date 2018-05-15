@@ -71,15 +71,15 @@ namespace RushHour
             int x = vehicle.Pos[0];
             int y = vehicle.Pos[1];
             char chara = (vehicle.IsSelected) ? '\u2592' : '\u2588';
-            Console.WriteLine(vehicle.IdVehicle);
             int i = 0;
             while (i < vehicle.Length)
             {
-                Console.WriteLine(WidgetUtility.DimContent(content)[0]);
-                Console.WriteLine(WidgetUtility.DimContent(content)[1]);
+
                 for (int j = 0; j < blength; j++)
                     for (int k = 0; k < bheight; k++)
-                        content = ReplaceAtIndex((y * (bheight + 1) + k + 1)* (length + 1) + x * (blength + 1) + j + 1, chara, content); //x * (blength + 1) + j + 1
+                    {
+                        content = ReplaceAtIndex((y * (bheight + 1) + k + 1) * (length + 1) + x * (blength + 1) + j + 1, chara, content); //x * (blength + 1) + j + 1
+                    }
 
                 i++;
                 if (vehicle.VehicleDirection == MMain.Direction.North)
@@ -98,7 +98,9 @@ namespace RushHour
             /*Console.WriteLine(i);
             Console.WriteLine(word.Length);*/
             char[] letters = word.ToCharArray();
-            letters[i] = value;
+            if (letters[i] != '\n')
+                letters[i] = value;
+
             return string.Join("", letters);
         }
     }

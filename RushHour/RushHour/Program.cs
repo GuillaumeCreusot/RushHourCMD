@@ -69,7 +69,7 @@ namespace RushHour
 
             grid.SelectedItem = 1;*/
 
-            MGrid grid = new MGrid(StandardGrids.mediumGrid, 6, 6);
+            MGrid grid = new MGrid(StandardGrids.hardGrid, 6, 6);
 
             CGridControl yolo = new CGridControl(grid);
             yolo.Control();
