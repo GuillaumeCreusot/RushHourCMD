@@ -61,28 +61,28 @@ namespace RushHour
 
 
             //Test vehicle selection
-            MGrid grid = new MGrid(6, 6);
+            //MGrid grid = new MGrid(6, 6);
 
-            grid.AddVehicle(0, 0, MMain.Direction.East, 2);
-            grid.AddVehicle(3, 0, MMain.Direction.East, 2);
-            grid.AddVehicle(3, 3, MMain.Direction.North, 3);
-            grid.AddVehicle(5, 5, MMain.Direction.West, 3);
+            //grid.AddVehicle(0, 0, MMain.Direction.East, 2);
+            //grid.AddVehicle(3, 0, MMain.Direction.East, 2);
+            //grid.AddVehicle(3, 3, MMain.Direction.North, 3);
+            //grid.AddVehicle(5, 5, MMain.Direction.West, 3);
 
-            grid.SelectedItem = 1;
+            //grid.SelectedItem = 1;
 
             //MGrid grid = new MGrid(StandardGrids.mediumGrid, 6, 6);
 
-            CGridControl yolo = new CGridControl(grid);
-            yolo.Control();
+            //CGridControl yolo = new CGridControl(grid);
+            //yolo.Control();
 
             /*Test escape menu
              CEscapeMenu wesh = new CEscapeMenu();
              wesh.Control();*/
 
 
-           //Test escape menu
-           // CEscapeMenu wesh = new CEscapeMenu();
-           // wesh.Control();
+            //Test escape menu
+            // CEscapeMenu wesh = new CEscapeMenu();
+            // wesh.Control();
 
             //TEST GAME
             //CGame game = new CGame();
@@ -104,6 +104,14 @@ namespace RushHour
             /*MGame game = new MGame();*/
             //CGame game = new CGame();
             //game.Launch();
+
+            //Test ListSaves()
+            //MGame game = new MGame();
+            //game.Load();
+            
+            //test loading menu
+            CLoadMenu loadMenu = new CLoadMenu();
+            loadMenu.Control();
             Console.ReadKey();
         }
     }

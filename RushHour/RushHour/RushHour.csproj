@@ -47,6 +47,7 @@
     <Compile Include="Controller\CEscapeMenu.cs" />
     <Compile Include="Controller\CGame.cs" />
     <Compile Include="Controller\CGridControl.cs" />
+    <Compile Include="Controller\CLoadMenu.cs" />
     <Compile Include="Controller\CMain.cs" />
     <Compile Include="Controller\CMainMenu.cs" />
     <Compile Include="Controller\CSaveMenu.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="View\Widget\VEscapeMenu.cs" />
     <Compile Include="View\Widget\VGrid.cs" />
     <Compile Include="View\Widget\Menu.cs" />
+    <Compile Include="View\Widget\VLoadMenu.cs" />
     <Compile Include="View\Widget\VMainMenu.cs" />
     <Compile Include="View\Widget\VSaveMenu.cs" />
     <Compile Include="View\Widget\Widget.cs" />

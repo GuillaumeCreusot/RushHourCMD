@@ -82,7 +82,7 @@ namespace RushHour
 
         public void Load()
         {
-
+    
         }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace RushHour
         /// <summary>
         /// get path to saving folder
         /// </summary>
-        public string GetSaveFolderPath()
+        public static string GetSaveFolderPath()
         {
             string path = Environment.CurrentDirectory;
             path = Path.GetDirectoryName(path);
@@ -140,7 +140,7 @@ namespace RushHour
             return name;
         }
 
-        public string GetFilePath(string path, string fileName)
+        public static string GetFilePath(string path, string fileName)
         {
             return path + "\\" + fileName + ".txt";
         }
@@ -163,6 +163,42 @@ namespace RushHour
         }
 
         //FOR LOADING
+
+        /// <summary>
+        /// puts names of available saves in a list to display in according screen
+        /// </summary>
+        /// <returns></returns>
+        public static string[] ListSaves()
+        {
+            //count Number Of Items
+            StreamReader reader = new StreamReader(MGame.GetFilePath(MGame.GetSaveFolderPath(), "names"));
+            string line;
+            int savesNb = 0;
+            do
+            {
+                line = reader.ReadLine();
+                if (!String.IsNullOrEmpty(line))
+                {
+                    savesNb++;
+                }
+            }
+            while (!String.IsNullOrEmpty(line));
+            reader.Close();
+
+            //add those items to list
+            string[] items = new string[savesNb];
+            StreamReader reader2 = new StreamReader(MGame.GetFilePath(MGame.GetSaveFolderPath(), "names"));
+            string line2;
+            for (int i = 0; i < savesNb; i++)
+            {
+                line2 = reader2.ReadLine();
+                items[i] = line2;
+            }
+            reader2.Close();
+
+            return items;
+        }
+
 
         /// <summary>
         /// NOT DONE/ COPY PASTED FROM OTHER PROJECT : Displays the available saves and asks the user to choose one
@@ -216,7 +252,7 @@ namespace RushHour
         /// <summary>
         /// Reads a saved game to load the parameters
         /// </summary>
-        public void Read()
+        public void Read(string filePath)
         {
 
         }
