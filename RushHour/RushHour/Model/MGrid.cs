@@ -231,6 +231,13 @@ namespace RushHour
             }
         }
 
+        public void AddVehicle(int x, int y, MMain.Direction direction, int length, bool isPlayer = false)
+        {
+            MVehicle v = new MVehicle(this, Vehicles.Count, length, direction, isPlayer);
+            this.Vehicles.Add(v);
+            v.Pos = new int[2] { x, y };
+        }
+
 
     }
 }

@@ -15,6 +15,7 @@ namespace RushHour
         private MMain.Direction vehicleDirection;
         private bool isPlayer;
         private MGrid assignedGrid;
+        private bool placeOnGrid;
         public bool IsSelected { get; set; }
 
         //Constructor
@@ -45,6 +46,8 @@ namespace RushHour
             {
                 this.name = "Camion";
             }
+
+            placeOnGrid = false;
         }
 
         // Properties
@@ -96,7 +99,7 @@ namespace RushHour
 
             set
             {
-                if (assignedGrid.gridCollision[pos[0], pos[1]])
+                if (placeOnGrid)
                 {
                     assignedGrid.ModifyVehicleInCollisionGrid(idVehicle, false);
                 }
@@ -105,6 +108,7 @@ namespace RushHour
                 {
                     pos = value;
                     assignedGrid.ModifyVehicleInCollisionGrid(idVehicle, true);
+                    placeOnGrid = true;
                 }
                 else
                 {

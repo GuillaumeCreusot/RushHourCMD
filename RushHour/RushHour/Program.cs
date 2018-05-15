@@ -13,16 +13,13 @@ namespace RushHour
             /* TESTS WM + Grid + Vehicles*/
             //WidgetsManager wm = new WidgetsManager("wm", Console.LargestWindowWidth, Console.LargestWindowHeight);
 
-            MGrid grid = new MGrid(6, 6);
+            //MGrid grid = new MGrid(6, 6);
 
-            //Console.WriteLine(grid.IsValidPosition(0, 4, MMain.Direction.North, 3));
+            ////Console.WriteLine(grid.IsValidPosition(0, 4, MMain.Direction.North, 3));
 
-            MVehicle v1 = new MVehicle(grid, 0, 3, MMain.Direction.West, false);
-            grid.Vehicles.Add(v1);
-            v1.Pos = new int[2] { 2, 0 };
+            //grid.AddVehicle(0, 3, MMain.Direction.North, 2);
 
-            v1.Move(MMain.Direction.East);
-            v1.Move(MMain.Direction.West);
+            //grid.GetVehicle(0).Move(MMain.Direction.South);
 
 
 
@@ -64,25 +61,19 @@ namespace RushHour
 
 
             //Test vehicle selection
-            /*MGrid grid = new MGrid(6, 6);
+            MGrid grid = new MGrid(6, 6);
 
-            
+            grid.AddVehicle(0, 0, MMain.Direction.East, 2);
+            grid.AddVehicle(3, 0, MMain.Direction.East, 2);
+            grid.AddVehicle(3, 3, MMain.Direction.North, 3);
+            grid.AddVehicle(5, 5, MMain.Direction.West, 3);
 
-            MVehicle v1 = new MVehicle(grid, 0, 2, MMain.Direction.East, 0, 0, false);
-            grid.Vehicles.Add(v1);
-
-            MVehicle v2 = new MVehicle(grid, 0, 3, MMain.Direction.North, 3, 3, false);
-            grid.Vehicles.Add(v2);
-
-            MVehicle v3 = new MVehicle(grid, 0, 3, MMain.Direction.West, 5, 5, false);
-            grid.Vehicles.Add(v3);
-
-            grid.SelectedItem = 1;*/
+            grid.SelectedItem = 1;
 
             //MGrid grid = new MGrid(StandardGrids.mediumGrid, 6, 6);
 
-            //CGridControl yolo = new CGridControl(grid);
-            //yolo.Control();
+            CGridControl yolo = new CGridControl(grid);
+            yolo.Control();
 
             /*Test escape menu
              CEscapeMenu wesh = new CEscapeMenu();
