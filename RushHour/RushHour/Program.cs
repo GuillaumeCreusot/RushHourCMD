@@ -12,16 +12,17 @@ namespace RushHour
         {
             /* TESTS WM + Grid + Vehicles*/
             //WidgetsManager wm = new WidgetsManager("wm", Console.LargestWindowWidth, Console.LargestWindowHeight);
-            
+
             MGrid grid = new MGrid(6, 6);
 
             //Console.WriteLine(grid.IsValidPosition(0, 4, MMain.Direction.North, 3));
 
-            MVehicle v1 = new MVehicle(grid, 0, 3, MMain.Direction.North, false);
+            MVehicle v1 = new MVehicle(grid, 0, 3, MMain.Direction.West, false);
             grid.Vehicles.Add(v1);
-            v1.Pos = new int[2] { 0, 3 };
+            v1.Pos = new int[2] { 2, 0 };
 
-            v1.Move(MMain.Direction.South);
+            v1.Move(MMain.Direction.East);
+            v1.Move(MMain.Direction.West);
 
 
 
@@ -78,30 +79,19 @@ namespace RushHour
 
             grid.SelectedItem = 1;*/
 
-<<<<<<< HEAD
             //MGrid grid = new MGrid(StandardGrids.mediumGrid, 6, 6);
 
             //CGridControl yolo = new CGridControl(grid);
             //yolo.Control();
-=======
-            //MGrid grid = new MGrid(StandardGrids.hardGrid, 6, 6);
 
-            /*CGridControl yolo = new CGridControl(grid);
-            yolo.Control();
->>>>>>> ae24a9ecaa11ccf707e6fcaf16d5ccc198cbd223
+            /*Test escape menu
+             CEscapeMenu wesh = new CEscapeMenu();
+             wesh.Control();*/
 
-           /Test escape menu
-            CEscapeMenu wesh = new CEscapeMenu();
-            wesh.Control();*/
-               
             //TEST GAME
-<<<<<<< HEAD
-            /*MGame game = new MGame();
-            game.Launch();*/
-=======
-            CGame game = new CGame();
-            game.Launch();
->>>>>>> ae24a9ecaa11ccf707e6fcaf16d5ccc198cbd223
+            /*MGame game = new MGame();*/
+            //CGame game = new CGame();
+            //game.Launch();
             Console.ReadKey();
         }
     }

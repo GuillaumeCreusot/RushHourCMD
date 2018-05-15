@@ -165,25 +165,32 @@ namespace RushHour
             //stay in range
             if(VehicleDirection == MMain.Direction.North || VehicleDirection == MMain.Direction.South)
             {
-                int vNord = VehicleDirection == MMain.Direction.North ? Pos[1] - (Length - 1) : Pos[1];
-                int vSud = VehicleDirection == MMain.Direction.South ? Pos[1] - (Length - 1) : Pos[1];
+                //the furthest vehicle's case to the north
+                int vNorth = VehicleDirection == MMain.Direction.North ? Pos[1] - (Length - 1) : Pos[1];
+                //the furthest vehicle's case to the south
+                int vSouth = VehicleDirection == MMain.Direction.South ? Pos[1] + (Length - 1) : Pos[1];
 
-                if (direction == MMain.Direction.North && vNord - 1 >= 0 && !assignedGrid.gridCollision[Pos[0], vNord - 1] )
+                if (direction == MMain.Direction.North && vNorth - 1 >= 0 && !assignedGrid.gridCollision[Pos[0], vNorth - 1] )
                 {
                     Pos = new int[] {Pos[0], Pos[1] - 1 };
                 }
-                else if (direction == MMain.Direction.South && vNord - 1 >= 0 && !assignedGrid.gridCollision[Pos[0], vNord - 1])
+                else if (direction == MMain.Direction.South && vSouth + 1 < assignedGrid.gridCollision.GetLength(1) && !assignedGrid.gridCollision[Pos[0], vSouth + 1])
                 {
                     Pos = new int[] { Pos[0], Pos[1] + 1 };
                 }
             }
             else
             {
-                if (direction == MMain.Direction.West)
+                //the furthest vehicle's case to the west
+                int vWest = VehicleDirection == MMain.Direction.West ? Pos[0] - (Length - 1) : Pos[0];
+                //the furthest vehicle's case to the east
+                int vEast = VehicleDirection == MMain.Direction.East ? Pos[0] + (Length - 1) : Pos[0];
+
+                if (direction == MMain.Direction.West && vWest - 1 >= 0 && !assignedGrid.gridCollision[vWest - 1, Pos[0]])
                 {
                     Pos = new int[] { Pos[0] -1, Pos[1]};
                 }
-                else if (direction == MMain.Direction.East)
+                else if (direction == MMain.Direction.East && vEast + 1 < assignedGrid.gridCollision.GetLength(0) && !assignedGrid.gridCollision[vEast + 1, Pos[1]])
                 {
                     Pos = new int[] { Pos[0] + 1, Pos[1]};
                 }
