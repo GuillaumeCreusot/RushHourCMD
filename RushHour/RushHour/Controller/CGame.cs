@@ -35,9 +35,9 @@ namespace RushHour
 
                     if (game.difficulty == 0)
                         game.grid = new MGrid(StandardGrids.easyGrid2, 6, 6);
-                    if (game.difficulty == MMain.Difficulty.Medium)
-                        game.grid = new MGrid(StandardGrids.hardGrid, 6, 6);
-                    if (game.difficulty == MMain.Difficulty.Hard)
+                    else if (game.difficulty == MMain.Difficulty.Medium)
+                        game.grid = new MGrid(StandardGrids.mediumGrid, 6, 6);
+                    else if (game.difficulty == MMain.Difficulty.Hard)
                         game.grid = new MGrid(StandardGrids.hardGrid, 6, 6);
                     else
                         game.grid = new MGrid(StandardGrids.easyGrid, 6, 6);
@@ -63,12 +63,14 @@ namespace RushHour
         public void Run(MGrid grid, MScore score)
         {
             ConsoleKeyInfo cki = Console.ReadKey();
+            CGridControl gridGontrol = new CGridControl(game.grid);
+
             while (!game.gameEnded)
             {
                 do //execute the game
                 {
                     cki = Console.ReadKey();
-                    
+                    gridGontrol.Control();
                 }
                 while (cki.Key != ConsoleKey.Escape);
 
