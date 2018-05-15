@@ -74,7 +74,7 @@ namespace RushHour
 
             for (int i = 0; i < vehicles.GetLength(0); i++)
             {
-                MVehicle vehicle = new MVehicle(this, i, vehicles[i, 0], MMain.Direction.North, vehicles[i, 1], vehicles[i, 2], (i == 0) ? true : false);
+                MVehicle vehicle = new MVehicle(this, i, vehicles[i, 0], StandardGrids.Direction(vehicles[i, 3]), vehicles[i, 2], vehicles[i, 1], (i == 0) ? true : false);
                 vehicle.IsSelected = (i == 0) ? true : false;
                 Vehicles.Add(vehicle);
             }
