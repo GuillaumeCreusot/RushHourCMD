@@ -8,72 +8,38 @@ namespace RushHour
 {
     class MGame
     {
-        public bool GameEnded { get; set; }
-        public MGrid Grid { get; set; }
-        private MScore playerScore;
-        private MMain.Difficulty difficulty;
-        
+        internal bool gameEnded;
+        internal MGrid grid;
+        internal MScore playerScore;
+        internal MMain.Difficulty difficulty;
         public MGame()
         {
             GameEnded = false;
         }
 
-
-        public void Launch()
-        {            
-            CMainMenu mainMenu = new CMainMenu();
-            int action = mainMenu.Control();
-            if (action == 2) //quit game
+        public bool GameEnded
+        {
+            get
             {
-                GameEnded = true;
-                Console.Clear(); //TODO better: display ASCII game over
+                return gameEnded;
             }
-            else //launch game
+
+            set
             {
-                if (action == 0) //new game
-                {
-                    Grid = new MGrid(6, 6);
-                    playerScore = new MScore();
-                    //choose difficulty
-                    CDifficultyMenu difficultyMenu = new CDifficultyMenu();
-                    difficulty = difficultyMenu.Control();
-                }
-
-                else if (action == 1) //load game
-                {
-                    //TODO : DEMANDER A l'USER QUEL JEU IL VEUT CHARGER, RECUPERER LA GRILLE ET LE SCORE ET RUN AVEC CES PARAMETRES
-                    MGrid oldGrid = null; //TODO récuperer dans le fichier
-                    MScore oldScore = null;//TODO récuperer dans le fichier
-                    MMain.Difficulty oldDiff= MMain.Difficulty.Easy;
-
-                    Grid = oldGrid;
-                    playerScore = oldScore;
-                    difficulty = oldDiff;
-                }
-                Run(Grid, playerScore);
+                gameEnded = value;
             }
-  
         }
 
-        public void Run(MGrid grid, MScore score)
+        internal MGrid Grid
         {
-            throw new NotImplementedException();
-            ConsoleKeyInfo cki = Console.ReadKey();
-
-            while (!GameEnded)
+            get
             {
-                do
-                {
-                    cki = Console.ReadKey();
-                    //execute the game
-                }
-                while (cki.Key != ConsoleKey.Escape);
+                return grid;
+            }
 
-                if (cki.Key == ConsoleKey.Escape)
-                {
-                    CEscapeMenu escapeMenu = new CEscapeMenu();
-                    escapeMenu.Control();
-                }
+            set
+            {
+                grid = value;
             }
         }
 
