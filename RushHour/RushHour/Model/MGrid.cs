@@ -74,9 +74,10 @@ namespace RushHour
 
             for (int i = 0; i < vehicles.GetLength(0); i++)
             {
-                MVehicle vehicle = new MVehicle(this, i, vehicles[i, 0], MMain.Direction.North, vehicles[i, 1], vehicles[i, 2], (i == 0) ? true : false);
+                MVehicle vehicle = new MVehicle(this, i, vehicles[i, 0], MMain.Direction.North, (i == 0) ? true : false);
                 vehicle.IsSelected = (i == 0) ? true : false;
                 Vehicles.Add(vehicle);
+                vehicle.Pos = new int[2] { vehicles[i, 1], vehicles[i, 2] };
             }
 
         }
@@ -88,6 +89,145 @@ namespace RushHour
             get
             {
                 return gridCollision[x, y];
+            }
+        }
+
+        public MVehicle GetVehicle(int idVehicule)
+        {
+            int i = 0;
+            while(i < Vehicles.Count && Vehicles[i].IdVehicle != idVehicule)
+            {
+                i++;
+            }
+
+            if(i == Vehicles.Count)
+            {
+                return null;
+            }
+            else
+            {
+                return Vehicles[i];
+            }
+        }
+
+        public void ModifyVehicleInCollisionGrid(int idVehicle, bool state)
+        {
+            MVehicle v = GetVehicle(idVehicle);
+
+            if(v == null)
+            {
+                throw new Exception($"Le vehicule avec l'id {idVehicle} n'existe pas");
+            }
+
+            gridCollision[v.Pos[0], v.Pos[1]] = state;
+
+            if (v.VehicleDirection == MMain.Direction.North) //North
+            {
+                gridCollision[v.Pos[0], v.Pos[1] - 1] = state;
+
+                if(v.Length == 3)
+                {
+                    gridCollision[v.Pos[0], v.Pos[1] - 2] = state;
+                }
+            }
+
+
+            if (v.VehicleDirection == MMain.Direction.West) //West
+            {
+                gridCollision[v.Pos[0] - 1, v.Pos[1]] = state;
+
+                if (v.Length == 3)
+                {
+                    gridCollision[v.Pos[0] - 2, v.Pos[1]] = state;
+                }
+            }
+
+            if (v.VehicleDirection == MMain.Direction.South) //South
+            {
+                gridCollision[v.Pos[0], v.Pos[1] + 1] = state;
+
+                if (v.Length == 3)
+                {
+                    gridCollision[v.Pos[0], v.Pos[1] + 2] = state;
+                }
+            }
+
+            if (v.VehicleDirection == MMain.Direction.East) //East
+            {
+                gridCollision[v.Pos[0] + 1, v.Pos[1]] = state;
+
+                if (v.Length == 3)
+                {
+                    gridCollision[v.Pos[0] + 2, v.Pos[1]] = state;
+                }
+            }
+        }
+
+        public bool IsValidPosition(int x, int y)
+        {
+            return !gridCollision[x, y];
+        }
+
+        public bool IsValidPosition(int x, int y, MMain.Direction direction, int length)
+        {
+            if(IsValidPosition(x, y))
+            {
+                if (direction == MMain.Direction.North && y - length + 1 >= 0) //North
+                {
+                    if (length == 3)
+                    {
+                        return !gridCollision[x, y - 1] && !gridCollision[x, y - 2];
+                    }
+                    else
+                    {
+                        return !gridCollision[x, y - 1];
+                    }
+                }
+
+
+                else if (direction == MMain.Direction.West && x - length + 1 >= 0) //West
+                {
+                    if (length == 3)
+                    {
+                        return !gridCollision[x - 1, y] && !gridCollision[x - 2, y];
+                    }
+                    else
+                    {
+                        return !gridCollision[x - 1, y];
+                    }
+                }
+
+                else if (direction == MMain.Direction.South && y + length - 1 < gridCollision.GetLength(1)) //South
+                {
+                    if (length == 3)
+                    {
+                        return !gridCollision[x, y + 1] && !gridCollision[x, y + 2];
+                    }
+                    else
+                    {
+                        return !gridCollision[x, y + 1];
+                    }
+                }
+
+                else if (direction == MMain.Direction.East && x + length - 1 < gridCollision.GetLength(0)) //East
+                {
+                    if (length == 3)
+                    {
+                        return !gridCollision[x + 1, y] && !gridCollision[x + 2, y];
+                    }
+                    else
+                    {
+                        return !gridCollision[x + 1, y];
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
             }
         }
 
