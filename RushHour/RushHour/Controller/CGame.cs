@@ -27,11 +27,21 @@ namespace RushHour
             {
                 if (action == 0) //new game
                 {
-                    game.grid = new MGrid(6, 6);
+                    
                     game.playerScore = new MScore();
                     //choose difficulty
                     CDifficultyMenu difficultyMenu = new CDifficultyMenu();
                     game.difficulty = difficultyMenu.Control();
+
+                    if (game.difficulty == 0)
+                        game.grid = new MGrid(StandardGrids.easyGrid2, 6, 6);
+                    if (game.difficulty == MMain.Difficulty.Medium)
+                        game.grid = new MGrid(StandardGrids.hardGrid, 6, 6);
+                    if (game.difficulty == MMain.Difficulty.Hard)
+                        game.grid = new MGrid(StandardGrids.hardGrid, 6, 6);
+                    else
+                        game.grid = new MGrid(StandardGrids.easyGrid, 6, 6);
+
                 }
 
                 else if (action == 1) //load game
