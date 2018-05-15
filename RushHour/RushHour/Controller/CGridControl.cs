@@ -27,7 +27,7 @@ namespace RushHour
 
         public void Control()
         {
-            
+
             while (true)
             {
                 vGrid.Update();
@@ -58,7 +58,15 @@ namespace RushHour
                         //launch according processus --> return a certain value ??
                         break;
 
+                    case ConsoleKey.Escape:
+                        //launch according processus --> return a certain value ??
+                        break;
+
                 }
+
+                if (k.Key == ConsoleKey.Escape)
+                    break;
+
 
             }
         }

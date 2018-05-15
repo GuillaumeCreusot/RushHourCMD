@@ -168,11 +168,11 @@ namespace RushHour
                 int vNord = VehicleDirection == MMain.Direction.North ? Pos[1] - (Length - 1) : Pos[1];
                 int vSud = VehicleDirection == MMain.Direction.South ? Pos[1] - (Length - 1) : Pos[1];
 
-                if (direction == MMain.Direction.North && vNord - 1 >= 0 && assignedGrid.gridCollision[Pos[0], vNord - 1] )
+                if (direction == MMain.Direction.North && vNord - 1 >= 0 && !assignedGrid.gridCollision[Pos[0], vNord - 1] )
                 {
                     Pos = new int[] {Pos[0], Pos[1] - 1 };
                 }
-                else if (direction == MMain.Direction.South)
+                else if (direction == MMain.Direction.South && vNord - 1 >= 0 && !assignedGrid.gridCollision[Pos[0], vNord - 1])
                 {
                     Pos = new int[] { Pos[0], Pos[1] + 1 };
                 }
