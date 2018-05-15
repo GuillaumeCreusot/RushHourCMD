@@ -31,7 +31,7 @@ namespace RushHour
             while (true)
             {
                 vGrid.Update();
-                manager.RefreshContentOnScreen();
+                manager.RefreshContentOnScreen("Grid");
                 ConsoleKeyInfo k = Console.ReadKey();
                 switch (k.Key)
                 {
@@ -55,7 +55,7 @@ namespace RushHour
                         break;
 
                     case ConsoleKey.Enter:
-                        //launch according processus --> return a certain value ??
+                        MoveControl();
                         break;
 
                     case ConsoleKey.Escape:
@@ -68,6 +68,39 @@ namespace RushHour
                     break;
 
 
+            }
+        }
+
+        public void MoveControl()
+        {
+            MVehicle v = mGrid.GetVehicle(mGrid.SelectedItem);
+
+            while (true)
+            {
+                vGrid.Update();
+                manager.RefreshContentOnScreen("Grid");
+                ConsoleKeyInfo ck = Console.ReadKey();
+                switch (ck.Key)
+                {
+                    case ConsoleKey.UpArrow:
+                        v.Move(MMain.Direction.North);
+                        break;
+
+                    case ConsoleKey.DownArrow:
+                        v.Move(MMain.Direction.South);
+                        break;
+
+                    case ConsoleKey.RightArrow:
+                        v.Move(MMain.Direction.East);
+                        break;
+
+                    case ConsoleKey.LeftArrow:
+                        v.Move(MMain.Direction.West);
+                        break;
+
+                    case ConsoleKey.Enter:
+                        return;
+                }
             }
         }
     }

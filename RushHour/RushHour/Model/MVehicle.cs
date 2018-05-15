@@ -190,7 +190,7 @@ namespace RushHour
                 //the furthest vehicle's case to the east
                 int vEast = VehicleDirection == MMain.Direction.East ? Pos[0] + (Length - 1) : Pos[0];
 
-                if (direction == MMain.Direction.West && vWest - 1 >= 0 && !assignedGrid.gridCollision[vWest - 1, Pos[0]])
+                if (direction == MMain.Direction.West && vWest - 1 >= 0 && !assignedGrid.gridCollision[vWest - 1, Pos[1]])
                 {
                     Pos = new int[] { Pos[0] -1, Pos[1]};
                 }
