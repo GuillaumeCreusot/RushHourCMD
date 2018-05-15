@@ -9,6 +9,7 @@ namespace RushHour
     class VGrid : Widget
     {
         public int length, height, blength, bheight;
+        public MGrid mGrid;
 
         public VGrid(int BLength, int BHeight, MGrid Grid) : base("Grid", 6 * (BHeight + 1) + 2, 6 * (BLength + 1) + 2)
         {
@@ -17,8 +18,16 @@ namespace RushHour
             height = 6 * (BHeight + 1) + 1;
             blength = BLength;
             bheight = BHeight;
-            Content = GridContent(Grid);
+            mGrid = Grid;
 
+
+            Content = GridContent(mGrid);
+
+        }
+
+        public void Update()
+        {
+            Content = GridContent(mGrid);
         }
 
         public string GridContent(MGrid Grid)
@@ -62,10 +71,12 @@ namespace RushHour
             int x = vehicle.Pos[0];
             int y = vehicle.Pos[1];
             char chara = (vehicle.IsSelected) ? '\u2592' : '\u2588';
-
+            Console.WriteLine(vehicle.IdVehicle);
             int i = 0;
             while (i < vehicle.Length)
             {
+                Console.WriteLine(WidgetUtility.DimContent(content)[0]);
+                Console.WriteLine(WidgetUtility.DimContent(content)[1]);
                 for (int j = 0; j < blength; j++)
                     for (int k = 0; k < bheight; k++)
                         content = ReplaceAtIndex((y * (bheight + 1) + k + 1)* (length + 1) + x * (blength + 1) + j + 1, chara, content); //x * (blength + 1) + j + 1
@@ -83,10 +94,12 @@ namespace RushHour
         }
 
         static string ReplaceAtIndex(int i, char value, string word)
-    {
-        char[] letters = word.ToCharArray();
-        letters[i] = value;
-        return string.Join("", letters);
-    }
+        {
+            /*Console.WriteLine(i);
+            Console.WriteLine(word.Length);*/
+            char[] letters = word.ToCharArray();
+            letters[i] = value;
+            return string.Join("", letters);
+        }
     }
 }

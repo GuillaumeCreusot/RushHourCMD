@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="Controller\CDifficultyMenu.cs" />
     <Compile Include="Controller\CEscapeMenu.cs" />
-    <Compile Include="Controller\CGame.cs" />
+    <Compile Include="Controller\CGridControl.cs" />
     <Compile Include="Controller\CMain.cs" />
     <Compile Include="Controller\CMainMenu.cs" />
     <Compile Include="Model\MGame.cs" />
