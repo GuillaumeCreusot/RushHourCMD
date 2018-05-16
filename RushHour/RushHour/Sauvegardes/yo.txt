@@ -1,3 +1,0 @@
-0
-0
-Longueur 2PosX4pos Y4Direction 3isPlayer False

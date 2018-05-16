@@ -94,25 +94,25 @@ namespace RushHour
             //game.game.PlayerScore = 0;
             //game.game.Grid = new MGrid(6, 6);
             //List<MVehicle> vehicles = new List<MVehicle>();
-            //MVehicle truck = new MVehicle(game.game.grid, 0, 2, MMain.Direction.South, false);
+            //MVehicle truck = new MVehicle(game.game.grid, 0, 2, MMain.Direction.South, true);
             //truck.Pos[0] = 4;
             //truck.Pos[1] = 4;
             //vehicles.Add(truck);
             //game.game.grid.Vehicles = vehicles;
             //game.game.Save();
+
             //TEST GAME
-            /*MGame game = new MGame();*/
-            //CGame game = new CGame();
-            //game.Launch();
+            CGame game = new CGame();
+            game.Launch();
 
             //Test ListSaves()
             //MGame game = new MGame();
             //game.Load();
-            
+
             //test loading menu
-            CLoadMenu loadMenu = new CLoadMenu();
-            loadMenu.Control();
-            Console.ReadKey();
+            //CLoadMenu loadMenu = new CLoadMenu();
+            //loadMenu.Control();
+            //Console.ReadKey();
         }
     }
 }

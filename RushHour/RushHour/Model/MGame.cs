@@ -17,6 +17,7 @@ namespace RushHour
         {
             GameEnded = false;
             CreateSaveFolder();
+            grid = new MGrid(6,6);
         }
 
         public bool GameEnded
@@ -173,14 +174,12 @@ namespace RushHour
         /// <summary>
         /// finds the name of the save corresponding to the number
         /// </summary>
-        /// <param name="saveToLoad"></param>
-        /// <returns></returns>
         public string FindFileName(int saveToLoad)
         {
             //open StreamReader
             StreamReader reader = new StreamReader(GetFilePath(GetSaveFolderPath(), "names"));
             string line="";
-            for (int i=0; i< saveToLoad; i++)
+            for (int i=0; i<= saveToLoad; i++)
             {
                 line = reader.ReadLine();
             }
@@ -226,19 +225,21 @@ namespace RushHour
         /// </summary>
         public void Read(string filePath)
         {
-            //récupérer difficulté, score, et réer un noubeu véhicule pour chaque ligne, en assignant les valeurs suite au séparateur virgule
-
             //open StreamReader
             StreamReader reader = new StreamReader(filePath);
             string line = reader.ReadLine();
             this.PlayerScore = int.Parse(line);
             line = reader.ReadLine();
             this.Difficulty = (MMain.Difficulty)int.Parse(line);
-            while (!String.IsNullOrEmpty(line))
+            do
             {
                 line = reader.ReadLine();
-                CreateVehicle(line);
+                if (!String.IsNullOrEmpty(line))
+                {
+                    CreateVehicle(line);
+                }                
             }
+            while (!String.IsNullOrEmpty(line));
             reader.Close();
         }
 
@@ -247,10 +248,11 @@ namespace RushHour
         /// </summary>
         public void CreateVehicle(string line)
         {
-            int length = line[0];
-            int posX = line[1];
-            int posY = line[2];
-            MMain.Direction dir = (MMain.Direction)line[3];
+            Console.WriteLine(line);
+            int length = line[0]-48; //-48 to convert from ASCII
+            int posX = line[1]-48;
+            int posY = line[2]-48;
+            MMain.Direction dir = (MMain.Direction)(line[3]-48);
             bool isPlayer;
             if (line[4]=='T')
             {
