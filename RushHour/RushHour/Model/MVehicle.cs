@@ -209,7 +209,7 @@ namespace RushHour
         {
             int dir = (int)vehicleDirection;
             string dir2 = dir.ToString();
-            return this.Length + "," + this.Pos[0] + "," + this.Pos[1] + ","+ dir2 + "," + this.isPlayer;
+            return this.Length + "" + this.Pos[0] + "" + this.Pos[1] + ""+ dir2 + "" + this.isPlayer;
         }
 
         /// <summary>

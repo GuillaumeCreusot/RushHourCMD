@@ -45,14 +45,10 @@ namespace RushHour
 
                 else if (action == 1) //load game
                 {
-                    //TODO : DEMANDER A l'USER QUEL JEU IL VEUT CHARGER, RECUPERER LA GRILLE ET LE SCORE ET RUN AVEC CES PARAMETRES
-                    MGrid oldGrid = null; //TODO récuperer dans le fichier
-                    int oldScore = 0;//TODO récuperer dans le fichier
-                    MMain.Difficulty oldDiff = MMain.Difficulty.Easy;
-
-                    game.grid = oldGrid;
-                    game.PlayerScore = oldScore;
-                    game.Difficulty = oldDiff;
+                    CLoadMenu loadMenu = new CLoadMenu();
+                    int saveToLoad = loadMenu.Control();
+                    //find save to load
+                    game.Load(saveToLoad);
                 }
                 Run(game.grid, game.PlayerScore);
             }

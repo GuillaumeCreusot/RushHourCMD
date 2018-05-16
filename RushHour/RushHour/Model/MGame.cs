@@ -80,11 +80,6 @@ namespace RushHour
             Write(GetFilePath(path, name));
         }
 
-        public void Load()
-        {
-    
-        }
-
         /// <summary>
         /// Creates a folder to save the files into
         /// </summary>
@@ -165,9 +160,37 @@ namespace RushHour
         //FOR LOADING
 
         /// <summary>
+        /// loads the save n°saveToLoad in names list
+        /// </summary>
+        public void Load(int saveToLoad)
+        {
+            //find name of save n°save to load
+            string fileName = FindFileName(saveToLoad);
+            string filePath = GetFilePath(GetSaveFolderPath(), fileName);
+            Read(filePath);
+        }
+
+        /// <summary>
+        /// finds the name of the save corresponding to the number
+        /// </summary>
+        /// <param name="saveToLoad"></param>
+        /// <returns></returns>
+        public string FindFileName(int saveToLoad)
+        {
+            //open StreamReader
+            StreamReader reader = new StreamReader(GetFilePath(GetSaveFolderPath(), "names"));
+            string line="";
+            for (int i=0; i< saveToLoad; i++)
+            {
+                line = reader.ReadLine();
+            }
+            reader.Close();
+            return line;
+        }
+
+        /// <summary>
         /// puts names of available saves in a list to display in according screen
         /// </summary>
-        /// <returns></returns>
         public static string[] ListSaves()
         {
             //count Number Of Items
@@ -198,62 +221,46 @@ namespace RushHour
             return items;
         }
 
-
-        /// <summary>
-        /// NOT DONE/ COPY PASTED FROM OTHER PROJECT : Displays the available saves and asks the user to choose one
-        /// </summary>
-        public string DisplaySaves(string path)
-        {
-            //returns name of chosen save
-            //number of saves in file
-            StreamReader reader = new StreamReader(GetFilePath(path, "names"));
-            string test = "ok";
-            int savesNb = 0;
-            while (!String.IsNullOrEmpty(test)) //tant qu'on ne rencontre pas de ligne vides
-            {
-                savesNb++;
-                test = reader.ReadLine();
-            }
-            reader.Close();
-
-            //display
-            StreamReader reader1 = new StreamReader(GetFilePath(path, "names"));
-            Console.WriteLine("\nVoici les sauvegardes disponibles :\n");
-            for (int i = 0; i < savesNb - 1; i++)
-            {
-                Console.WriteLine((i + 1) + " : " + reader1.ReadLine());
-            }
-            reader1.Close();
-
-            //choose save
-            Console.Write("\nQuelle partie souhaitez vous charger (numéro) ? ");
-            int numero = int.Parse(Console.ReadLine());
-
-            //control input
-            while (numero < 1 || numero > savesNb - 1)
-            {
-                Console.WriteLine("\nSaisie incorrecte. Veuillez entrer un nombre entre 1 et {0}.", savesNb - 1);
-                numero = int.Parse(Console.ReadLine());
-            }
-
-            StreamReader reader2 = new StreamReader(GetFilePath(path, "names"));
-            //on lit numero-1 lignes pour retourner la ligne numero correspondant au choix           
-            for (int i = 0; i < numero - 1; i++)
-            {
-                reader2.ReadLine();
-            }
-
-            string nom = reader2.ReadLine();
-            reader2.Close();
-            return nom;
-        }
-
         /// <summary>
         /// Reads a saved game to load the parameters
         /// </summary>
         public void Read(string filePath)
         {
+            //récupérer difficulté, score, et réer un noubeu véhicule pour chaque ligne, en assignant les valeurs suite au séparateur virgule
 
+            //open StreamReader
+            StreamReader reader = new StreamReader(filePath);
+            string line = reader.ReadLine();
+            this.PlayerScore = int.Parse(line);
+            line = reader.ReadLine();
+            this.Difficulty = (MMain.Difficulty)int.Parse(line);
+            while (!String.IsNullOrEmpty(line))
+            {
+                line = reader.ReadLine();
+                CreateVehicle(line);
+            }
+            reader.Close();
+        }
+
+        /// <summary>
+        /// Creates a vehicle from the given info in the save file
+        /// </summary>
+        public void CreateVehicle(string line)
+        {
+            int length = line[0];
+            int posX = line[1];
+            int posY = line[2];
+            MMain.Direction dir = (MMain.Direction)line[3];
+            bool isPlayer;
+            if (line[4]=='T')
+            {
+                isPlayer = true;
+            }
+            else
+            {
+                isPlayer = false;
+            }
+            grid.AddVehicle(posX, posY, dir, length, isPlayer);
         }
     }
 }

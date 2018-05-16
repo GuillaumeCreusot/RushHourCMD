@@ -12,7 +12,6 @@ namespace RushHour
         private int[] spanMax;
         private string content = "";
         private int[] position;
-
         private bool change;
 
         /// <summary>
