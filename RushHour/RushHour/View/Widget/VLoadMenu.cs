@@ -35,7 +35,7 @@ namespace RushHour
         public static int[] dimText = WidgetUtility.DimContent(text);
         private static string[] itemName = MGame.ListSaves();
 
-        public VLoadMenu() : base("Load Menu", "", itemName.Length + 1, 30, itemName, margeLeft: 10)
+        public VLoadMenu() : base("Load Menu", "", itemName.Length + 1, 50, itemName, margeLeft: 10)
         {
 
         }

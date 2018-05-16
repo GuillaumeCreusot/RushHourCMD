@@ -195,7 +195,6 @@ namespace RushHour
                 items[i] = line2;
             }
             reader2.Close();
-
             return items;
         }
 
