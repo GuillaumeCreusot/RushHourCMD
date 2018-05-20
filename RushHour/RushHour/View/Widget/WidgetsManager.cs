@@ -9,7 +9,9 @@ namespace RushHour
     class WidgetsManager : Widget
     {
         private List<Widget> widgets;
+        private List<WidgetsManager> subWidgetsManager;
         private string[,] grid;
+        private bool superposition;
 
         /// <summary>
         /// Les noms des widgets contenus dans le widgetManager
@@ -35,13 +37,18 @@ namespace RushHour
         /// <param name="name">Nom du Widget</param>
         /// <param name="nbCol">nombre de colonne</param>
         /// <param name="nbRow">nombre de rang</param>
-        public WidgetsManager(string name, int nbCol, int nbRow) : base(name, nbCol, nbRow)
+        public WidgetsManager(string name, int nbCol, int nbRow, bool isMain = true, bool superposition = true) : base(name, nbRow, nbCol)
         {
             widgets = new List<Widget>();
+            subWidgetsManager = new List<WidgetsManager>();
             grid = new string[nbRow, nbCol];
+            this.superposition = superposition;
 
-            Console.WindowWidth = nbCol;
-            Console.WindowHeight = nbRow; 
+            if (isMain)
+            {
+                Console.WindowWidth = nbCol;
+                Console.WindowHeight = nbRow;
+            }
         }
 
         /// <summary>
@@ -54,53 +61,65 @@ namespace RushHour
         public void AddWidget(Widget widget, int row, int col)
         {
             //vérification erreur
-            if (row + widget.RowSpanMax >= grid.GetLength(0))
+            if (row + widget.RowSpanMax > grid.GetLength(0))
             {
                 throw new Exception("Le Widget sort de la console (rang)");
             }
-            if(col + widget.ColumnSpanMax >= grid.GetLength(1))
+            if(col + widget.ColumnSpanMax > grid.GetLength(1))
             {
                 throw new Exception("Le Widget sort de la console (col)");
             }
 
-            //position
-            if (grid[row, col] == null)
+            if (!superposition)
             {
-                grid[row, col] = widget.Name;
-                widget.Position = new int[]{ row, col};
+                // position
+            if (grid[row, col] == null)
+                {
+                    grid[row, col] = widget.Name;
+                    widget.Position = new int[] { row, col };
+                }
+                else
+                {
+                    throw new Exception("le Widget est superposé à un autre");
+                }
+
+                //span
+                for (int i = 0; i < widget.RowSpanMax; i++)
+                {
+                    for (int j = 0; j < widget.ColumnSpanMax; j++)
+                    {
+                        grid[row + i, col + j] = widget.Name;
+                    }
+                }
             }
             else
             {
-                throw new Exception("le Widget est superposé à un autre");
+                widget.Position = new int[] { row, col };
             }
-
-            //span
-            for(int i = 0; i < widget.RowSpanMax; i++)
-            {
-                for(int j = 0; j < widget.ColumnSpanMax; j++)
-                {
-                    grid[row + i, col + j] = widget.Name;
-                }
-            }
-
             //ajout de l'objet widget à widgets
             widgets.Add(widget);
             widget.Master = this;
         }
 
+        public void AddWidgetsManager(WidgetsManager wm, int row, int col)
+        {
+            AddWidget(wm, row, col);
+            subWidgetsManager.Add(wm);
+        }
+
         /// <summary>
         /// Rafraichi tous les widgets
         /// </summary>
-        public void RefreshContentOnScreen()
+        public void RefreshContentOnScreen(bool delete = false)
         {
-            RefreshContentOnScreen(this.WidgetNames);
+            RefreshContentOnScreen(this.WidgetNames, delete);
         }
 
         /// <summary>
         /// Rafraichit les widgets dont le nom est compris dans <paramref name="contentNames"/>
         /// </summary>
         /// <param name="contentNames">noms des widgets à rafraichir</param>
-        public void RefreshContentOnScreen(string[] contentNames)
+        public virtual void RefreshContentOnScreen(string[] contentNames, bool delete = false)
         {
             Widget currentW;
 
@@ -117,18 +136,23 @@ namespace RushHour
                     {
                         for(int j = 0; j < currentW.ColumnSpan; j++)
                         {
-                             Console.CursorLeft = currentW.Position[1] + j;
-                             Console.CursorTop = currentW.Position[0] + i;
-                             Console.Write(currentW.Content[j + i * (currentW.ColumnSpan + 1)]);
+                             Console.CursorLeft = currentW.Position[1] + j + Position[1];
+                             Console.CursorTop = currentW.Position[0] + i + Position[0];
+                             Console.ForegroundColor = currentW.ColorPattern[i, j];                          
+                             if(currentW.Content[j + i * (currentW.ColumnSpan + 1)] != '\u0000')
+                                Console.Write(currentW.Content[j + i * (currentW.ColumnSpan + 1)]);
                         }
                     }
                 }
             }
+
+            Console.CursorLeft = 0;
+            Console.CursorTop = 0;
         }
 
-        public void RefreshContentOnScreen(string name)
+        public void RefreshContentOnScreen(string name, bool delete = false)
         {
-            RefreshContentOnScreen(new string[] { name });
+            RefreshContentOnScreen(new string[] { name }, delete);
         }
 
         /// <summary>
@@ -154,13 +178,31 @@ namespace RushHour
             }
         }
 
+        public WidgetsManager FindSubWidgetManagerWithName(string name)
+        {
+            int c = 0;
+            while ((c < subWidgetsManager.Count && subWidgetsManager[c].Name != name) || c == subWidgetsManager.Count)
+            {
+                c++;
+            }
+
+            if (c < subWidgetsManager.Count)
+            {
+                return subWidgetsManager[c];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public void DeleteWidgetOnScreen(string name)
         {
             Widget w = FindWidgetWithName(name);
             if(w != null)
             {
                 w.DeleteContent();
-                RefreshContentOnScreen(name);
+                RefreshContentOnScreen(name, true);
             }
             else
             {

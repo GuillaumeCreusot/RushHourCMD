@@ -73,6 +73,7 @@
     <Compile Include="View\Widget\VLoadMenu.cs" />
     <Compile Include="View\Widget\VMainMenu.cs" />
     <Compile Include="View\Widget\VSaveMenu.cs" />
+    <Compile Include="View\Widget\VVehicle.cs" />
     <Compile Include="View\Widget\Widget.cs" />
     <Compile Include="View\Widget\WidgetsManager.cs" />
   </ItemGroup>

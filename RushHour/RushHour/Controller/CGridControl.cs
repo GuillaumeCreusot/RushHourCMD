@@ -15,25 +15,22 @@ namespace RushHour
         public CGridControl(MGrid grid)
         {
             mGrid = grid;
-            vGrid = new VGrid(6, 6, mGrid);
+            vGrid = new VGrid(12, 6, mGrid);
 
             manager = new WidgetsManager("Grid", Console.LargestWindowWidth, Console.LargestWindowHeight);
 
-            manager.AddWidget(vGrid, Console.LargestWindowHeight / 2 - vGrid.height / 2, (Console.LargestWindowWidth / 2) - (vGrid.length / 2));
-            manager.RefreshContentOnScreen();
-
-
+            manager.AddWidgetsManager(vGrid, 0, 1);  
         }
 
         public int Control()
         {
 
             Console.Clear();
+            manager.RefreshContentOnScreen();
 
             while (true)
             {
-                vGrid.Update();
-                manager.RefreshContentOnScreen("Grid");
+                vGrid.RefreshContentOnScreen();
                 ConsoleKeyInfo k = Console.ReadKey();
                 switch (k.Key)
                 {
@@ -76,8 +73,8 @@ namespace RushHour
 
             while (true)
             {
-                vGrid.Update();
-                manager.RefreshContentOnScreen("Grid");
+                vGrid.DeleteWidgetOnScreen(mGrid.SelectedItem.ToString());
+                vGrid.RefreshContentOnScreen(mGrid.SelectedItem.ToString());
                 ConsoleKeyInfo ck = Console.ReadKey();
                 switch (ck.Key)
                 {

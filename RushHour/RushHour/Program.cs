@@ -11,22 +11,22 @@ namespace RushHour
         static void Main(string[] args)
         {
             /* TESTS WM + Grid + Vehicles*/
-            //WidgetsManager wm = new WidgetsManager("wm", Console.LargestWindowWidth, Console.LargestWindowHeight);
+            WidgetsManager wm = new WidgetsManager("wm", Console.LargestWindowWidth, Console.LargestWindowHeight);
 
-            //MGrid grid = new MGrid(6, 6);
+            MGrid grid = new MGrid(6, 6);
 
-            ////Console.WriteLine(grid.IsValidPosition(0, 4, MMain.Direction.North, 3));
+            //Console.WriteLine(grid.IsValidPosition(0, 4, MMain.Direction.North, 3));
 
-            //grid.AddVehicle(0, 3, MMain.Direction.North, 2);
+            grid.AddVehicle(3, 3, MMain.Direction.West, 3);
+            grid.AddVehicle(0, 0, MMain.Direction.South, 2);
 
-            //grid.GetVehicle(0).Move(MMain.Direction.South);
+            VGrid vgrid = new VGrid(12, 6, grid);
 
+            wm.AddWidgetsManager(vgrid, 0, 0);
+            wm.RefreshContentOnScreen();
+            vgrid.RefreshContentOnScreen();
 
-
-            //VGrid vgrid = new VGrid(12, 6, grid);
-
-            //wm.AddWidget(vgrid, Console.LargestWindowHeight/2 - vgrid.height/2, (Console.LargestWindowWidth / 2) - (vgrid.length / 2));
-            //wm.RefreshContentOnScreen();
+            //vgrid.DeleteWidgetOnScreen("0");
 
             //Thread.Sleep(1000);
 
@@ -102,8 +102,8 @@ namespace RushHour
             //game.game.Save();
 
             //TEST GAME
-            CGame game = new CGame();
-            game.Launch();
+            //CGame game = new CGame();
+            //game.Launch();
 
             //Test ListSaves()
             //MGame game = new MGame();
@@ -113,6 +113,34 @@ namespace RushHour
             //CLoadMenu loadMenu = new CLoadMenu();
             //loadMenu.Control();
             //Console.ReadKey();
+
+            //test color
+            //WidgetsManager wm = new WidgetsManager("wm", Console.LargestWindowWidth, Console.LargestWindowHeight);
+            //Label lb = new Label("lb", "Color", 1, 10);
+            //lb.ColorPattern[0, 0] = ConsoleColor.Red;
+            //lb.ColorPattern[0, 1] = ConsoleColor.Blue;
+            //wm.AddWidget(lb, 0, 0);
+            //wm.RefreshContentOnScreen();
+
+
+            //test sub wiget manager
+            //WidgetsManager main = new WidgetsManager("main", Console.LargestWindowWidth, Console.LargestWindowHeight);
+            //Label lb = new Label("lb", "Main", 1, 10);
+            //main.AddWidget(lb, 0, 0);
+
+            //WidgetsManager sub = new WidgetsManager("sub", 10, 1, false);
+            //main.AddWidgetManager(sub, 2, 0);
+
+            //Label sublb = new Label("sublb", "Sub", 1, 10);
+            //sub.AddWidget(sublb, 0, 0);
+
+            //main.RefreshContentOnScreen();
+
+            //Thread.Sleep(1000);
+
+            //sub.RefreshContentOnScreen();
+
+            Console.ReadKey();
         }
     }
 }

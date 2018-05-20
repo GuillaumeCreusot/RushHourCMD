@@ -11,8 +11,13 @@ namespace RushHour
         private int[] span;
         private int[] spanMax;
         private string content = "";
+        private ConsoleColor[,] colorPattern;
         private int[] position;
-        private bool change;
+
+        /// <summary>
+        /// Corlor with which the color pattern is initialised
+        /// </summary>
+        public ConsoleColor BasicColor { get; set; }
 
         /// <summary>
         /// Nom du widget
@@ -23,6 +28,19 @@ namespace RushHour
         /// WidgetManager dans lequel ce widget est inclus
         /// </summary>
         public WidgetsManager Master { get; set; }
+
+
+        public ConsoleColor[,] ColorPattern
+        {
+            get
+            {
+                return colorPattern;
+            }
+            protected set
+            {
+                colorPattern = value;
+            }
+        }
 
         /// <summary>
         /// Nombre de colonne occuppé par ce widget
@@ -79,7 +97,7 @@ namespace RushHour
         /// <summary>
         /// Contenu du widget 
         /// </summary>
-        public string Content
+        public virtual string Content
         {
             get
             {
@@ -90,7 +108,7 @@ namespace RushHour
                 //span
                 int[] dim = WidgetUtility.DimContent(value);
 
-                if(dim[0] > RowSpanMax)
+                if (dim[0] > RowSpanMax)
                 {
                     throw new Exception($"Le contenu du widget {Name} depasse en hauteur");
                 }
@@ -99,14 +117,22 @@ namespace RushHour
                     throw new Exception($"Le contenu du widget {Name} depasse en largeur");
                 }
 
-                Change = true;
-
                 ColumnSpan = dim[1];
                 RowSpan = dim[0];
 
                 // uniformisation de la taille des rangs
                 content = WidgetUtility.Resize(value, dim[1]);
 
+                //color
+                colorPattern = new ConsoleColor[dim[0], dim[1]];
+
+                for(int i = 0; i < colorPattern.GetLength(0); i++)
+                {
+                    for(int j = 0; j < colorPattern.GetLength(1); j++)
+                    {
+                        colorPattern[i, j] = BasicColor;
+                    }
+                }
             }
         }
 
@@ -130,28 +156,30 @@ namespace RushHour
             get
             {
                 string result = "";
-                for (int i = 0; i < RowSpan-1; i++)
+                for (int i = 0; i < RowSpan ; i++)
                 {
-                    result += new string(' ', ColumnSpan) + "\n";
+                    for(int j = 0; j < ColumnSpan ; j++)
+                    {
+                        if(content[j + i * (ColumnSpan+1)] == '\u0000')
+                        {
+                            result += '\u0000';
+                        }
+                        else
+                        {
+                            result += " ";
+                        }
+                    }
+                    if(i != RowSpan - 1)
+                    {
+                        result += "\n";
+                    }
+                    
                 }
 
-                return result  + new string(' ', ColumnSpan);
+                return result;
             }
         }
 
-
-        public bool Change
-        {
-            protected set
-            {
-                change = value;
-            }
-
-            get
-            {
-                return change;
-            }
-        }
 
         /// <summary>
         /// Constructeur
@@ -163,11 +191,13 @@ namespace RushHour
             spanMax = new int[] { rowSpanMax, columnSpanMax };
             position = new int[2];
             Name = name;
+            BasicColor = ConsoleColor.White;
         }
 
         public void DeleteContent()
         {
             Content = DeletePattern;
-        }       
+        }
+
     }
 }

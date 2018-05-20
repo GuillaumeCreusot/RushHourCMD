@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace RushHour
 {
-    class VGrid : Widget
+    class VGrid : WidgetsManager
     {
         public int length, height, blength, bheight;
         public MGrid mGrid;
 
-        public VGrid(int BLength, int BHeight, MGrid Grid) : base("Grid", 6 * (BHeight + 1) + 2, 6 * (BLength + 1) + 2)
+        public VGrid(int BLength, int BHeight, MGrid Grid) : base("Grid", 6 * (BLength + 1) + 2, 6 * (BHeight + 1) + 2, false)
         {
             
             length = 6 * (BLength + 1) + 1;
@@ -59,40 +59,21 @@ namespace RushHour
 
             foreach (MVehicle vehicle in Grid.Vehicles)
             {
-                ShowVehicle(ref content, vehicle);
+                ShowVehicle(vehicle);
             }
 
+            int[] dim = WidgetUtility.DimContent(content);
 
             return content;
         }
 
-        public void ShowVehicle(ref string content, MVehicle vehicle)
+
+        public void ShowVehicle(MVehicle vehicle)
         {
-            int x = vehicle.Pos[0];
-            int y = vehicle.Pos[1];
-            char chara = (vehicle.IsSelected) ? '\u2592' : '\u2588';
-            int i = 0;
-            Console.ForegroundColor = ConsoleColor.Red;
-            while (i < vehicle.Length)
-            {
-
-                for (int j = 0; j < blength; j++)
-                    for (int k = 0; k < bheight; k++)
-                    {
-                        content = ReplaceAtIndex((y * (bheight + 1) + k + 1) * (length + 1) + x * (blength + 1) + j + 1, chara, content); //x * (blength + 1) + j + 1
-                    }
-
-                i++;
-                if (vehicle.VehicleDirection == MMain.Direction.North)
-                    y--;
-                if (vehicle.VehicleDirection == MMain.Direction.East)
-                    x++;
-                if(vehicle.VehicleDirection == MMain.Direction.South)
-                    y++;
-                if (vehicle.VehicleDirection == MMain.Direction.West)
-                    x--;
-            }
-            Console.ForegroundColor = ConsoleColor.Gray;
+            int[] pos = new int[2];
+            pos[0] = (vehicle.VehicleDirection == MMain.Direction.North) ? (vehicle.Pos[1] - (vehicle.Length - 1)) : vehicle.Pos[1];
+            pos[1] = (vehicle.VehicleDirection == MMain.Direction.West) ? (vehicle.Pos[0] - (vehicle.Length - 1)) : vehicle.Pos[0];
+            AddWidget(new VVehicle(vehicle, this), pos[0] * (bheight), pos[1] * (blength));
         }
 
         static string ReplaceAtIndex(int i, char value, string word)
@@ -104,6 +85,27 @@ namespace RushHour
                 letters[i] = value;
 
             return string.Join("", letters);
+        }
+
+        public override void RefreshContentOnScreen(string[] contentNames, bool delete = false)
+        {
+            VVehicle currentV;
+
+            if (!delete)
+            {
+                foreach (string name in contentNames)
+                {
+                    currentV = (VVehicle)FindWidgetWithName(name);
+                    currentV.DrawVehicle();
+
+                    int[] pos = new int[2];
+                    pos[0] = (currentV.Vehicle.VehicleDirection == MMain.Direction.North) ? (currentV.Vehicle.Pos[1] - currentV.Vehicle.Length) : currentV.Vehicle.Pos[1];
+                    pos[1] = (currentV.Vehicle.VehicleDirection == MMain.Direction.West) ? (currentV.Vehicle.Pos[0] - currentV.Vehicle.Length) : currentV.Vehicle.Pos[0];
+                    currentV.Position = new int[] { pos[0] * (bheight + 1), pos[1] * (blength + 1) };
+                }
+            }
+            
+            base.RefreshContentOnScreen(contentNames);
         }
     }
 }
