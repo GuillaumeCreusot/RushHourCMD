@@ -25,8 +25,10 @@ namespace RushHour
 
         }
 
-        public void Control()
+        public int Control()
         {
+
+            Console.Clear();
 
             while (true)
             {
@@ -59,16 +61,13 @@ namespace RushHour
                         break;
 
                     case ConsoleKey.Escape:
-                        //launch according processus --> return a certain value ??
+                        return 1;
                         break;
 
                 }
-
-                if (k.Key == ConsoleKey.Escape)
-                    break;
-
-
             }
+
+            return 0;
         }
 
         public void MoveControl()

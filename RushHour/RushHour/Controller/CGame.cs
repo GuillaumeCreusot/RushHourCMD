@@ -16,6 +16,8 @@ namespace RushHour
 
         public void Launch()
         {
+            Console.Clear();
+
             CMainMenu mainMenu = new CMainMenu();
             int action = mainMenu.Control();
             if (action == 2) //quit game
@@ -25,6 +27,8 @@ namespace RushHour
             }
             else //launch game
             {
+                Console.Clear();
+
                 if (action == 0) //new game
                 {
                     game.grid = new MGrid(6, 6);
@@ -34,7 +38,7 @@ namespace RushHour
                     game.Difficulty = difficultyMenu.Control();
 
                     if (game.difficulty == 0)
-                        game.grid = new MGrid(StandardGrids.easyGrid2, 6, 6);
+                        game.grid = new MGrid(StandardGrids.easyGrid, 6, 6);
                     else if (game.difficulty == MMain.Difficulty.Medium)
                         game.grid = new MGrid(StandardGrids.mediumGrid, 6, 6);
                     else if (game.difficulty == MMain.Difficulty.Hard)
@@ -57,25 +61,23 @@ namespace RushHour
 
         public void Run(MGrid grid, int score)
         {
-            ConsoleKeyInfo cki = Console.ReadKey();
+            Console.Clear();
+
             CGridControl gridGontrol = new CGridControl(game.grid);
 
             while (!game.gameEnded)
             {
-                do //execute the game
-                {
-                    cki = Console.ReadKey();
-                    gridGontrol.Control();
-                }
-                while (cki.Key != ConsoleKey.Escape);
+                int result = gridGontrol.Control();
 
-                if (cki.Key == ConsoleKey.Escape)
+                if (result == 1)
                 {
+                    Console.Clear();
+
                     CEscapeMenu escapeMenu = new CEscapeMenu();
                     int escapeAction = escapeMenu.Control();
                     if (escapeAction == 0) //go back to game
-                    {                        
-                        Run(game.grid, game.PlayerScore);
+                    {
+                        continue;
                     }
                     else if (escapeAction == 1) //new game
                     {                        
