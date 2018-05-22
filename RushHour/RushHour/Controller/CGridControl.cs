@@ -19,7 +19,7 @@ namespace RushHour
 
             manager = new WidgetsManager("Grid", Console.LargestWindowWidth, Console.LargestWindowHeight);
 
-            manager.AddWidgetsManager(vGrid, 0, 1);  
+            manager.AddWidgetsManager(vGrid, Console.LargestWindowHeight/2 - vGrid.RowSpanMax/2, Console.LargestWindowWidth/2 - vGrid.ColumnSpanMax/2);  
         }
 
         public int Control()

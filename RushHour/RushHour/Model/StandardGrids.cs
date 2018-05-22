@@ -32,10 +32,10 @@ namespace RushHour
             { 3, 2, 3, (int)MMain.Direction.South },
             { 2, 3, 1, (int)MMain.Direction.South },
             { 2, 3, 3, (int)MMain.Direction.East },
-            { 3, 4, 0, (int)MMain.Direction.East },
+            { 3, 3, 0, (int)MMain.Direction.East },
             { 2, 4, 1, (int)MMain.Direction.East },
             { 3, 5, 2, (int)MMain.Direction.South},
-            { 3, 4, 5, (int)MMain.Direction.East }
+            { 3, 3, 5, (int)MMain.Direction.East }
         };
 
         public static MMain.Direction Direction(int dir)

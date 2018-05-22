@@ -28,7 +28,7 @@ namespace RushHour
         {
             vehicle = veh;
             Master = master;
-            BasicColor = (ConsoleColor) (veh.IdVehicle % 14 + 1);
+            BasicColor = (veh.IsPlayer)?ConsoleColor.White:(ConsoleColor) (veh.IdVehicle % 14 + 1);
             DrawVehicle();
         }
 
