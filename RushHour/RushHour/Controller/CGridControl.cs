@@ -24,27 +24,39 @@ namespace RushHour
 
         public int Control()
         {
+            mGrid.SelectedItem = 0;
+
+            string lastSelectedItem = "";
 
             Console.Clear();
             manager.RefreshContentOnScreen();
+            vGrid.RefreshContentOnScreen();
 
             while (true)
             {
-                vGrid.RefreshContentOnScreen();
+                vGrid.RefreshContentOnScreen(mGrid.SelectedItem.ToString());
+                if(lastSelectedItem != "")
+                {
+                    vGrid.RefreshContentOnScreen(lastSelectedItem);
+                    lastSelectedItem = "";
+                }
+
                 ConsoleKeyInfo k = Console.ReadKey();
                 switch (k.Key)
                 {
                     case ConsoleKey.LeftArrow:
+                        lastSelectedItem = mGrid.SelectedItem.ToString();
                         if (mGrid.SelectedItem == 0)
                             mGrid.SelectedItem = mGrid.Vehicles.Count - 1;
 
                         else
                             mGrid.SelectedItem--;
-
+                        
                         break;
 
 
                     case ConsoleKey.RightArrow:
+                        lastSelectedItem = mGrid.SelectedItem.ToString();
                         if (mGrid.SelectedItem == mGrid.Vehicles.Count - 1)
                             mGrid.SelectedItem = 0;
 

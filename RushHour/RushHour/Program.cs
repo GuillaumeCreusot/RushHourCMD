@@ -11,20 +11,20 @@ namespace RushHour
         static void Main(string[] args)
         {
             /* TESTS WM + Grid + Vehicles*/
-            WidgetsManager wm = new WidgetsManager("wm", Console.LargestWindowWidth, Console.LargestWindowHeight);
+            //WidgetsManager wm = new WidgetsManager("wm", Console.LargestWindowWidth, Console.LargestWindowHeight);
 
-            MGrid grid = new MGrid(6, 6);
+            //MGrid grid = new MGrid(6, 6);
 
-            //Console.WriteLine(grid.IsValidPosition(0, 4, MMain.Direction.North, 3));
+            ////Console.WriteLine(grid.IsValidPosition(0, 4, MMain.Direction.North, 3));
 
-            grid.AddVehicle(3, 3, MMain.Direction.West, 3);
-            grid.AddVehicle(0, 0, MMain.Direction.South, 2);
+            //grid.AddVehicle(3, 3, MMain.Direction.West, 3);
+            //grid.AddVehicle(0, 0, MMain.Direction.South, 2);
 
-            VGrid vgrid = new VGrid(12, 6, grid);
+            //VGrid vgrid = new VGrid(12, 6, grid);
 
-            wm.AddWidgetsManager(vgrid, 0, 0);
-            wm.RefreshContentOnScreen();
-            vgrid.RefreshContentOnScreen();
+            //wm.AddWidgetsManager(vgrid, 0, 0);
+            //wm.RefreshContentOnScreen();
+            //vgrid.RefreshContentOnScreen();
 
             //vgrid.DeleteWidgetOnScreen("0");
 
@@ -102,8 +102,8 @@ namespace RushHour
             //game.game.Save();
 
             //TEST GAME
-            //CGame game = new CGame();
-            //game.Launch();
+            CGame game = new CGame();
+            game.Launch();
 
             //Test ListSaves()
             //MGame game = new MGame();

@@ -11,7 +11,7 @@ namespace RushHour
         public int XLength {get; private set; }
         public int YLength { get; private set; }
 
-        private int selectedItem;
+        private int selectedItem = 0;
         public int SelectedItem
         {
             get
