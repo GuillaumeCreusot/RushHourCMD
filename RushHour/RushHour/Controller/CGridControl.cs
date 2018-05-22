@@ -11,6 +11,8 @@ namespace RushHour
         public VGrid vGrid;
         public WidgetsManager manager;
         public MGrid mGrid;
+        public VScore score;
+
 
         public CGridControl(MGrid grid)
         {
@@ -19,7 +21,13 @@ namespace RushHour
 
             manager = new WidgetsManager("Grid", Console.LargestWindowWidth, Console.LargestWindowHeight);
 
-            manager.AddWidgetsManager(vGrid, Console.LargestWindowHeight/2 - vGrid.RowSpanMax/2, Console.LargestWindowWidth/2 - vGrid.ColumnSpanMax/2);  
+            manager.AddWidgetsManager(vGrid, Console.LargestWindowHeight/2 - vGrid.RowSpanMax/2, Console.LargestWindowWidth/2 - vGrid.ColumnSpanMax/2);
+
+            int[] dim = WidgetUtility.DimContent(InGameText.score);
+            manager.AddWidget(new Label("lbScore", InGameText.score, dim[0], dim[1]), 0, 1);
+
+            score = new VScore("score", grid);
+            manager.AddWidgetsManager(score, dim[0], 1);
         }
 
         public int Control()
@@ -31,6 +39,7 @@ namespace RushHour
             Console.Clear();
             manager.RefreshContentOnScreen();
             vGrid.RefreshContentOnScreen();
+            score.RefreshContentOnScreen();
 
             while (true)
             {
@@ -87,6 +96,7 @@ namespace RushHour
             vGrid.RefreshContentOnScreen(mGrid.SelectedItem.ToString());
             while (!flagVictoire)
             {
+                score.RefreshContentOnScreen();
                 
                 ConsoleKeyInfo ck = Console.ReadKey();
                 switch (ck.Key)

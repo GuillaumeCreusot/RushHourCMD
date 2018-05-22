@@ -110,7 +110,7 @@ namespace RushHour
         /// <summary>
         /// Rafraichi tous les widgets
         /// </summary>
-        public void RefreshContentOnScreen(bool delete = false)
+        public virtual void RefreshContentOnScreen(bool delete = false)
         {
             RefreshContentOnScreen(this.WidgetNames, delete);
         }

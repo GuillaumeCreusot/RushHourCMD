@@ -177,10 +177,12 @@ namespace RushHour
                 if (direction == MMain.Direction.North && vNorth - 1 >= 0 && !assignedGrid.gridCollision[Pos[0], vNorth - 1] )
                 {
                     Pos = new int[] {Pos[0], Pos[1] - 1 };
+                    assignedGrid.Score++;
                 }
                 else if (direction == MMain.Direction.South && vSouth + 1 < assignedGrid.gridCollision.GetLength(1) && !assignedGrid.gridCollision[Pos[0], vSouth + 1])
                 {
                     Pos = new int[] { Pos[0], Pos[1] + 1 };
+                    assignedGrid.Score++;
                 }
             }
             else
@@ -193,10 +195,12 @@ namespace RushHour
                 if (direction == MMain.Direction.West && vWest - 1 >= 0 && !assignedGrid.gridCollision[vWest - 1, Pos[1]])
                 {
                     Pos = new int[] { Pos[0] -1, Pos[1]};
+                    assignedGrid.Score++;
                 }
                 else if (direction == MMain.Direction.East && vEast + 1 < assignedGrid.gridCollision.GetLength(0) && !assignedGrid.gridCollision[vEast + 1, Pos[1]])
                 {
                     Pos = new int[] { Pos[0] + 1, Pos[1]};
+                    assignedGrid.Score++;
                 }
             }
 

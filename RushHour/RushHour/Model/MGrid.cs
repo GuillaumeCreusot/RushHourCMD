@@ -11,6 +11,27 @@ namespace RushHour
         public int XLength {get; private set; }
         public int YLength { get; private set; }
 
+        private int score;
+        public int Score
+        {
+            get
+            {
+                return score;
+            }
+
+            set
+            {
+                if(value < 999)
+                {
+                    score = value;
+                }
+                else
+                {
+                    score = 999;
+                }
+            }
+        }
+
         private int selectedItem = 0;
         public int SelectedItem
         {
@@ -25,6 +46,8 @@ namespace RushHour
                 selectedItem = value;
             }
         }
+
+        
 
         public bool[,] gridCollision;
 
@@ -65,7 +88,7 @@ namespace RushHour
             Vehicles = new List<MVehicle>();
         }
 
-        public MGrid(int[,] vehicles, int X, int Y)
+        public MGrid(int[,] vehicles, int X, int Y, int score = 0)
         {
             XLength = X;
             YLength = Y;
@@ -76,6 +99,8 @@ namespace RushHour
             {
                 AddVehicle(vehicles[i, 1], vehicles[i, 2], (MMain.Direction)vehicles[i, 3], vehicles[i, 0], i==0);
             }
+
+            Score = score;
 
         }
 
