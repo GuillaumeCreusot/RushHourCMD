@@ -42,10 +42,13 @@ namespace RushHour
             if(grid.Score >= 100 && lastScore[0] != ScoreToString(grid.Score)[0])
             {
                 score3.Text = InGameText.nb[Convert.ToInt32(ScoreToString(grid.Score)[0]) - 48];
+                score2.Text = InGameText.nb[Convert.ToInt32(ScoreToString(grid.Score)[1]) - 48];
+                score1.Text = InGameText.nb[Convert.ToInt32(ScoreToString(grid.Score)[2]) - 48];
             }
             else if (grid.Score >= 10 && lastScore[1] != ScoreToString(grid.Score)[1])
             {
                 score2.Text = InGameText.nb[Convert.ToInt32(ScoreToString(grid.Score)[1]) - 48];
+                score1.Text = InGameText.nb[Convert.ToInt32(ScoreToString(grid.Score)[2]) - 48];
             }
             else if (lastScore[2] != ScoreToString(grid.Score)[2])
             {
