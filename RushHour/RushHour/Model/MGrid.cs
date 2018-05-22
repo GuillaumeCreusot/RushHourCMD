@@ -107,6 +107,14 @@ namespace RushHour
             }
         }
 
+        public bool IsVictoryAchieved()
+        {
+            MVehicle vehicle = GetVehicle(0);
+            if (vehicle.Pos[0] == 4)
+                return true;
+            return false;
+        }
+
         public void ModifyVehicleInCollisionGrid(int idVehicle, bool state)
         {
             MVehicle v = GetVehicle(idVehicle);

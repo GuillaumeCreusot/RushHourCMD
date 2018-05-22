@@ -15,7 +15,7 @@ namespace RushHour
         public CGridControl(MGrid grid)
         {
             mGrid = grid;
-            vGrid = new VGrid(12, 6, mGrid);
+            vGrid = new VGrid(10, 6, mGrid);
 
             manager = new WidgetsManager("Grid", Console.LargestWindowWidth, Console.LargestWindowHeight);
 
@@ -82,11 +82,12 @@ namespace RushHour
         public void MoveControl()
         {
             MVehicle v = mGrid.GetVehicle(mGrid.SelectedItem);
-
-            while (true)
+            bool flagVictoire = false;
+            vGrid.DeleteWidgetOnScreen(mGrid.SelectedItem.ToString());
+            vGrid.RefreshContentOnScreen(mGrid.SelectedItem.ToString());
+            while (!flagVictoire)
             {
-                vGrid.DeleteWidgetOnScreen(mGrid.SelectedItem.ToString());
-                vGrid.RefreshContentOnScreen(mGrid.SelectedItem.ToString());
+                
                 ConsoleKeyInfo ck = Console.ReadKey();
                 switch (ck.Key)
                 {
@@ -109,7 +110,12 @@ namespace RushHour
                     case ConsoleKey.Enter:
                         return;
                 }
+                flagVictoire = mGrid.IsVictoryAchieved();
+                vGrid.DeleteWidgetOnScreen(mGrid.SelectedItem.ToString());
+                vGrid.RefreshContentOnScreen(mGrid.SelectedItem.ToString());
             }
+            //Mettre ici affichage écran de victoire
+            Console.WriteLine("YOU WIN\nFATALITY");
         }
     }
 }
