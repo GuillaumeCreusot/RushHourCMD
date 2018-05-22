@@ -52,21 +52,87 @@ namespace RushHour
                 for(int j = 0; j < (!test ? (master.blength + 1) * vehicle.Length +1
                 : master.blength + 1); j++)
                 {
-                    if( i == 0 || j == 0 || i  == master.height - 1 || j == master.length - 1 || (i % (master.bheight + 1) == 0 && j % (master.blength + 1) == 0))
+                    if( i == 0 || j == 0 
+                        || i  == master.height - 1 || j == master.length - 1 
+                        || (i % (master.bheight + 1) == 0 && j % (master.blength + 1) == 0)
+                        || (i % (master.bheight + 1) == 0 && !(test && i != (master.bheight + 1) * vehicle.Length))
+                        || (j % (master.blength + 1) == 0 && !(!test && j != (master.blength + 1) * vehicle.Length))
+                        )
                     {
                         content += "\u0000";
                     }
-                    else if (i % (master.bheight + 1) == 0)
-                    {
-                        content += (test && i != (master.bheight + 1) * vehicle.Length) ? chara : '\u0000';
-                    }
-                    else if (j % (master.blength + 1) == 0)
-                    {
-                        content += (!test && j != (master.blength + 1) * vehicle.Length) ? chara : '\u0000';
-                    }
                     else
                     {
-                        content += chara;
+                        if (vehicle.Length == 2)
+                        {
+                            if (test)
+                            {
+                                if ((j <= 2 || j >= master.blength - 1) && (
+                                    (i == ((master.bheight + 1) * vehicle.Length) / 3) ||
+                                    (i == 2 * ((master.bheight + 1) * vehicle.Length) / 3 + 1)))
+
+                                    content += "\u0000";
+
+
+                                else
+                                    content += chara;
+
+                            }
+                            else
+                            {
+                                if ((i == 1 || i == master.bheight) && (
+                                    (j == 2 * ((master.blength + 1) * vehicle.Length) / 3 + 2) ||
+                                    (j == 2 * ((master.blength + 1) * vehicle.Length) / 3 + 1) ||
+                                    (j == ((master.blength + 1) * vehicle.Length) / 3) ||
+                                    (j == ((master.blength + 1) * vehicle.Length) / 3 - 1)))
+
+                                    content += "\u0000";
+
+
+                                else
+                                    content += chara;
+                            }
+                        }
+                        else
+                        {
+                            if (test)
+                            {
+                                if (vehicle.VehicleDirection == MMain.Direction.North
+                                    && i == ((master.bheight + 1) * vehicle.Length) / 3 && (j <= 2 || j >= master.blength - 1))
+
+                                    content += "\u0000";
+                                    
+
+                                else if (vehicle.VehicleDirection == MMain.Direction.South
+                                    && i == 2 * ((master.bheight + 1) * vehicle.Length) / 3 && (j <= 2 || j >= master.blength - 1))
+
+                                    content += "\u0000";
+
+
+                                else
+                                    content += chara;
+
+                            }
+                            else
+                            {
+                                if (vehicle.VehicleDirection == MMain.Direction.East &&(
+                                    (j == 2 * ((master.blength + 1) * vehicle.Length) / 3 && (i == 1 || i == master.bheight)) ||
+                                    (j == 2 * ((master.blength + 1) * vehicle.Length) / 3 + 1 && (i == 1 || i == master.bheight))))
+
+                                    content += "\u0000";
+
+
+                                else if (vehicle.VehicleDirection == MMain.Direction.West &&(
+                                    (j == ((master.blength + 1) * vehicle.Length) / 3 && (i == 1 || i == master.bheight)) ||
+                                    (j == ((master.blength + 1) * vehicle.Length) / 3 - 1 && (i == 1 || i == master.bheight))))
+
+                                    content += "\u0000";
+
+
+                                else
+                                    content += chara;
+                            }
+                        }
                     }
                 }
 

@@ -27,7 +27,7 @@ namespace RushHour
                                                 
 
                                    
-         Entrez le nom de votre sauvegarde (chiffres et lettres uniquement) :                                                                                               
+         Entrez le nom de votre sauvegarde (chiffres et lettres uniquement) :
                                     
             ";
         public static int[] dimText = WidgetUtility.DimContent(text);

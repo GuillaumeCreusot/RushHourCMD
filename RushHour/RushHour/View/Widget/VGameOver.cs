@@ -24,10 +24,10 @@ namespace RushHour
             ██╔══╝  ██║██║╚██╗██║    ██║  ██║██║   ██║    ██   ██║██╔══╝  ██║   ██║
             ██║     ██║██║ ╚████║    ██████╔╝╚██████╔╝    ╚█████╔╝███████╗╚██████╔╝
             ╚═╝     ╚═╝╚═╝  ╚═══╝    ╚═════╝  ╚═════╝      ╚════╝ ╚══════╝ ╚═════╝ 
-                                                                                                                 
+
 
                                    
-                Espérons que les gens se gareront mieux la prochaine fois...                                                                                        
+                Espérons que les gens se gareront mieux la prochaine fois...
                                     
             ";
         public static int[] dimText = WidgetUtility.DimContent(text);
