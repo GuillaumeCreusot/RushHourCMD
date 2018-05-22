@@ -33,9 +33,9 @@ namespace RushHour
                                     
             ";
         public static int[] dimText = WidgetUtility.DimContent(text);
-        public static string[] itemName = { "Revenir au jeu", "Menu Principal", "Quitter" };
+        public static string[] itemName = { "Revenir au jeu", "Sauvegarder et continuer", "Sauvegarder et quitter", "Nouvelle Partie", "Quitter" };
 
-        public VEscapeMenu():base("Escape Menu", "", itemName.Length + 1, 30, itemName, margeLeft : 10)
+        public VEscapeMenu():base("Escape Menu", "", itemName.Length + 1, 40, itemName, margeLeft : 10)
         {
 
         }

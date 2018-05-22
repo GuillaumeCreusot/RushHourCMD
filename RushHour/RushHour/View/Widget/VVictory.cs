@@ -33,7 +33,7 @@ namespace RushHour
                                     
             ";
         public static int[] dimText = WidgetUtility.DimContent(text);
-        public static string[] itemName = { "Nouvelle partie", "Quitter" };
+        public static string[] itemName = { "" };
 
         public VVictory():base("Escape Menu", "", itemName.Length + 1, 30, itemName, margeLeft : 10)
         {

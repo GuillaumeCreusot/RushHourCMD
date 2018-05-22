@@ -23,7 +23,8 @@ namespace RushHour
             if (action == 2) //quit game
             {
                 game.gameEnded = true;
-                Console.Clear(); //TODO better: display ASCII game over
+                Console.Clear();
+                CGameOver gameOver = new CGameOver();
             }
             else //launch game
             {
@@ -79,14 +80,25 @@ namespace RushHour
                     {
                         continue;
                     }
-                    else if (escapeAction == 1) //new game
+                    else if (escapeAction == 1) //save and continue
+                    {
+                        game.Save();
+                        continue;
+                    }
+                    else if (escapeAction == 2) //save and quit
+                    {
+                        game.Save();
+                        CGameOver gameOver = new CGameOver();
+                        game.gameEnded = true;
+                    }
+                    else if (escapeAction == 3) //new game
                     {                        
                         Launch();
                     }
                     else //game over
                     {
+                        CGameOver gameOver = new CGameOver();
                         game.gameEnded = true;
-                        //TO DO : launch game over screen
                     }
                 }
             }

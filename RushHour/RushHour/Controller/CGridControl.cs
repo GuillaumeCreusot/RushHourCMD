@@ -114,8 +114,7 @@ namespace RushHour
                 vGrid.DeleteWidgetOnScreen(mGrid.SelectedItem.ToString());
                 vGrid.RefreshContentOnScreen(mGrid.SelectedItem.ToString());
             }
-            //Mettre ici affichage écran de victoire
-            Console.WriteLine("YOU WIN\nFATALITY");
+            CVictory victoryScreen = new CVictory();
         }
     }
 }

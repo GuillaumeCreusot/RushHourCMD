@@ -35,9 +35,9 @@ namespace RushHour
                                     
             ";
         public static int[] dimText = WidgetUtility.DimContent(text);
-        public static string[] itemName = { "Nouvelle Partie", "Continuer", "Quitter" };
+        public static string[] itemName = { "Nouvelle Partie", "Continuer une partie", "Quitter" };
 
-        public VMainMenu():base("Main Menu", "", itemName.Length + 1, 30, itemName, margeLeft : 10)
+        public VMainMenu():base("Main Menu", "", itemName.Length + 1, 40, itemName, margeLeft : 10)
         {
             
         }

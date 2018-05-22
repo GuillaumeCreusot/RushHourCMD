@@ -29,12 +29,30 @@ namespace RushHour
             manager.RefreshContentOnScreen();
             while (true)
             {
-                string input = Console.ReadLine();
-                //TO DO: CONTROL USER INPUT
+                string input = "";
+                do
+                {
+                    if (hasSpecialChar(input))
+                    {
+                        Console.WriteLine("Le nom ne doit pas contenir de caractères spéciaux.");
+                    }
+                    input = Console.ReadLine();
+                }
+                while (hasSpecialChar(input));
                 return input;
             }
 
-       }
+        }
+
+        public bool hasSpecialChar(string text)
+        {
+            string specialChar = @"\|!#$%&/()=?»«@£§€{}.-;'<>_,";
+            foreach (var car in specialChar)
+            {
+                if (text.Contains(car)) return true;
+            }
+            return false;
+        }
     }
 }
 

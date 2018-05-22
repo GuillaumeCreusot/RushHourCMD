@@ -20,41 +20,12 @@ namespace RushHour
             manager.AddWidget(menu, VVictory.dimText[0] + 2, (Console.LargestWindowWidth / 2) - (VVictory.dimText[1] / 2));
         }
 
-        public int Control()
+        public void Control()
         {
             manager.RefreshContentOnScreen();
-            while (true)
-            {
-                ConsoleKeyInfo k = Console.ReadKey();
-                switch (k.Key)
-                {
-                    case ConsoleKey.UpArrow:
-                        if (menu.SelectedItem == 0)
-                        {
-                            menu.SelectedItem = menu.NbItem - 1;
-                        }
-                        else
-                        {
-                            menu.SelectedItem--;
-                        }
-                        break;
-
-                    case ConsoleKey.DownArrow:
-                        if (menu.SelectedItem == menu.NbItem - 1)
-                        {
-                            menu.SelectedItem = 0;
-                        }
-                        else
-                        {
-                            menu.SelectedItem++;
-                        }
-                        break;
-
-                    case ConsoleKey.Enter:
-                        Console.Clear();
-                        return menu.SelectedItem;
-                }
-            }
+            Console.ReadKey();
+            Console.Clear();
+            CGameOver gameOver = new CGameOver();
         }
     }
 }
