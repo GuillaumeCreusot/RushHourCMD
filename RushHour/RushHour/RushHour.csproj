@@ -51,6 +51,7 @@
     <Compile Include="Controller\CMain.cs" />
     <Compile Include="Controller\CMainMenu.cs" />
     <Compile Include="Controller\CSaveMenu.cs" />
+    <Compile Include="Controller\CVictory.cs" />
     <Compile Include="Model\MGame.cs" />
     <Compile Include="Model\MGrid.cs" />
     <Compile Include="Model\MMain.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="View\Widget\VMainMenu.cs" />
     <Compile Include="View\Widget\VSaveMenu.cs" />
     <Compile Include="View\Widget\VVehicle.cs" />
+    <Compile Include="View\Widget\VVictory.cs" />
     <Compile Include="View\Widget\Widget.cs" />
     <Compile Include="View\Widget\WidgetsManager.cs" />
   </ItemGroup>
