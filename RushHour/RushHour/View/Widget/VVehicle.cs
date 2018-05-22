@@ -20,10 +20,10 @@ namespace RushHour
 
         public VVehicle(MVehicle veh, VGrid master) : base(veh.IdVehicle.ToString()
             , (veh.VehicleDirection == MMain.Direction.North
-                || veh.VehicleDirection == MMain.Direction.South)?(master.bheight + 1) * veh.Length + 1
+                || veh.VehicleDirection == MMain.Direction.South)?(master.bheight + 1) * veh.Length + 1         //WTF
             : master.bheight + 1
             , !(veh.VehicleDirection == MMain.Direction.North
-                || veh.VehicleDirection == MMain.Direction.South) ? (master.blength + 1) * veh.Length + 1
+                || veh.VehicleDirection == MMain.Direction.South) ? (master.blength + 1) * veh.Length + 1       
             : master.blength + 1)
         {
             vehicle = veh;
@@ -49,12 +49,20 @@ namespace RushHour
             for (int i = 0; i < (test? (master.bheight + 1) * vehicle.Length +1
                 : master.bheight + 1); i++)
             {
-                for(int j = 0; j < (!test ? (master.blength + 1) * vehicle.Length  + 1
+                for(int j = 0; j < (!test ? (master.blength + 1) * vehicle.Length +1
                 : master.blength + 1); j++)
                 {
-                    if( i == 0 || j == 0 || i % (master.bheight + 1) == 0 || j % (master.blength + 1) == 0)
+                    if( i == 0 || j == 0 || i  == master.height - 1 || j == master.length - 1 || (i % (master.bheight + 1) == 0 && j % (master.blength + 1) == 0))
                     {
                         content += "\u0000";
+                    }
+                    else if (i % (master.bheight + 1) == 0)
+                    {
+                        content += (test && i != (master.bheight + 1) * vehicle.Length) ? chara : '\u0000';
+                    }
+                    else if (j % (master.blength + 1) == 0)
+                    {
+                        content += (!test && j != (master.blength + 1) * vehicle.Length) ? chara : '\u0000';
                     }
                     else
                     {

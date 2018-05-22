@@ -33,15 +33,17 @@ namespace RushHour
         public string GridContent(MGrid Grid)
         {
             string content = "";
-
+            
             for (int i = 0; i<height; i++)
             {
                 for (int j = 0; j<length; j++)
                 {
+                    //OLD GRID
+                    /*
                     if (i % (bheight + 1) == 0)
                     {
                         if (j % (blength + 1) == 0)
-                            content += "\u253C";
+                            content += "\u250C";
                         else
                             content += "\u2500";
                     }
@@ -53,10 +55,20 @@ namespace RushHour
                         else
                             content += " ";
                     }
+                    */
+                    //NEW GRID (minimaliste TMTC)
+                    if (i == 0 || i == height - 1)
+                        content += "\u2500";
+
+                    else if (j == 0 || j == length - 1)
+                        content += "\u2502";
+
+                    else
+                        content += " ";
                 }
                 content += "\n";
             }
-
+            
             foreach (MVehicle vehicle in Grid.Vehicles)
             {
                 ShowVehicle(vehicle);
