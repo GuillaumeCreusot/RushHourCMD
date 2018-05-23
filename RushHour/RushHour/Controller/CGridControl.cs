@@ -24,7 +24,7 @@ namespace RushHour
 
             manager = new WidgetsManager("Grid", Console.LargestWindowWidth, Console.LargestWindowHeight);
 
-            manager.AddWidgetsManager(vGrid, Console.LargestWindowHeight/2 - vGrid.RowSpanMax/2, Console.LargestWindowWidth/2 - vGrid.ColumnSpanMax/2);
+            manager.AddWidgetsManager(vGrid, VTitle.dimText[0] + 1, Console.LargestWindowWidth/2 - vGrid.ColumnSpanMax/2);
 
             int[] dim = WidgetUtility.DimContent(InGameText.score);
             manager.AddWidget(new Label("lbScore", InGameText.score, dim[0], dim[1]), 0, 1);
@@ -33,13 +33,13 @@ namespace RushHour
             manager.AddWidgetsManager(score, dim[0], 1);
 
             legend = new VLegend();
-            manager.AddWidget(legend, Console.LargestWindowHeight / 2 - legend.RowSpanMax / 2, 1);
+            manager.AddWidget(legend, Console.LargestWindowHeight - VLegend.dimText[0], 1);
 
             title = new VTitle();
-            manager.AddWidget(title, 2, Console.LargestWindowWidth / 2 - title.ColumnSpanMax / 2);
+            manager.AddWidget(title, 0, Console.LargestWindowWidth / 2 - title.ColumnSpanMax / 2);
 
-            /*gozilla = new VGojira();
-            manager.AddWidget(gozilla, 0, 0);*/
+            //gozilla = new VGojira();
+            //manager.AddWidget(gozilla, 0, Console.LargestWindowWidth - VGojira.dimText[0] - 1);
         }
 
         public int Control()

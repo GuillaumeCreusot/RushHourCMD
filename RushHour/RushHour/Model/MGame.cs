@@ -7,12 +7,14 @@ using System.IO;
 
 namespace RushHour
 {
+    /// <summary>
+    /// Model class wich contain data about the game and save/load process
+    /// </summary>
     class MGame
     {
-        internal bool gameEnded;
-        internal MGrid grid;
-        private int playerScore;
-        internal MMain.Difficulty difficulty;
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public MGame()
         {
             GameEnded = false;
@@ -20,6 +22,10 @@ namespace RushHour
             grid = new MGrid(6,6);
         }
 
+        /// <summary>
+        /// game end flag
+        /// </summary>
+        internal bool gameEnded;
         public bool GameEnded
         {
             get
@@ -33,6 +39,10 @@ namespace RushHour
             }
         }
 
+        /// <summary>
+        /// model grid
+        /// </summary>
+        internal MGrid grid;
         internal MGrid Grid
         {
             get
@@ -46,6 +56,10 @@ namespace RushHour
             }
         }
 
+        /// <summary>
+        /// number of move
+        /// </summary>
+        private int playerScore;
         internal int PlayerScore
         {
             get
@@ -59,6 +73,10 @@ namespace RushHour
             }
         }
 
+        /// <summary>
+        /// actual difficulty
+        /// </summary>
+        internal MMain.Difficulty difficulty;
         internal MMain.Difficulty Difficulty
         {
             get
