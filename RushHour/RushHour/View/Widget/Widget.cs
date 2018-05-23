@@ -6,13 +6,20 @@ using System.Threading.Tasks;
 
 namespace RushHour
 {
+    /// <summary>
+    /// Widget
+    /// </summary>
     class Widget
     {
+        /// <summary>
+        /// widget's span
+        /// </summary>
         private int[] span;
-        private int[] spanMax;
-        private string content = "";
-        private ConsoleColor[,] colorPattern;
-        private int[] position;
+
+        /// <summary>
+        /// maximum widget's span
+        /// </summary>
+        private int[] spanMax;    
 
         /// <summary>
         /// Corlor with which the color pattern is initialised
@@ -20,16 +27,19 @@ namespace RushHour
         public ConsoleColor BasicColor { get; set; }
 
         /// <summary>
-        /// Nom du widget
+        /// widget's name
         /// </summary>
         public string Name { get; private set; }
 
         /// <summary>
-        /// WidgetManager dans lequel ce widget est inclus
+        /// WidgetManager in which this widget is contained
         /// </summary>
         public WidgetsManager Master { get; set; }
 
-
+        /// <summary>
+        /// color for each character of content
+        /// </summary>
+        private ConsoleColor[,] colorPattern;
         public ConsoleColor[,] ColorPattern
         {
             get
@@ -43,7 +53,7 @@ namespace RushHour
         }
 
         /// <summary>
-        /// Nombre de colonne occuppé par ce widget
+        /// number column of content
         /// </summary>
         public int ColumnSpan
         {
@@ -58,7 +68,7 @@ namespace RushHour
         }
 
         /// <summary>
-        /// nombre de rang occupé par ce widget
+        /// number of row of content
         /// </summary>
         public int RowSpan
         {
@@ -73,7 +83,7 @@ namespace RushHour
         }
 
         /// <summary>
-        /// Nombre de colonne occuppé par ce widget
+        /// maximum number of column of content
         /// </summary>
         public int ColumnSpanMax
         {
@@ -84,7 +94,7 @@ namespace RushHour
         }
 
         /// <summary>
-        /// nombre de rang occupé par ce widget
+        /// maximum number of row of content
         /// </summary>
         public int RowSpanMax
         {
@@ -95,8 +105,9 @@ namespace RushHour
         }
 
         /// <summary>
-        /// Contenu du widget 
+        /// content which will be showed on screen
         /// </summary>
+        private string content = "";
         public virtual string Content
         {
             get
@@ -137,8 +148,9 @@ namespace RushHour
         }
 
         /// <summary>
-        /// Position du widget dans le widget manager
+        /// position of widget on widget manager
         /// </summary>
+        private int[] position;
         public int[] Position
         {
             get
@@ -151,6 +163,9 @@ namespace RushHour
             }
         }
 
+        /// <summary>
+        /// Pattern which delete excatly the content of this widgte on screen
+        /// </summary>
         public string DeletePattern
         {
             get
@@ -194,6 +209,9 @@ namespace RushHour
             BasicColor = ConsoleColor.White;
         }
 
+        /// <summary>
+        /// delete widget's content
+        /// </summary>
         public void DeleteContent()
         {
             Content = DeletePattern;

@@ -69,17 +69,17 @@
     <Compile Include="View\IView.cs" />
     <Compile Include="View\VMain.cs" />
     <Compile Include="View\Widget\Label.cs" />
-    <Compile Include="View\Widget\VDifficultyMenu.cs" />
-    <Compile Include="View\Widget\VEscapeMenu.cs" />
-    <Compile Include="View\Widget\VGameOver.cs" />
-    <Compile Include="View\Widget\VGrid.cs" />
+    <Compile Include="View\VDifficultyMenu.cs" />
+    <Compile Include="View\VEscapeMenu.cs" />
+    <Compile Include="View\VGameOver.cs" />
+    <Compile Include="View\VGrid.cs" />
     <Compile Include="View\Widget\Menu.cs" />
-    <Compile Include="View\Widget\VLoadMenu.cs" />
-    <Compile Include="View\Widget\VMainMenu.cs" />
-    <Compile Include="View\Widget\VSaveMenu.cs" />
-    <Compile Include="View\Widget\VScore.cs" />
-    <Compile Include="View\Widget\VVehicle.cs" />
-    <Compile Include="View\Widget\VVictory.cs" />
+    <Compile Include="View\VLoadMenu.cs" />
+    <Compile Include="View\VMainMenu.cs" />
+    <Compile Include="View\VSaveMenu.cs" />
+    <Compile Include="View\VScore.cs" />
+    <Compile Include="View\VVehicle.cs" />
+    <Compile Include="View\VVictory.cs" />
     <Compile Include="View\Widget\Widget.cs" />
     <Compile Include="View\Widget\WidgetsManager.cs" />
   </ItemGroup>

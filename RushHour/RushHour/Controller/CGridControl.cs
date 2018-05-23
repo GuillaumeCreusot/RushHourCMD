@@ -41,7 +41,7 @@ namespace RushHour
             vGrid.RefreshContentOnScreen();
             score.RefreshContentOnScreen();
 
-            while (true)
+            while (!mGrid.IsVictoryAchieved())
             {
                 vGrid.RefreshContentOnScreen(mGrid.SelectedItem.ToString());
                 if(lastSelectedItem != "")
@@ -83,6 +83,11 @@ namespace RushHour
                         break;
 
                 }
+            }
+
+            if (mGrid.IsVictoryAchieved())
+            {
+                return 2;
             }
 
             return 0;
@@ -129,7 +134,6 @@ namespace RushHour
                 vGrid.DeleteWidgetOnScreen(mGrid.SelectedItem.ToString());
                 vGrid.RefreshContentOnScreen(mGrid.SelectedItem.ToString());
             }
-            CVictory victoryScreen = new CVictory();
         }
     }
 }
