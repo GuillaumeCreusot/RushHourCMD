@@ -42,7 +42,7 @@ namespace RushHour
         public void DrawVehicle()
         {
             string content = "";
-            char chara = (vehicle.IsSelected) ? '\u2592' : '\u2588';
+            char chara = (vehicle.IsSelected) ? (vehicle.IsMoving) ? '\u2591' : '\u2593' : '\u2588';
 
             VGrid master = (VGrid)Master;
             bool test = vehicle.VehicleDirection == MMain.Direction.North

@@ -68,7 +68,10 @@
     <Compile Include="Utility\WidgetUtility.cs" />
     <Compile Include="View\IView.cs" />
     <Compile Include="View\VMain.cs" />
+    <Compile Include="View\Widget\VGojira.cs" />
     <Compile Include="View\Widget\Label.cs" />
+    <Compile Include="View\Widget\VTitle.cs" />
+    <Compile Include="View\Widget\VLegend.cs" />
     <Compile Include="View\Widget\VDifficultyMenu.cs" />
     <Compile Include="View\Widget\VEscapeMenu.cs" />
     <Compile Include="View\Widget\VGameOver.cs" />

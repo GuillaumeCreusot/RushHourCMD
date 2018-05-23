@@ -17,6 +17,7 @@ namespace RushHour
         private MGrid assignedGrid;
         private bool placeOnGrid;
         public bool IsSelected { get; set; }
+        public bool IsMoving { get; set; }
 
         //Constructor
         public MVehicle(MGrid grid, int id, int length, MMain.Direction direction, bool isPlayer)

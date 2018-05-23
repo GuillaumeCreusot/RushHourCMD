@@ -12,6 +12,9 @@ namespace RushHour
         public WidgetsManager manager;
         public MGrid mGrid;
         public VScore score;
+        public VLegend legend;
+        public VTitle title;
+        public VGojira gozilla;
 
 
         public CGridControl(MGrid grid)
@@ -28,6 +31,15 @@ namespace RushHour
 
             score = new VScore("score", grid);
             manager.AddWidgetsManager(score, dim[0], 1);
+
+            legend = new VLegend();
+            manager.AddWidget(legend, Console.LargestWindowHeight / 2 - legend.RowSpanMax / 2, 1);
+
+            title = new VTitle();
+            manager.AddWidget(title, 2, Console.LargestWindowWidth / 2 - title.ColumnSpanMax / 2);
+
+            /*gozilla = new VGojira();
+            manager.AddWidget(gozilla, 0, 0);*/
         }
 
         public int Control()
@@ -75,7 +87,9 @@ namespace RushHour
                         break;
 
                     case ConsoleKey.Enter:
+                        mGrid.Vehicles[mGrid.SelectedItem].IsMoving = true;
                         MoveControl();
+                        mGrid.Vehicles[mGrid.SelectedItem].IsMoving = false;
                         break;
 
                     case ConsoleKey.Escape:
