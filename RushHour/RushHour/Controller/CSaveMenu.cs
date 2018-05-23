@@ -48,7 +48,7 @@ namespace RushHour
 
         public bool hasSpecialChar(string text)
         {
-            string specialChar = @"\|!#$%&/()=?»«@£§€{}.-;'<>_,";
+            string specialChar = @"\|!#$%&/()=?»«@£§€{}.-;'<>_, ";
             foreach (var car in specialChar)
             {
                 if (text.Contains(car)) return true;

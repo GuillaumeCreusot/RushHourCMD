@@ -121,6 +121,11 @@ namespace RushHour
                         return;
                 }
                 flagVictoire = mGrid.IsVictoryAchieved();
+                if (mGrid.SelectedItem.ToString() != "0")
+                {
+                    vGrid.RefreshContentOnScreen("0");
+                }
+                
                 vGrid.DeleteWidgetOnScreen(mGrid.SelectedItem.ToString());
                 vGrid.RefreshContentOnScreen(mGrid.SelectedItem.ToString());
             }
