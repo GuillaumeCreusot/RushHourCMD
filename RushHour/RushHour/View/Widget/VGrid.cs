@@ -83,9 +83,9 @@ namespace RushHour
         public void ShowVehicle(MVehicle vehicle)
         {
             int[] pos = new int[2];
-            pos[0] = (vehicle.VehicleDirection == MMain.Direction.North) ? (vehicle.Pos[1] - (vehicle.Length - 1)) : vehicle.Pos[1];
-            pos[1] = (vehicle.VehicleDirection == MMain.Direction.West) ? (vehicle.Pos[0] - (vehicle.Length - 1)) : vehicle.Pos[0];
-            AddWidget(new VVehicle(vehicle, this), pos[0] * (bheight), pos[1] * (blength));
+            pos[0] = (vehicle.VehicleDirection == MMain.Direction.North) ? (vehicle.Pos[1] - (vehicle.Length) + 1) * (bheight + 1) : vehicle.Pos[1] * bheight;
+            pos[1] = (vehicle.VehicleDirection == MMain.Direction.West) ? (vehicle.Pos[0] - (vehicle.Length) + 1) * (blength + 1) : vehicle.Pos[0] * (blength);
+            AddWidget(new VVehicle(vehicle, this), pos[0], pos[1]);
         }
 
         static string ReplaceAtIndex(int i, char value, string word)
@@ -111,9 +111,9 @@ namespace RushHour
                     currentV.DrawVehicle();
 
                     int[] pos = new int[2];
-                    pos[0] = (currentV.Vehicle.VehicleDirection == MMain.Direction.North) ? (currentV.Vehicle.Pos[1] - currentV.Vehicle.Length) : currentV.Vehicle.Pos[1];
-                    pos[1] = (currentV.Vehicle.VehicleDirection == MMain.Direction.West) ? (currentV.Vehicle.Pos[0] - currentV.Vehicle.Length) : currentV.Vehicle.Pos[0];
-                    currentV.Position = new int[] { pos[0] * (bheight + 1), pos[1] * (blength + 1) };
+                    pos[0] = (currentV.Vehicle.VehicleDirection == MMain.Direction.North) ? (currentV.Vehicle.Pos[1] - (currentV.Vehicle.Length - 1)) * (bheight + 1) : currentV.Vehicle.Pos[1] * (bheight + 1);
+                    pos[1] = (currentV.Vehicle.VehicleDirection == MMain.Direction.West) ? (currentV.Vehicle.Pos[0] - (currentV.Vehicle.Length - 1)) * (blength + 1) : currentV.Vehicle.Pos[0] * (blength + 1);
+                    currentV.Position = new int[] { pos[0], pos[1] };
                 }
             }
             

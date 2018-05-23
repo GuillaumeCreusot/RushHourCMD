@@ -10,14 +10,14 @@ namespace RushHour
     {
         static void Main(string[] args)
         {
-            /* TESTS WM + Grid + Vehicles*/
+            ///* TESTS WM + Grid + Vehicles*/
             //WidgetsManager wm = new WidgetsManager("wm", Console.LargestWindowWidth, Console.LargestWindowHeight);
 
             //MGrid grid = new MGrid(6, 6);
 
             ////Console.WriteLine(grid.IsValidPosition(0, 4, MMain.Direction.North, 3));
 
-            //grid.AddVehicle(3, 3, MMain.Direction.West, 3);
+            //grid.AddVehicle(3, 3, MMain.Direction.North, 3);
             //grid.AddVehicle(0, 0, MMain.Direction.South, 2);
 
             //VGrid vgrid = new VGrid(12, 6, grid);

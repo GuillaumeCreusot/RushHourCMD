@@ -31,11 +31,6 @@ namespace RushHour
             BasicColor = (veh.IsPlayer)?ConsoleColor.White:(ConsoleColor) (veh.IdVehicle % 14 + 1);
             DrawVehicle();
         }
-
-        public void RefreshPosition()
-        {
-            Position = vehicle.Pos;
-        }
         
         public void DrawVehicle()
         {
