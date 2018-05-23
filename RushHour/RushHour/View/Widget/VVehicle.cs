@@ -9,6 +9,7 @@ namespace RushHour
     class VVehicle : Widget
     {
         private MVehicle vehicle;
+        public bool FlagCouleur {get; set; }
 
         public MVehicle Vehicle
         {
@@ -26,6 +27,7 @@ namespace RushHour
                 || veh.VehicleDirection == MMain.Direction.South) ? (master.blength + 1) * veh.Length + 1       
             : master.blength + 1)
         {
+            FlagCouleur = false;
             vehicle = veh;
             Master = master;
             BasicColor = (veh.IsPlayer)?ConsoleColor.White:(ConsoleColor) (veh.IdVehicle % 14 + 1);
@@ -87,7 +89,7 @@ namespace RushHour
                                     (j == ((master.blength + 1) * vehicle.Length) / 3 - 1)))
 
                                     content += "\u0000";
-
+                                    
 
                                 else
                                     content += chara;
@@ -139,9 +141,28 @@ namespace RushHour
                 if(i != (test ? (master.bheight + 1) * vehicle.Length + 1
                 : master.bheight + 1) -1)
                     content += "\n";
+
+                
             }
             Content = content;
 
+            /*ConsoleColor[,] ColorPattern = new ConsoleColor[RowSpan, ColumnSpan];*/
+            if (vehicle.IsPlayer)
+            {
+                if (test)
+                {
+                    ColorPattern[((master.bheight + 1) * vehicle.Length), (master.blength + 1) / 2 + 1] = (FlagCouleur) ? ConsoleColor.Blue : ConsoleColor.Red;
+                    ColorPattern[((master.bheight + 1) * vehicle.Length), (master.blength + 1) / 2 - 1] = (!FlagCouleur) ? ConsoleColor.Blue : ConsoleColor.Red;
+                    FlagCouleur = !FlagCouleur;
+                }
+                else
+                {
+                    ColorPattern[((master.bheight + 1)/ 2 + 2), ((master.blength + 1) * vehicle.Length) / 2] = (FlagCouleur) ? ConsoleColor.Blue : ConsoleColor.Red;
+                    ColorPattern[((master.bheight + 1)/ 2 - 1), ((master.blength + 1) * vehicle.Length) / 2] = (!FlagCouleur) ? ConsoleColor.Blue : ConsoleColor.Red;
+                    FlagCouleur = !FlagCouleur;
+                }
+                
+            }
         }
 
     }
