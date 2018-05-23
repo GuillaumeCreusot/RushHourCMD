@@ -36,6 +36,8 @@ namespace RushHour
                     {
                         Console.WriteLine("Le nom ne doit pas contenir de caractères spéciaux.");
                     }
+                    Console.CursorTop = saveMenu.cursorPosition[0];
+                    Console.CursorLeft = saveMenu.cursorPosition[1];
                     input = Console.ReadLine();
                 }
                 while (hasSpecialChar(input));

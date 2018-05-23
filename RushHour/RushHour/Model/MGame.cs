@@ -73,11 +73,11 @@ namespace RushHour
         }
 
         // Functions to save and load the game
-        public void Save()
+        public void Save(string name)
         {
             CreateSaveFolder();
             string path = GetSaveFolderPath();
-            string name = CreateFile(path);
+            CreateFile(path, name);
             Write(GetFilePath(path, name));
         }
 
@@ -120,11 +120,9 @@ namespace RushHour
         /// <summary>
         /// launches save menu, creates a file in folder and return its name
         /// </summary>
-        public string CreateFile(string path)
+        public void CreateFile(string path, string name)
         {            
             //open saves menu
-            CSaveMenu saveMenu = new CSaveMenu();
-            string name = saveMenu.Control();
             FileStream f = File.Create(path + "\\" + name + ".txt");
             f.Close();
 
@@ -133,7 +131,6 @@ namespace RushHour
             StreamWriter file = new StreamWriter(pathNames, true);
             file.WriteLine(name);
             file.Close();
-            return name;
         }
 
         public static string GetFilePath(string path, string fileName)

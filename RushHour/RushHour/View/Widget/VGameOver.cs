@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RushHour
 {
-    class VGameOver: Menu
+    class VGameOver: Label
     {
         public static string text = @"
             ██████╗ ███████╗       ███████╗██╗  ██╗ ██████╗ ██╗    ██╗███████╗██████╗ 
@@ -33,7 +33,7 @@ namespace RushHour
         public static int[] dimText = WidgetUtility.DimContent(text);
         public static string[] itemName = { "" };
 
-        public VGameOver(): base("Quit Menu", "", itemName.Length + 1, 30, itemName, margeLeft : 10)
+        public VGameOver(): base("Quit Menu", "", dimText[0], dimText[1])
         {
 
         }
