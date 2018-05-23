@@ -6,14 +6,28 @@ using System.Threading.Tasks;
 
 namespace RushHour
 {
+    /// <summary>
+    /// Widget used to show a menu
+    /// </summary>
     class Menu : Widget
     {
+        
+        
 
-        private int selectedItem;
+        /// <summary>
+        /// list of item in menu
+        /// </summary>
         private string[] items;
-        private int[,] positionSelecter;
-        private int margeLeft;
 
+        /// <summary>
+        /// selector's position on console
+        /// </summary>
+        private int[,] positionSelecter;
+
+        /// <summary>
+        /// selected item in menu
+        /// </summary>
+        private int selectedItem;
         public int SelectedItem
         {
             get
@@ -31,6 +45,9 @@ namespace RushHour
             }
         }
 
+        /// <summary>
+        /// Number of item in menu
+        /// </summary>
         public int NbItem
         {
             get
@@ -39,6 +56,9 @@ namespace RushHour
             }
         }
 
+        /// <summary>
+        /// text permanent above menu
+        /// </summary>
         protected string PermanentText
         {
             set
@@ -61,6 +81,10 @@ namespace RushHour
             }
         }
 
+        /// <summary>
+        /// marge with left console's side
+        /// </summary>
+        private int margeLeft;
         public int MargeLeft
         {
             get
@@ -74,6 +98,16 @@ namespace RushHour
             }
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="name">widget's name</param>
+        /// <param name="permanentText">permanent text in menu</param>
+        /// <param name="rowSpanMax">maximum number of row</param>
+        /// <param name="columnSpanMax">maximum number of column</param>
+        /// <param name="items">items in menu</param>
+        /// <param name="selectedItem">selected item (default = 0)/param>
+        /// <param name="margeLeft">marge with left</param>
         public Menu(string name, string permanentText, int rowSpanMax, int columnSpanMax, string[] items, int selectedItem = 0, int margeLeft = 0) : base(name, rowSpanMax, columnSpanMax)
         {
             this.items = items;
@@ -84,6 +118,9 @@ namespace RushHour
             this.selectedItem = selectedItem;
         }
 
+        /// <summary>
+        /// move selector
+        /// </summary>
         public void UpdateSelecter()
         {
             for(int i = 0; i < NbItem; i++)

@@ -11,16 +11,16 @@ namespace RushHour
         //length, starting position x, position y column, direction
         public static int[,] easyGrid = { 
             { 2, 1, 2, (int)MMain.Direction.East},
-            { 2, 4, 1, (int)MMain.Direction.South},
+            { 2, 4, 2, (int)MMain.Direction.North},
             { 3, 5, 0, (int)MMain.Direction.South },
             { 2, 4, 4, (int)MMain.Direction.East }
         };
 
         public static int[,] mediumGrid = {
             { 2, 1, 2, (int)MMain.Direction.East},
-            { 2, 0, 0, (int)MMain.Direction.East },
+            { 2, 1, 0, (int)MMain.Direction.West},
             { 2, 2, 0, (int)MMain.Direction.South },
-            { 3, 3, 0, (int)MMain.Direction.South },
+            { 3, 3, 2, (int)MMain.Direction.North },
             { 3, 0, 1, (int)MMain.Direction.South },
             { 3, 1, 3, (int)MMain.Direction.East},
             { 3, 3, 5, (int)MMain.Direction.East },

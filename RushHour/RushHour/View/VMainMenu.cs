@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace RushHour
 {
+    /// <summary>
+    /// Main Menu
+    /// </summary>
     class VMainMenu : Menu
     {
+        /// <summary>
+        /// text above menu
+        /// </summary>
         public static string text = @"
                     ██████╗ ███████╗       ███████╗██╗  ██╗ ██████╗ ██╗    ██╗███████╗██████╗ 
                     ██╔══██╗██╔════╝██╗    ██╔════╝██║  ██║██╔═══██╗██║    ██║██╔════╝██╔══██╗
@@ -34,9 +40,19 @@ namespace RushHour
                                                                                                        
                                     
             ";
+        /// <summary>
+        /// dimension of the text above menu
+        /// </summary>
         public static int[] dimText = WidgetUtility.DimContent(text);
+
+        /// <summary>
+        /// item's name show in menu
+        /// </summary>
         public static string[] itemName = { "Nouvelle Partie", "Continuer une partie", "Quitter" };
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public VMainMenu():base("Main Menu", "", itemName.Length + 1, 40, itemName, margeLeft : 10)
         {
             

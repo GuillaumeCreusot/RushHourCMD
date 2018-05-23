@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RushHour
 {
+    /// <summary>
+    /// Widget wich manage the display of widget on screen
+    /// </summary>
     class WidgetsManager : Widget
     {
         private List<Widget> widgets;
@@ -14,7 +17,7 @@ namespace RushHour
         private bool superposition;
 
         /// <summary>
-        /// Les noms des widgets contenus dans le widgetManager
+        /// names of all widget which are contain in this manager
         /// </summary>
         public string[] WidgetNames
         {
@@ -32,13 +35,16 @@ namespace RushHour
         }
 
         /// <summary>
-        /// Constructeur
+        /// Constructor
         /// </summary>
-        /// <param name="name">Nom du Widget</param>
-        /// <param name="nbCol">nombre de colonne</param>
-        /// <param name="nbRow">nombre de rang</param>
+        /// <param name="name">widget's name</param>
+        /// <param name="nbCol">number of column</param>
+        /// <param name="nbRow">number of row</param>
         public WidgetsManager(string name, int nbCol, int nbRow, bool isMain = true, bool superposition = true) : base(name, nbRow, nbCol)
         {
+            //cursor invisible
+            Console.CursorVisible = false;
+
             widgets = new List<Widget>();
             subWidgetsManager = new List<WidgetsManager>();
             grid = new string[nbRow, nbCol];
@@ -52,15 +58,15 @@ namespace RushHour
         }
 
         /// <summary>
-        /// Ajouter du widget <paramref name="widget"/> au widget manager 
-        /// au rang <paramref name="row"/> et la colonne <paramref name="col"/>
+        /// Add widget <paramref name="widget"/> to widget manager 
+        /// in row <paramref name="row"/> and in column <paramref name="col"/>
         /// </summary>
-        /// <param name="widget">widget à ajouter</param>
-        /// <param name="row">rang ou mettre le widget</param>
-        /// <param name="col">colonne ou mettre le widget</param>
+        /// <param name="widget">widget to add</param>
+        /// <param name="row"></param>
+        /// <param name="col"></param>
         public void AddWidget(Widget widget, int row, int col)
         {
-            //vérification erreur
+            //check error
             if (row + widget.RowSpanMax > grid.GetLength(0))
             {
                 throw new Exception("Le Widget sort de la console (rang)");
@@ -96,11 +102,17 @@ namespace RushHour
             {
                 widget.Position = new int[] { row, col };
             }
-            //ajout de l'objet widget à widgets
+            //add the widget to the list widget
             widgets.Add(widget);
             widget.Master = this;
         }
 
+        /// <summary>
+        /// Add a sub widget manager to this widget manager
+        /// </summary>
+        /// <param name="wm"></param>
+        /// <param name="row"></param>
+        /// <param name="col"></param>
         public void AddWidgetsManager(WidgetsManager wm, int row, int col)
         {
             AddWidget(wm, row, col);
@@ -108,7 +120,7 @@ namespace RushHour
         }
 
         /// <summary>
-        /// Rafraichi tous les widgets
+        /// refresh all widget on screen
         /// </summary>
         public virtual void RefreshContentOnScreen(bool delete = false)
         {
@@ -116,15 +128,17 @@ namespace RushHour
         }
 
         /// <summary>
-        /// Rafraichit les widgets dont le nom est compris dans <paramref name="contentNames"/>
+        /// refresh all widget on screen wich are contained in <paramref name="contentNames"/>
         /// </summary>
-        /// <param name="contentNames">noms des widgets à rafraichir</param>
+        /// <param name="contentNames"></param>
         public virtual void RefreshContentOnScreen(string[] contentNames, bool delete = false)
         {
             Widget currentW;
 
+            
             foreach(string name in contentNames)
             {
+                //get widget instance
                 currentW = FindWidgetWithName(name);
                 if(currentW == null)
                 {
@@ -132,13 +146,19 @@ namespace RushHour
                 }
                 else
                 {
+                    //draw character by character
                     for(int i = 0 ; i < currentW.RowSpan; i++)
                     {
                         for(int j = 0; j < currentW.ColumnSpan; j++)
                         {
+                            //position cursor
                              Console.CursorLeft = currentW.Position[1] + j + Position[1];
                              Console.CursorTop = currentW.Position[0] + i + Position[0];
-                             Console.ForegroundColor = currentW.ColorPattern[i, j];                          
+
+                            //color
+                             Console.ForegroundColor = currentW.ColorPattern[i, j];      
+                            
+                            //handle transparent character '\u0000'                    
                              if(currentW.Content[j + i * (currentW.ColumnSpan + 1)] != '\u0000')
                                 Console.Write(currentW.Content[j + i * (currentW.ColumnSpan + 1)]);
                         }
@@ -150,16 +170,21 @@ namespace RushHour
             Console.CursorTop = 0;
         }
 
+        /// <summary>
+        /// Refresh content of the widget <paramref name="name"/>
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="delete"></param>
         public void RefreshContentOnScreen(string name, bool delete = false)
         {
             RefreshContentOnScreen(new string[] { name }, delete);
         }
 
         /// <summary>
-        /// Trouver un widget à l'aide de son nom <paramref name="name"/>
+        /// find a widget instance with is <paramref name="name"/>
         /// </summary>
-        /// <param name="name">nom du widget cherché</param>
-        /// <returns>widget cherché ou null si le widget n'existe pas</returns>
+        /// <param name="name"></param>
+        /// <returns>return null if he widget does'nt exist</returns>
         public Widget FindWidgetWithName(string name)
         {
             int c = 0;
@@ -178,6 +203,11 @@ namespace RushHour
             }
         }
 
+        /// <summary>
+        /// find sub widgetmanger instance with <paramref name="name"/>
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public WidgetsManager FindSubWidgetManagerWithName(string name)
         {
             int c = 0;
@@ -196,6 +226,10 @@ namespace RushHour
             }
         }
 
+        /// <summary>
+        /// delete  widget <paramref name="name"/> on the screen
+        /// </summary>
+        /// <param name="name"></param>
         public void DeleteWidgetOnScreen(string name)
         {
             Widget w = FindWidgetWithName(name);

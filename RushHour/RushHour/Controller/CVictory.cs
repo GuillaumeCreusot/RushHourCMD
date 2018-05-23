@@ -24,8 +24,8 @@ namespace RushHour
         {
             manager.RefreshContentOnScreen();
             Console.ReadKey();
-            Console.Clear();
-            CGameOver gameOver = new CGameOver();
+            //Console.Clear();
+            //CGameOver gameOver = new CGameOver();
         }
     }
 }

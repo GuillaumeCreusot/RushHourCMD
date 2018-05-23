@@ -116,6 +116,13 @@ namespace RushHour
                         game.GameEnded = true;
                     }
                 }
+                else if(result == 2)
+                {
+                    Console.Clear();
+                    CVictory cVictory = new CVictory();
+                    cVictory.Control();
+                    game.gameEnded = true;
+                }
             }
         }
     }

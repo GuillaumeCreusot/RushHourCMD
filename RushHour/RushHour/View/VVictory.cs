@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace RushHour
 {
-    class VVictory : Menu
+    //Victory Screen
+    class VVictory : Label
     {
-
+        /// <summary>
+        /// text on screen
+        /// </summary>
         public static string text = @"
                     ██╗     ██╗██╗  ██╗███████╗     █████╗     ██████╗  ██████╗ ███████╗███████╗██╗
                     ██║     ██║██║ ██╔╝██╔════╝    ██╔══██╗    ██╔══██╗██╔═══██╗██╔════╝██╔════╝██║
@@ -32,10 +35,12 @@ namespace RushHour
                                                                                                       
                                     
             ";
+        /// <summary>
+        /// dimension of text
+        /// </summary>
         public static int[] dimText = WidgetUtility.DimContent(text);
-        public static string[] itemName = { "" };
 
-        public VVictory():base("Escape Menu", "", itemName.Length + 1, 30, itemName, margeLeft : 10)
+        public VVictory():base("Escape Menu", text, dimText[0], dimText[1])
         {
 
         }
