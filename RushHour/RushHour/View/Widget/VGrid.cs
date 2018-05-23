@@ -57,10 +57,22 @@ namespace RushHour
                     }
                     */
                     //NEW GRID (minimaliste TMTC)
-                    if (i == 0 || i == height - 1)
+                    if ((i == 0 && j == 0) ||
+                        (i == 3 * (bheight + 1) && j == length - 1))
+                        content += "\u250C";
+                    else if (i == 0 && j == length - 1)
+                        content += "\u2510";
+                    else if ((i == height - 1 && j == 0) ||
+                            (i == 2 * (bheight + 1) && j == length - 1))
+                        content += "\u2514";
+                    else if (i == height - 1 && j == length - 1)
+                        content += "\u2518";
+
+                    else if (i == 0 || i == height - 1)
                         content += "\u2500";
 
-                    else if (j == 0 || j == length - 1)
+                    else if ((j == 0) || (j == length - 1) &&
+                                (i > 3 * (bheight + 1) || i < 2 * (bheight + 1)))
                         content += "\u2502";
 
                     else
