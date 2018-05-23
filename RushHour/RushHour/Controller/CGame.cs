@@ -66,7 +66,7 @@ namespace RushHour
 
             CGridControl gridGontrol = new CGridControl(game.grid);
 
-            while (!game.gameEnded)
+            while (!game.GameEnded)
             {
                 int result = gridGontrol.Control();
 
@@ -82,14 +82,27 @@ namespace RushHour
                     }
                     else if (escapeAction == 1) //save and continue
                     {
-                        game.Save();
+                        Console.Clear();
+
+                        CSaveMenu saveMenu = new CSaveMenu();
+                        string name = saveMenu.Control();
+
+                        game.Save(name);
                         continue;
                     }
                     else if (escapeAction == 2) //save and quit
                     {
-                        game.Save();
+                        Console.Clear();
+
+                        CSaveMenu saveMenu = new CSaveMenu();
+                        string name = saveMenu.Control();
+
+                        game.Save(name);
+
+                        Console.Clear();
+
                         CGameOver gameOver = new CGameOver();
-                        game.gameEnded = true;
+                        game.GameEnded = true;
                     }
                     else if (escapeAction == 3) //new game
                     {                        
@@ -97,8 +110,10 @@ namespace RushHour
                     }
                     else //game over
                     {
+
+                        Console.Clear();
                         CGameOver gameOver = new CGameOver();
-                        game.gameEnded = true;
+                        game.GameEnded = true;
                     }
                 }
             }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RushHour
 {
-    class VSaveMenu : Menu
+    class VSaveMenu : Label
     {
         public static string text = @"
             ██████╗ ███████╗       ███████╗██╗  ██╗ ██████╗ ██╗    ██╗███████╗██████╗ 
@@ -33,9 +33,11 @@ namespace RushHour
         public static int[] dimText = WidgetUtility.DimContent(text);
         public static string[] itemName = { "" };
 
-        public VSaveMenu(): base("Save Menu", "", itemName.Length + 1, 30, itemName, margeLeft : 10)
-        {
+        public int[] cursorPosition;
 
+        public VSaveMenu(): base("Save Menu", "", dimText[0] + 2, dimText[1])
+        {
+            cursorPosition = new int[2] { dimText[0] + 1, dimText[1] / 2 };
         }
     }
 }
