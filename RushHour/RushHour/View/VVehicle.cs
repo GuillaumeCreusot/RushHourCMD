@@ -57,8 +57,10 @@ namespace RushHour
         public void DrawVehicle()
         {
             string content = "";
-            char chara = (vehicle.IsSelected) ? (vehicle.IsMoving) ? '\u2591' : '\u2593' : '\u2588';
+
             //character different the vehicle is selected or not
+            char chara = (vehicle.IsSelected) ? (vehicle.IsMoving) ? '\u2591' : '\u2593' : '\u2588';
+            
 
             VGrid master = (VGrid)Master;
 

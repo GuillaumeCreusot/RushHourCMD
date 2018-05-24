@@ -9,6 +9,7 @@ namespace RushHour
     class VGojira : Label
     {
         public static string text = @"
+
 ";
         public static int[] dimText = WidgetUtility.DimContent(text);
 
