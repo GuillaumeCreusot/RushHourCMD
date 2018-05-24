@@ -12,6 +12,7 @@ namespace RushHour
         public VDifficultyMenu diff;
         public WidgetsManager manager;
 
+        //Constructor
         public CDifficultyMenu()
         {
             diff = new VDifficultyMenu();
@@ -21,6 +22,10 @@ namespace RushHour
             manager.AddWidget(diff, (Console.LargestWindowHeight - VDifficultyMenu.dimText[0]) / 4 + VDifficultyMenu.dimText[0] + 2, (Console.LargestWindowWidth / 2) - (VDifficultyMenu.dimText[1] / 2));
         }
 
+        /// <summary>
+        /// Navigate through options
+        /// </summary>
+        /// <returns>Returns chosen difficulty</returns>
         public MMain.Difficulty Control()
         {
             manager.RefreshContentOnScreen();

@@ -9,11 +9,16 @@ namespace RushHour
     class CGame
     {
         public MGame game;
+
+        //Constructor
         public CGame()
         {
             game = new MGame();
         }
 
+        /// <summary>
+        /// Initializes the game
+        /// </summary>
         public void Launch()
         {
             Console.Clear();
@@ -60,6 +65,9 @@ namespace RushHour
 
         }
 
+        /// <summary>
+        /// Runs the game
+        /// </summary>
         public void Run(MGrid grid, int score)
         {
             Console.Clear();

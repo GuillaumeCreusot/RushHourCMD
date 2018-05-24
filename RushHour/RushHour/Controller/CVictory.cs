@@ -20,6 +20,9 @@ namespace RushHour
             manager.AddWidget(menu, VVictory.dimText[0] + 2, (Console.LargestWindowWidth / 2) - (VVictory.dimText[1] / 2));
         }
 
+        /// <summary>
+        /// display victory
+        /// </summary>
         public void Control()
         {
             manager.RefreshContentOnScreen();

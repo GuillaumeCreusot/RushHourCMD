@@ -11,6 +11,7 @@ namespace RushHour
         public VSaveMenu saveMenu;
         public WidgetsManager manager;
 
+        //Constructor
         public CSaveMenu()
         {
             saveMenu = new VSaveMenu();

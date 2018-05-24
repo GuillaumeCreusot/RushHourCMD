@@ -11,6 +11,7 @@ namespace RushHour
         public VGameOver menu;
         public WidgetsManager manager;
 
+        //Constructor
         public CGameOver()
         {
             menu = new VGameOver();
