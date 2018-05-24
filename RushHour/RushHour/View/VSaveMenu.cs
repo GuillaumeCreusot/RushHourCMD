@@ -53,7 +53,7 @@ namespace RushHour
 
         public VSaveMenu(): base("Save Menu", "", dimText[0] + 2, dimText[1])
         {
-            cursorPosition = new int[2] { dimText[0] + 1, dimText[1] / 2 };
+            cursorPosition = new int[2] {  2 * dimText[0] + 1, dimText[1]};
         }
     }
 }

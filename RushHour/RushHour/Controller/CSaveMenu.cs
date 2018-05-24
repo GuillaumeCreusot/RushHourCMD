@@ -16,8 +16,8 @@ namespace RushHour
             saveMenu = new VSaveMenu();
             Label permanentText = new Label("permanent text", VSaveMenu.text, VSaveMenu.dimText[0] + 1, VSaveMenu.dimText[1]);
             manager = new WidgetsManager("Save Menu", Console.LargestWindowWidth, Console.LargestWindowHeight);
-            manager.AddWidget(permanentText, 0, 0);
-            manager.AddWidget(saveMenu, VSaveMenu.dimText[0] + 2, (Console.LargestWindowWidth / 2) - (VSaveMenu.dimText[1] / 2));
+            manager.AddWidget(permanentText, (Console.LargestWindowHeight - VSaveMenu.dimText[0])/ 4, (Console.LargestWindowWidth / 2) - (VSaveMenu.dimText[1] / 2));
+            manager.AddWidget(saveMenu, (Console.LargestWindowHeight - VSaveMenu.dimText[0]) / 4 + VSaveMenu.dimText[0] + 2, (Console.LargestWindowWidth / 2) - (VSaveMenu.dimText[1] / 2));
         }
 
         /// <summary>

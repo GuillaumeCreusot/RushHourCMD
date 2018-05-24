@@ -1,0 +1,12 @@
+0
+2
+2122True
+2023False
+2042False
+3233False
+2313False
+2332False
+3302False
+2412False
+3523False
+3352False

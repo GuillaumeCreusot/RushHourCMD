@@ -17,8 +17,8 @@ namespace RushHour
             diff = new VDifficultyMenu();
             Label permanentText = new Label("permanent text", VDifficultyMenu.text, VDifficultyMenu.dimText[0] + 1, VDifficultyMenu.dimText[1]);
             manager = new WidgetsManager("Difficulty Menu", Console.LargestWindowWidth, Console.LargestWindowHeight);
-            manager.AddWidget(permanentText, 0, (Console.LargestWindowWidth / 2) - (VDifficultyMenu.dimText[1] / 2));
-            manager.AddWidget(diff, VDifficultyMenu.dimText[0] + 2, (Console.LargestWindowWidth / 2) - (VDifficultyMenu.dimText[1] / 2));
+            manager.AddWidget(permanentText, (Console.LargestWindowHeight - VDifficultyMenu.dimText[0]) / 4, (Console.LargestWindowWidth / 2) - (VDifficultyMenu.dimText[1] / 2));
+            manager.AddWidget(diff, (Console.LargestWindowHeight - VDifficultyMenu.dimText[0]) / 4 + VDifficultyMenu.dimText[0] + 2, (Console.LargestWindowWidth / 2) - (VDifficultyMenu.dimText[1] / 2));
         }
 
         public MMain.Difficulty Control()
