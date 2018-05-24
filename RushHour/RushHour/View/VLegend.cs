@@ -8,6 +8,9 @@ namespace RushHour
 {
     class VLegend : Label
     {
+        /// <summary>
+        /// Instructions for the player
+        /// </summary>
         public static string text = @"
 
 

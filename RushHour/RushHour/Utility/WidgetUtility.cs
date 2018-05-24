@@ -8,6 +8,9 @@ namespace RushHour
 {
     public static class WidgetUtility
     {
+        /// <summary>
+        /// Gets the size of a given content
+        /// </summary>
         public static int[] DimContent(string content)
         {
             string[] cols = content.Split('\n');
@@ -23,13 +26,16 @@ namespace RushHour
             return new int[] { cols.Length, nbColMax };
         }
 
+        /// <summary>
+        /// resizes the content to the wanted dimension
+        /// </summary>
         public static string Resize(string content, int nbCol)
         {
             string result = "";
 
             string[] cols = content.Split('\n');
 
-            //enleve le surplus
+            //remove excess
             for (int i = 0; i < cols.Length; i++)
             {
                 if(cols[i].Length >= nbCol)
@@ -38,7 +44,7 @@ namespace RushHour
                 }
             }
 
-            //ajoute des especes
+            //add spaces
             for (int i = 0; i < cols.Length; i++)
             {
                 cols[i] += new string(' ', nbCol - cols[i].Length);
@@ -48,9 +54,11 @@ namespace RushHour
             return result.Substring(0, result.Length-1);
         }
 
+        /// <summary>
+        /// repeats a char multiple times
+        /// </summary>
         public static string Repeat(char car, int nb)
         {
-
             return new string(car, nb);
         } 
     }
