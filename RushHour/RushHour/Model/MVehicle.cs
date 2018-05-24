@@ -13,9 +13,9 @@ namespace RushHour
         private int length;
         private int[] pos; //X and Y position on the grid
         private MMain.Direction vehicleDirection;
-        private bool isPlayer;
-        private MGrid assignedGrid;
-        private bool placeOnGrid;
+        private bool isPlayer; //true if the vehicle is the main car
+        private MGrid assignedGrid; //grid on which this car is placed
+        private bool placeOnGrid; //true if the car is currently on the grid
         public bool IsSelected { get; set; }
         public bool IsMoving { get; set; }
 
@@ -164,6 +164,10 @@ namespace RushHour
         }
 
         //Methods
+
+        /// <summary>
+        /// Move the vehicle in one given direction
+        /// </summary>
         public void Move(MMain.Direction direction)
         {
 
@@ -208,7 +212,7 @@ namespace RushHour
         }
 
         /// <summary>
-        /// returns relevent info of vehicle : length, Xpos, Ypos, direction. Works only if width or heigth of grid doesn't exceed 2 digits. TODO: eventually fix ?
+        /// returns relevent info of vehicle : length, Xpos, Ypos, direction, isPlayer 
         /// </summary>
         public override string ToString()
         {
@@ -216,14 +220,5 @@ namespace RushHour
             string dir2 = dir.ToString();
             return this.Length + "" + this.Pos[0] + "" + this.Pos[1] + ""+ dir2 + "" + this.isPlayer;
         }
-
-        /// <summary>
-        /// takes the string from save file and turns it into a vehicle: ex: this.length = input[0].
-        /// </summary>
-        public void BackwardsString(string input)
-        {
-
-        }
-
     }
 }

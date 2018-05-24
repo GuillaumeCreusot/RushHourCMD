@@ -8,9 +8,15 @@ namespace RushHour
 {
     class MGrid
     {
+        /// <summary>
+        /// vertical and horizontal dimensions of the grid
+        /// </summary>
         public int XLength {get; private set; }
         public int YLength { get; private set; }
 
+        /// <summary>
+        /// player's score
+        /// </summary>
         private int score;
         public int Score
         {
@@ -32,6 +38,9 @@ namespace RushHour
             }
         }
 
+        /// <summary>
+        /// selected car on the grid
+        /// </summary>
         private int selectedItem = 0;
         public int SelectedItem
         {
@@ -45,33 +54,40 @@ namespace RushHour
                 Vehicles[value].IsSelected = true;
                 selectedItem = value;
             }
-        }
-
-        
+        }        
 
         public bool[,] gridCollision;
 
+        /// <summary>
+        /// all the vehicles on the grid
+        /// </summary>
         public List<MVehicle> Vehicles;
 
+        /// <summary>
+        /// checks the validity of moving a car in a certain direction
+        /// </summary>
+        /// <param name="vehicle"></param>
+        /// <param name="direction"></param>
+        /// <returns>True or False</returns>
         public bool ValidDirection(MVehicle vehicle, MMain.Direction direction)
         {
             int x = vehicle.Pos[0];
             int y = vehicle.Pos[1];
             if (vehicle.VehicleDirection == direction || (int)vehicle.VehicleDirection == ((int)direction + 2) % 4)
             {
-                if (direction == MMain.Direction.North) //North
+                if (direction == MMain.Direction.North)
                     if (y - 1 >= 0)
                         return !this[x, y - 1];
 
-                if (direction == MMain.Direction.West) //West
+                if (direction == MMain.Direction.West)
                     if (x - 1 >= 0)
                         return !this[x - 1, y ];
 
-                if (direction == MMain.Direction.South) //South
+                if (direction == MMain.Direction.South)
                     if (y + 1 <= YLength)
                         return !this[x, y + 1];
 
-                if (direction == MMain.Direction.East) //East
+                if (direction == MMain.Direction.East)
                     if (x + 1 <= XLength)
                         return !this[x + 1, y];
             }
@@ -79,7 +95,7 @@ namespace RushHour
             return false;
         }
 
-        //Builders
+        //Constructors
         public MGrid(int X, int Y)
         {
             XLength = X;
@@ -114,6 +130,11 @@ namespace RushHour
             }
         }
 
+        /// <summary>
+        /// finds the corresponding Vehicle with its id
+        /// </summary>
+        /// <param name="idVehicule"></param>
+        /// <returns></returns>
         public MVehicle GetVehicle(int idVehicule)
         {
             int i = 0;
@@ -132,6 +153,10 @@ namespace RushHour
             }
         }
 
+        /// <summary>
+        /// checks if the player's car has reached the exit
+        /// </summary>
+        /// <returns></returns>
         public bool IsVictoryAchieved()
         {
             MVehicle vehicle = GetVehicle(0);
@@ -140,6 +165,11 @@ namespace RushHour
             return false;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idVehicle"></param>
+        /// <param name="state"></param>
         public void ModifyVehicleInCollisionGrid(int idVehicle, bool state)
         {
             MVehicle v = GetVehicle(idVehicle);
@@ -151,7 +181,7 @@ namespace RushHour
 
             gridCollision[v.Pos[0], v.Pos[1]] = state;
 
-            if (v.VehicleDirection == MMain.Direction.North) //North
+            if (v.VehicleDirection == MMain.Direction.North) 
             {
                 gridCollision[v.Pos[0], v.Pos[1] - 1] = state;
 
@@ -162,7 +192,7 @@ namespace RushHour
             }
 
 
-            if (v.VehicleDirection == MMain.Direction.West) //West
+            else if (v.VehicleDirection == MMain.Direction.West)
             {
                 gridCollision[v.Pos[0] - 1, v.Pos[1]] = state;
 
@@ -172,7 +202,7 @@ namespace RushHour
                 }
             }
 
-            if (v.VehicleDirection == MMain.Direction.South) //South
+            else if (v.VehicleDirection == MMain.Direction.South)
             {
                 gridCollision[v.Pos[0], v.Pos[1] + 1] = state;
 
@@ -182,7 +212,7 @@ namespace RushHour
                 }
             }
 
-            if (v.VehicleDirection == MMain.Direction.East) //East
+            else if (v.VehicleDirection == MMain.Direction.East)
             {
                 gridCollision[v.Pos[0] + 1, v.Pos[1]] = state;
 
@@ -261,6 +291,9 @@ namespace RushHour
             }
         }
 
+        /// <summary>
+        /// adds a vehicle to the list of the grid
+        /// </summary>
         public void AddVehicle(int x, int y, MMain.Direction direction, int length, bool isPlayer = false)
         {
             MVehicle v = new MVehicle(this, Vehicles.Count, length, direction, isPlayer);
