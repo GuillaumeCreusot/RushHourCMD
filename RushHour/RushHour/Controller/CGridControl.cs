@@ -124,8 +124,10 @@ namespace RushHour
         {
             MVehicle v = mGrid.GetVehicle(mGrid.SelectedItem);
             bool flagVictoire = false;
+
             vGrid.DeleteWidgetOnScreen(mGrid.SelectedItem.ToString());
             vGrid.RefreshContentOnScreen(mGrid.SelectedItem.ToString());
+
             while (!flagVictoire)
             {
                 score.RefreshContentOnScreen();

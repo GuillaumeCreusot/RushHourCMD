@@ -12,6 +12,10 @@ namespace RushHour
         /// vertical and horizontal dimensions of the grid
         /// </summary>
         public int XLength {get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public int YLength { get; private set; }
 
         /// <summary>
@@ -39,7 +43,7 @@ namespace RushHour
         }
 
         /// <summary>
-        /// selected car on the grid
+        /// Selected Vehicle's ID
         /// </summary>
         private int selectedItem = 0;
         public int SelectedItem
@@ -54,8 +58,12 @@ namespace RushHour
                 Vehicles[value].IsSelected = true;
                 selectedItem = value;
             }
-        }        
+        }
 
+        
+        /// <summary>
+        /// Table containing for each case either true (there is something there) or false (nothing)
+        /// </summary>
         public bool[,] gridCollision;
 
         /// <summary>
@@ -94,8 +102,12 @@ namespace RushHour
 
             return false;
         }
-
-        //Constructors
+        //Builders
+        /// <summary>
+        /// Create a simple [X,Y] grid
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
         public MGrid(int X, int Y)
         {
             XLength = X;
@@ -104,6 +116,14 @@ namespace RushHour
             Vehicles = new List<MVehicle>();
         }
 
+        /// <summary>
+        /// Create a [X,Y] grid with vehicles and the specified score
+        /// Used in loading saves
+        /// </summary>
+        /// <param name="vehicles"></param>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="score"></param>
         public MGrid(int[,] vehicles, int X, int Y, int score = 0)
         {
             XLength = X;
@@ -139,9 +159,10 @@ namespace RushHour
                 return gridCollision[x, y];
             }
         }
+        //Methods
 
         /// <summary>
-        /// finds the corresponding Vehicle with its id
+        /// Returns the vehicle with the specified ID
         /// </summary>
         /// <param name="idVehicule"></param>
         /// <returns></returns>
@@ -164,6 +185,7 @@ namespace RushHour
         }
 
         /// <summary>
+        /// Test whether victory has been achieved or not
         /// checks if the player's car has reached the exit
         /// </summary>
         /// <returns></returns>
@@ -176,7 +198,7 @@ namespace RushHour
         }
 
         /// <summary>
-        /// 
+        /// Modify the collision grid when the vehicle with the specified ID moves
         /// </summary>
         /// <param name="idVehicle"></param>
         /// <param name="state"></param>
@@ -233,11 +255,25 @@ namespace RushHour
             }
         }
 
+        /// <summary>
+        /// Test whether the x,y position on the grid is valid (if there's nothing)
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
         public bool IsValidPosition(int x, int y)
         {
             return !gridCollision[x, y];
         }
 
+        /// <summary>
+        /// Same, but different, but still the same
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="direction"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
         public bool IsValidPosition(int x, int y, MMain.Direction direction, int length)
         {
             if(IsValidPosition(x, y))

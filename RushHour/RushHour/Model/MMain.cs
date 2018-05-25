@@ -9,6 +9,7 @@ namespace RushHour
     class MMain
     {
         /// <summary>
+        /// Cardinal directions
         /// Vehicle directions
         /// </summary>
         public enum Direction
@@ -20,6 +21,7 @@ namespace RushHour
         }
 
         /// <summary>
+        /// Grid Difficulty
         /// game difficulty
         /// </summary>
         public enum Difficulty

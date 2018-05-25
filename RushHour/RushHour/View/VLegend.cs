@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace RushHour
 {
     class VLegend : Label
-    {
+    {   
+        //Légende
         /// <summary>
         /// Instructions for the player
         /// </summary>
@@ -50,6 +51,7 @@ Déplacement d'un véhicule selectionné :
    Enter  : Retourner à la sélection
 
 ";
+        //Dimensions Légende
         public static int[] dimText = WidgetUtility.DimContent(text);
         
 
