@@ -12,7 +12,7 @@ namespace RushHour
     class Label : Widget
     {
         /// <summary>
-        /// Text show in Label
+        /// Text shown in Label
         /// </summary>
         public string Text
         {
@@ -32,9 +32,9 @@ namespace RushHour
         /// Constructor
         /// </summary>
         /// <param name="name">widget's name</param>
-        /// <param name="text">text show in label</param>
-        /// <param name="rowSpanMax">maximum nunber of row</param>
-        /// <param name="columnSpanMax">maximum number of column</param>
+        /// <param name="text">text shown in label</param>
+        /// <param name="rowSpanMax">maximum nunber of rows</param>
+        /// <param name="columnSpanMax">maximum number of columns</param>
         public Label(string name, string text, int rowSpanMax, int columnSpanMax) : base(name, rowSpanMax, columnSpanMax)
         {
             Content = text;

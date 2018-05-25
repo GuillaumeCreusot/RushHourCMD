@@ -11,6 +11,7 @@ namespace RushHour
         public VSaveMenu saveMenu;
         public WidgetsManager manager;
 
+        //Constructor
         public CSaveMenu()
         {
             saveMenu = new VSaveMenu();
@@ -46,6 +47,11 @@ namespace RushHour
 
         }
 
+        /// <summary>
+        /// Test if the given string has any special characters
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public bool hasSpecialChar(string text)
         {
             string specialChar = @"\|!#$%&/()=?»«@£§€{}.-;'<>_, ";

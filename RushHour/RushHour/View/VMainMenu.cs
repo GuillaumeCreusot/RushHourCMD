@@ -41,12 +41,12 @@ namespace RushHour
                                     
             ";
         /// <summary>
-        /// dimension of the text above menu
+        /// dimensions of the text above menu
         /// </summary>
         public static int[] dimText = WidgetUtility.DimContent(text);
 
         /// <summary>
-        /// item's name show in menu
+        /// item's name shown in menu
         /// </summary>
         public static string[] itemName = { "Nouvelle Partie", "Continuer une partie", "Quitter" };
 

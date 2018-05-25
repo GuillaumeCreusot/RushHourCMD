@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace RushHour
 {
     /// <summary>
-    /// Menu activate when player push escape
+    /// Menu activated when player pushes escape
     /// </summary>
     class VEscapeMenu : Menu
     {

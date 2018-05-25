@@ -16,7 +16,7 @@ namespace RushHour
         public VTitle title;
         public VGojira gozilla;
 
-
+        //Constructor
         public CGridControl(MGrid grid)
         {
             mGrid = grid;
@@ -42,6 +42,10 @@ namespace RushHour
             //manager.AddWidget(gozilla, 0, Console.LargestWindowWidth - VGojira.dimText[0] - 1);
         }
 
+        /// <summary>
+        /// Selects a car to move
+        /// </summary>
+        /// <returns></returns>
         public int Control()
         {
             mGrid.SelectedItem = 0;
@@ -107,12 +111,17 @@ namespace RushHour
             return 0;
         }
 
+        /// <summary>
+        /// Move vehicle with directional arrows
+        /// </summary>
         public void MoveControl()
         {
             MVehicle v = mGrid.GetVehicle(mGrid.SelectedItem);
             bool flagVictoire = false;
+
             vGrid.DeleteWidgetOnScreen(mGrid.SelectedItem.ToString());
             vGrid.RefreshContentOnScreen(mGrid.SelectedItem.ToString());
+
             while (!flagVictoire)
             {
                 score.RefreshContentOnScreen();

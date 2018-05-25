@@ -8,6 +8,7 @@ namespace RushHour
 {
     class VTitle : Label
     {
+        //Titre affiché sur l'écran de jeu
         public static string text = @"
 ██████╗ ███████╗       ███████╗██╗  ██╗ ██████╗ ██╗    ██╗███████╗██████╗ 
 ██╔══██╗██╔════╝██╗    ██╔════╝██║  ██║██╔═══██╗██║    ██║██╔════╝██╔══██╗
@@ -15,6 +16,8 @@ namespace RushHour
 ██╔══██╗██╔══╝  ██╗    ╚════██║██╔══██║██║   ██║██║███╗██║██╔══╝  ██╔══██╗
 ██║  ██║███████╗╚═╝    ███████║██║  ██║╚██████╔╝╚███╔███╔╝███████╗██║  ██║
 ╚═╝  ╚═╝╚══════╝       ╚══════╝╚═╝  ╚═╝ ╚═════╝  ╚══╝╚══╝ ╚══════╝╚═╝  ╚═╝";
+    
+        //dimensions du titre
         public static int[] dimText = WidgetUtility.DimContent(text);
 
 

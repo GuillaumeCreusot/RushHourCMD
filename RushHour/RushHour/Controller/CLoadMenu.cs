@@ -12,6 +12,7 @@ namespace RushHour
         public VLoadMenu menu;
         public WidgetsManager manager;
 
+        //Constructor
         public CLoadMenu()
         {
             menu = new VLoadMenu();
@@ -21,6 +22,9 @@ namespace RushHour
             manager.AddWidget(menu, VLoadMenu.dimText[0] + 2, (Console.LargestWindowWidth / 2) - (VLoadMenu.dimText[1] / 2));
         }
 
+        /// <summary>
+        /// Navigate through options
+        /// </summary>
         public int Control()
         {
             manager.RefreshContentOnScreen();

@@ -8,6 +8,9 @@ namespace RushHour
 {
     static class StandardGrids
     {
+        /// <summary>
+        /// standard Grids for the game
+        /// </summary>
         //length, starting position x, position y column, direction
         public static int[,] easyGrid = { 
             { 2, 1, 2, (int)MMain.Direction.East},

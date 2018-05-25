@@ -10,6 +10,7 @@ namespace RushHour
     {
         /// <summary>
         /// Cardinal directions
+        /// Vehicle directions
         /// </summary>
         public enum Direction
         {
@@ -21,6 +22,7 @@ namespace RushHour
 
         /// <summary>
         /// Grid Difficulty
+        /// game difficulty
         /// </summary>
         public enum Difficulty
         {

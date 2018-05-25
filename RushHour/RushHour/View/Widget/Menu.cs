@@ -10,12 +10,11 @@ namespace RushHour
     /// Widget used to show a menu
     /// </summary>
     class Menu : Widget
-    {
-        
+    {      
         
 
         /// <summary>
-        /// list of item in menu
+        /// list of items in menu
         /// </summary>
         private string[] items;
 
@@ -46,7 +45,7 @@ namespace RushHour
         }
 
         /// <summary>
-        /// Number of item in menu
+        /// Number of items in menu
         /// </summary>
         public int NbItem
         {
@@ -57,7 +56,7 @@ namespace RushHour
         }
 
         /// <summary>
-        /// text permanent above menu
+        /// permanent text above menu
         /// </summary>
         protected string PermanentText
         {
@@ -82,7 +81,7 @@ namespace RushHour
         }
 
         /// <summary>
-        /// marge with left console's side
+        /// margin on the console's left side
         /// </summary>
         private int margeLeft;
         public int MargeLeft
@@ -103,11 +102,11 @@ namespace RushHour
         /// </summary>
         /// <param name="name">widget's name</param>
         /// <param name="permanentText">permanent text in menu</param>
-        /// <param name="rowSpanMax">maximum number of row</param>
-        /// <param name="columnSpanMax">maximum number of column</param>
+        /// <param name="rowSpanMax">maximum number of rows</param>
+        /// <param name="columnSpanMax">maximum number of columns</param>
         /// <param name="items">items in menu</param>
         /// <param name="selectedItem">selected item (default = 0)/param>
-        /// <param name="margeLeft">marge with left</param>
+        /// <param name="margeLeft">margin on the left</param>
         public Menu(string name, string permanentText, int rowSpanMax, int columnSpanMax, string[] items, int selectedItem = 0, int margeLeft = 0) : base(name, rowSpanMax, columnSpanMax)
         {
             this.items = items;

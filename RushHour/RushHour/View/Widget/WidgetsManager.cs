@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace RushHour
 {
     /// <summary>
-    /// Widget wich manage the display of widget on screen
+    /// Widget wich manages the display of the widgets on screen
     /// </summary>
     class WidgetsManager : Widget
     {
@@ -17,7 +17,7 @@ namespace RushHour
         private bool superposition;
 
         /// <summary>
-        /// names of all widget which are contain in this manager
+        /// names of all widgets which are contained in this manager
         /// </summary>
         public string[] WidgetNames
         {
@@ -38,8 +38,8 @@ namespace RushHour
         /// Constructor
         /// </summary>
         /// <param name="name">widget's name</param>
-        /// <param name="nbCol">number of column</param>
-        /// <param name="nbRow">number of row</param>
+        /// <param name="nbCol">number of columns</param>
+        /// <param name="nbRow">number of rows</param>
         public WidgetsManager(string name, int nbCol, int nbRow, bool isMain = true, bool superposition = true) : base(name, nbRow, nbCol)
         {
             //cursor invisible
@@ -120,7 +120,7 @@ namespace RushHour
         }
 
         /// <summary>
-        /// refresh all widget on screen
+        /// refresh all widgets on screen
         /// </summary>
         public virtual void RefreshContentOnScreen(bool delete = false)
         {
@@ -128,17 +128,16 @@ namespace RushHour
         }
 
         /// <summary>
-        /// refresh all widget on screen wich are contained in <paramref name="contentNames"/>
+        /// refresh all widgets on screen wich are contained in <paramref name="contentNames"/>
         /// </summary>
         /// <param name="contentNames"></param>
         public virtual void RefreshContentOnScreen(string[] contentNames, bool delete = false)
         {
             Widget currentW;
-
             
             foreach(string name in contentNames)
             {
-                //get widget instance
+                //get widgets instance
                 currentW = FindWidgetWithName(name);
                 if(currentW == null)
                 {
@@ -181,10 +180,10 @@ namespace RushHour
         }
 
         /// <summary>
-        /// find a widget instance with is <paramref name="name"/>
+        /// find a widget instance named <paramref name="name"/>
         /// </summary>
         /// <param name="name"></param>
-        /// <returns>return null if he widget does'nt exist</returns>
+        /// <returns>returns null if the widget doesn't exist</returns>
         public Widget FindWidgetWithName(string name)
         {
             int c = 0;

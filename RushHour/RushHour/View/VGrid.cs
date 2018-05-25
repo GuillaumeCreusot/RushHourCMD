@@ -118,7 +118,7 @@ namespace RushHour
         /// <param name="delete">delete update (default = false)</param>
         public override void RefreshContentOnScreen(string[] contentNames, bool delete = false)
         {
-            //vehicle currently update
+            //vehicle currently updated
             VVehicle currentV;
 
             if (!delete)

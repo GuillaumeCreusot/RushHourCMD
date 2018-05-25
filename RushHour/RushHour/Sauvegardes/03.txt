@@ -1,9 +1,0 @@
-0
-1
-2122True
-2002False
-2203False
-3303False
-3033False
-3332False
-3352False

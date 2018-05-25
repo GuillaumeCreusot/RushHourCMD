@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace RushHour
 {
     /// <summary>
-    /// Menu used to choice difficulty level
+    /// Menu used to choose difficulty level
     /// </summary>
     class VDifficultyMenu : Menu
     {

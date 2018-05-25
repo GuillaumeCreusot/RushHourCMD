@@ -1,6 +1,0 @@
-0
-0
-2122True
-2413False
-3503False
-2442False

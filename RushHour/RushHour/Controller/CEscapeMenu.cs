@@ -11,6 +11,7 @@ namespace RushHour
         public VEscapeMenu escape;
         public WidgetsManager manager;
 
+        //Constructor
         public CEscapeMenu()
         {
             escape = new VEscapeMenu();
@@ -20,6 +21,9 @@ namespace RushHour
             manager.AddWidget(escape, (Console.LargestWindowHeight - VEscapeMenu.dimText[0]) / 4 + VEscapeMenu.dimText[0] + 2, (Console.LargestWindowWidth / 2) - (VEscapeMenu.dimText[1] / 2));
         }
 
+        /// <summary>
+        /// Navigate through options
+        /// </summary>
         public int Control()
         {
             manager.RefreshContentOnScreen();

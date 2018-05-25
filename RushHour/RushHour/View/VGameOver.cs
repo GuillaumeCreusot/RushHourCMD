@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace RushHour
 {
     /// <summary>
-    /// Label when player quit the game
+    /// Label when player quits the game
     /// </summary>
     class VGameOver: Label
     {
         /// <summary>
-        /// text show in label
+        /// text shown in label
         /// </summary>
         public static string text = @"
             ██████╗ ███████╗       ███████╗██╗  ██╗ ██████╗ ██╗    ██╗███████╗██████╗ 
@@ -38,12 +38,12 @@ namespace RushHour
             ";
 
         /// <summary>
-        /// dimension of the text above menu
+        /// dimensions of the text above menu
         /// </summary>
         public static int[] dimText = WidgetUtility.DimContent(text);
 
         /// <summary>
-        /// item's name show in menu
+        /// item's name shown in menu
         /// </summary>
         public static string[] itemName = { "" };
 

@@ -53,7 +53,10 @@ namespace RushHour
             //draw vehicle
             DrawVehicle();
         }
-        
+
+        /// <summary>
+        /// Affiche un véhicule
+        /// </summary>
         public void DrawVehicle()
         {
             string content = "";

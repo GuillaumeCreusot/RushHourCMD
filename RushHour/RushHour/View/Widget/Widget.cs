@@ -22,7 +22,7 @@ namespace RushHour
         private int[] spanMax;    
 
         /// <summary>
-        /// Corlor with which the color pattern is initialised
+        /// color with which the color pattern is initialised
         /// </summary>
         public ConsoleColor BasicColor { get; set; }
 
@@ -53,7 +53,7 @@ namespace RushHour
         }
 
         /// <summary>
-        /// number column of content
+        /// number columns of content
         /// </summary>
         public int ColumnSpan
         {
@@ -68,7 +68,7 @@ namespace RushHour
         }
 
         /// <summary>
-        /// number of row of content
+        /// number of rows of content
         /// </summary>
         public int RowSpan
         {
@@ -83,7 +83,7 @@ namespace RushHour
         }
 
         /// <summary>
-        /// maximum number of column of content
+        /// maximum number of columns of content
         /// </summary>
         public int ColumnSpanMax
         {
@@ -94,7 +94,7 @@ namespace RushHour
         }
 
         /// <summary>
-        /// maximum number of row of content
+        /// maximum number of rows of content
         /// </summary>
         public int RowSpanMax
         {
@@ -105,7 +105,7 @@ namespace RushHour
         }
 
         /// <summary>
-        /// content which will be showed on screen
+        /// content which will be shown on screen
         /// </summary>
         private string content = "";
         public virtual string Content
@@ -131,7 +131,7 @@ namespace RushHour
                 ColumnSpan = dim[1];
                 RowSpan = dim[0];
 
-                // uniformisation de la taille des rangs
+                // make all rows even
                 content = WidgetUtility.Resize(value, dim[1]);
 
                 //color
@@ -164,7 +164,7 @@ namespace RushHour
         }
 
         /// <summary>
-        /// Pattern which delete excatly the content of this widgte on screen
+        /// Pattern which deletes exactly the content of this widget on the screen
         /// </summary>
         public string DeletePattern
         {
@@ -197,9 +197,9 @@ namespace RushHour
 
 
         /// <summary>
-        /// Constructeur
+        /// Constructor
         /// </summary>
-        /// <param name="name">nom du widget</param>
+        /// <param name="name">widget's name</param>
         public Widget(string name, int rowSpanMax, int columnSpanMax)
         {
             span = new int[2];
