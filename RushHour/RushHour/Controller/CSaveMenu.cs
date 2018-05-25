@@ -29,10 +29,13 @@ namespace RushHour
         {
             manager.RefreshContentOnScreen();
             while (true)
-            {
+            {               
                 string input = "";
                 do
                 {
+                    Console.Clear();
+                    manager.RefreshContentOnScreen();
+
                     if (hasSpecialChar(input))
                     {
                         Console.WriteLine("Le nom ne doit pas contenir de caractères spéciaux.");

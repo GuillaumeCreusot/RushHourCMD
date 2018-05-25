@@ -232,6 +232,12 @@ namespace RushHour
                 items[i] = line2;
             }
             reader2.Close();
+
+            if(items.Length == 0)
+            {
+                items = new string[1] { "default" };
+            }
+
             return items;
         }
 

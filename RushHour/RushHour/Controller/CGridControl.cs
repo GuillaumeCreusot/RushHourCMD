@@ -24,7 +24,7 @@ namespace RushHour
 
             manager = new WidgetsManager("Grid", Console.LargestWindowWidth, Console.LargestWindowHeight);
 
-            manager.AddWidgetsManager(vGrid, VTitle.dimText[0] + 1, Console.LargestWindowWidth/2 - vGrid.ColumnSpanMax/2);
+            manager.AddWidgetsManager(vGrid, VTitle.dimText[0] + 10, Console.LargestWindowWidth/2 - vGrid.ColumnSpanMax/2);
 
             int[] dim = WidgetUtility.DimContent(InGameText.score);
             manager.AddWidget(new Label("lbScore", InGameText.score, dim[0], dim[1]), 0, 1);
