@@ -1,0 +1,13 @@
+0
+2
+2022True
+2101False
+2033False
+2151False
+3203False
+2231False
+2303False
+2343False
+2431False
+2501False
+3533False
