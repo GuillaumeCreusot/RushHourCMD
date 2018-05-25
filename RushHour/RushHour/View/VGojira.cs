@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 namespace RushHour
 {
     class VGojira : Label
-    {
+    {   //Gozilla
         public static string text = @"
 
 ";
+        //Dimensions Gozilla
         public static int[] dimText = WidgetUtility.DimContent(text);
 
 

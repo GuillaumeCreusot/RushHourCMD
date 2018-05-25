@@ -8,7 +8,14 @@ namespace RushHour
 {
     class MGrid
     {
+        /// <summary>
+        /// Number of grid columns
+        /// </summary>
         public int XLength {get; private set; }
+
+        /// <summary>
+        /// Number of grid rows
+        /// </summary>
         public int YLength { get; private set; }
 
         private int score;
@@ -32,6 +39,9 @@ namespace RushHour
             }
         }
 
+        /// <summary>
+        /// Selected Vehicle's ID
+        /// </summary>
         private int selectedItem = 0;
         public int SelectedItem
         {
@@ -48,11 +58,19 @@ namespace RushHour
         }
 
         
-
+        /// <summary>
+        /// Table containing for each case either true (there is something there) or false (nothing)
+        /// </summary>
         public bool[,] gridCollision;
 
         public List<MVehicle> Vehicles;
 
+        /// <summary>
+        /// Test whether vehicle can or cannot move in direction
+        /// </summary>
+        /// <param name="vehicle"></param>
+        /// <param name="direction"></param>
+        /// <returns></returns>
         public bool ValidDirection(MVehicle vehicle, MMain.Direction direction)
         {
             int x = vehicle.Pos[0];
@@ -80,6 +98,11 @@ namespace RushHour
         }
 
         //Builders
+        /// <summary>
+        /// Create a simple [X,Y] grid
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
         public MGrid(int X, int Y)
         {
             XLength = X;
@@ -88,6 +111,14 @@ namespace RushHour
             Vehicles = new List<MVehicle>();
         }
 
+        /// <summary>
+        /// Create a [X,Y] grid with vehicles and the specified score
+        /// Used in loading saves
+        /// </summary>
+        /// <param name="vehicles"></param>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="score"></param>
         public MGrid(int[,] vehicles, int X, int Y, int score = 0)
         {
             XLength = X;
@@ -113,7 +144,13 @@ namespace RushHour
                 return gridCollision[x, y];
             }
         }
+        //Methods
 
+        /// <summary>
+        /// Returns the vehicle with the specified ID
+        /// </summary>
+        /// <param name="idVehicule"></param>
+        /// <returns></returns>
         public MVehicle GetVehicle(int idVehicule)
         {
             int i = 0;
@@ -132,6 +169,10 @@ namespace RushHour
             }
         }
 
+        /// <summary>
+        /// Test whether victory has been achieved or not
+        /// </summary>
+        /// <returns></returns>
         public bool IsVictoryAchieved()
         {
             MVehicle vehicle = GetVehicle(0);
@@ -140,6 +181,11 @@ namespace RushHour
             return false;
         }
 
+        /// <summary>
+        /// Modify the collision grid when the vehicle with the specified ID moves
+        /// </summary>
+        /// <param name="idVehicle"></param>
+        /// <param name="state"></param>
         public void ModifyVehicleInCollisionGrid(int idVehicle, bool state)
         {
             MVehicle v = GetVehicle(idVehicle);
@@ -193,11 +239,25 @@ namespace RushHour
             }
         }
 
+        /// <summary>
+        /// Test whether the x,y position on the grid is valid (if there's nothing)
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
         public bool IsValidPosition(int x, int y)
         {
             return !gridCollision[x, y];
         }
 
+        /// <summary>
+        /// Same, but different, but still the same
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="direction"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
         public bool IsValidPosition(int x, int y, MMain.Direction direction, int length)
         {
             if(IsValidPosition(x, y))

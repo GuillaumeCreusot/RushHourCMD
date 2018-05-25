@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RushHour
 {
+    /// <summary>
+    /// 
+    /// </summary>
     class MVehicle
     {
         private int idVehicle;
@@ -16,7 +19,13 @@ namespace RushHour
         private bool isPlayer;
         private MGrid assignedGrid;
         private bool placeOnGrid;
+        /// <summary>
+        /// True if the vehicle is selected
+        /// </summary>
         public bool IsSelected { get; set; }
+        /// <summary>
+        /// True if the vehicle is being moved by the player
+        /// </summary>
         public bool IsMoving { get; set; }
 
         //Constructor
@@ -164,6 +173,10 @@ namespace RushHour
         }
 
         //Methods
+        /// <summary>
+        /// Moves if possible the vehicle according to the param direction
+        /// </summary>
+        /// <param name="direction"></param>
         public void Move(MMain.Direction direction)
         {
 

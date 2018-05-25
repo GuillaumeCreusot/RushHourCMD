@@ -8,6 +8,9 @@ namespace RushHour
 {
     class MMain
     {
+        /// <summary>
+        /// Cardinal directions
+        /// </summary>
         public enum Direction
         {
             North, //0
@@ -16,6 +19,9 @@ namespace RushHour
             South
         }
 
+        /// <summary>
+        /// Grid Difficulty
+        /// </summary>
         public enum Difficulty
         {
             Easy,
