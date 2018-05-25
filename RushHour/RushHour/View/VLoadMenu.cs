@@ -32,8 +32,7 @@ namespace RushHour
                                                                                        
 
                                    
-                                    Choisissez la partie à charger !                                                                                               
-                                    
+                                    Choisissez la partie à charger !                                    
             ";
         /// <summary>
         /// dimensions of the text above menu

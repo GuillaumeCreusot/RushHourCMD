@@ -52,6 +52,8 @@ namespace RushHour
 
             string lastSelectedItem = "";
 
+            int moveresult;
+
             Console.Clear();
             manager.RefreshContentOnScreen();
             vGrid.RefreshContentOnScreen();
@@ -92,7 +94,11 @@ namespace RushHour
 
                     case ConsoleKey.Enter:
                         mGrid.Vehicles[mGrid.SelectedItem].IsMoving = true;
-                        MoveControl();
+                        moveresult = MoveControl();
+                        if(moveresult == 1)
+                        {
+                            return 1;
+                        }
                         mGrid.Vehicles[mGrid.SelectedItem].IsMoving = false;
                         break;
 
@@ -114,7 +120,7 @@ namespace RushHour
         /// <summary>
         /// Move vehicle with directional arrows
         /// </summary>
-        public void MoveControl()
+        public int MoveControl()
         {
             MVehicle v = mGrid.GetVehicle(mGrid.SelectedItem);
             bool flagVictoire = false;
@@ -144,7 +150,9 @@ namespace RushHour
                         break;
 
                     case ConsoleKey.Enter:
-                        return;
+                        return 0;
+                    case ConsoleKey.Escape:
+                        return 1;
                 }
                 flagVictoire = mGrid.IsVictoryAchieved();
                 if (mGrid.SelectedItem.ToString() != "0")
@@ -155,6 +163,8 @@ namespace RushHour
                 vGrid.DeleteWidgetOnScreen(mGrid.SelectedItem.ToString());
                 vGrid.RefreshContentOnScreen(mGrid.SelectedItem.ToString());
             }
+
+            return 0;
         }
     }
 }

@@ -246,6 +246,8 @@ namespace RushHour
         /// </summary>
         public void Read(string filePath)
         {
+            grid.Reset();
+
             //open StreamReader
             StreamReader reader = new StreamReader(filePath);
             string line = reader.ReadLine();

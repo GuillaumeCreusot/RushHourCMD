@@ -120,6 +120,16 @@ namespace RushHour
 
         }
 
+        /// <summary>
+        /// Reset grid
+        /// </summary>
+        public void Reset()
+        {
+            Vehicles = new List<MVehicle>();
+            Score = 0;
+            gridCollision = new bool[XLength, YLength];
+        }
+
 
         //Index
         public bool this[int x, int y]
